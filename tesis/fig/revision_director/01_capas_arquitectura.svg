@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="455" height="467" viewBox="0 0 455 467">
+<defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#52616A" stroke-width="1.1"/></marker></defs>
+<rect width="455" height="467" fill="white"/>
+<text x="8" y="20.00" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="700" fill="#173747">Arquitectura del sistema en cuatro capas</text>
+<text x="8" y="44.48" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">De las variables físicas a la consulta de datos del generador eólico</text>
+<path d="M8 59.64 H447" fill="none" stroke="#52616A" stroke-width="1"/>
+<rect x="48" y="70" width="399" height="76" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="9" y="105.00" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#187D86">01</text>
+<text x="59" y="87.00" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700" fill="#187D86">FÍSICA Y SENSÓRICA</text>
+<text x="59" y="104.08" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Variables del generador y del entorno</text>
+<text x="59" y="119.88" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Voltaje · RPM · posición GPS</text>
+<text x="59" y="135.68" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Temperatura · humedad · presión · velocidad del viento</text>
+<path d="M247 147 V156" fill="none" stroke="#52616A" stroke-width="1" marker-end="url(#a)"/>
+<rect x="48" y="160" width="399" height="76" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="9" y="195.00" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#187D86">02</text>
+<text x="59" y="177.00" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700" fill="#187D86">PROCESAMIENTO Y COMUNICACIÓN LOCAL</text>
+<text x="59" y="194.08" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Tres ESP32-C6 con funciones distribuidas</text>
+<text x="59" y="209.88" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">ESP1: adquisición → ESP-NOW → ESP2: integración</text>
+<text x="59" y="225.68" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">ESP2: JSON → UART → ESP3: conexión segura con AWS</text>
+<path d="M247 237 V246" fill="none" stroke="#52616A" stroke-width="1" marker-end="url(#a)"/>
+<rect x="48" y="250" width="399" height="76" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="9" y="285.00" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#187D86">03</text>
+<text x="59" y="267.00" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700" fill="#187D86">RECEPCIÓN, ALMACENAMIENTO Y CONSULTA</text>
+<text x="59" y="284.08" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Servicios administrados en AWS</text>
+<text x="59" y="299.88" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">AWS IoT Core · DynamoDB: último dato · S3: histórico</text>
+<text x="59" y="315.68" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Glue: catálogo · Athena: consultas · Lambda: acceso a datos</text>
+<path d="M247 327 V336" fill="none" stroke="#52616A" stroke-width="1" marker-end="url(#a)"/>
+<rect x="48" y="340" width="399" height="76" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="9" y="375.00" font-family="DejaVu Sans, sans-serif" font-size="19" font-weight="700" fill="#187D86">04</text>
+<text x="59" y="357.00" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="700" fill="#187D86">VISUALIZACIÓN</text>
+<text x="59" y="374.08" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Información disponible para el usuario</text>
+<text x="59" y="389.88" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Dashboard React/Vite: último dato y series históricas</text>
+<text x="59" y="405.68" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="400" fill="#173747">Amazon S3: alojamiento web · CloudFront: distribución</text>
+<text x="8" y="450.00" font-family="DejaVu Sans, sans-serif" font-size="8.7" font-weight="400" fill="#173747">Capas funcionales de la solución; no representan las capas del modelo OSI.</text>
+</svg>

@@ -1,0 +1,11 @@
+# Anexo B — Código ESP2
+
+La carpeta [ESP2 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP2/Firmware%20nodo%202%20-%20Variables%20ambientables%20e%20integraci%C3%B3n%20con%20ESP1) contiene el proyecto denominado «Firmware nodo 2 - Variables ambientables e integración con ESP1». Su archivo principal es `main/main7.c`, ubicado dentro de esa carpeta descriptiva. Se incluyen los componentes para el sensor BME680 y la pantalla SSD1306, una biblioteca auxiliar de conexión Wi-Fi, los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF y el README del nodo.
+
+El programa recibe mediante ESP-NOW las variables adquiridas por ESP1 y las integra con la velocidad del viento y las mediciones ambientales locales. Consulta el reloj DS3231 para asociar fecha y hora a los datos, presenta información en la pantalla OLED y utiliza la microSD para registrar temporalmente las muestras y formar bloques de procesamiento. Después de acumular diez muestras válidas, genera un mensaje JSON y lo transmite por UART al nodo ESP3.
+
+Las funciones del código coordinan la recepción, la adquisición de sensores, el acceso al reloj, la escritura del archivo CSV, la visualización y la comunicación. El README explica las conexiones y las condiciones de funcionamiento, incluida la dependencia de la microSD para generar los mensajes y el reinicio del archivo temporal tras cada bloque. La biblioteca Wi-Fi auxiliar se conserva en el proyecto, aunque no es invocada por el programa principal de esta versión.
+
+El código y sus archivos de apoyo pueden consultarse a través del enlace de la carpeta. Las solicitudes de acceso al repositorio privado y las consultas sobre este nodo se atienden mediante el correo del autor.
+
+**Contacto:** [andres25@utp.edu.co](mailto:andres25@utp.edu.co).

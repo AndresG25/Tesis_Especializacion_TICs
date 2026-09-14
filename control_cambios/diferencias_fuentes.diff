@@ -1,0 +1,251 @@
+--- original/02-marco-referencia.qmd
++++ actualizada/02-marco-referencia.qmd
+@@ -22,6 +22,10 @@
+ 
+ Debido a la naturaleza del sistema y a la división por nodos adecuados a la distribución física y espacial del sistema eólico, se plantea una arquitectura de referencia con cuatro capas: física y sensórica, Edge o comunicación local, capa cloud para ETL y capa cloud para visualización. El NIST (2016) permite justificar esta división al considerar que las redes de cosas se componen de sensores, canales de comunicación, agregadores y servicios externos que permiten convertir eventos físicos en información digital. AWS (2026e), por su parte, permite sustentar el uso de funciones **Lambda** como mecanismo para exponer servicios HTTP ligeros dentro de una arquitectura cloud. Esta estructura permite explicar con mayor detalle cuál es el rol que cumple cada componente, como sensores, **DS3231**, pantalla **OLED** y memoria **SD**; cuál protocolo se usa en cada tramo; por qué se usa; y cuáles riesgos surgen cuando se pasa de señales físicas a información consultable desde un dashboard expuesto a la web [@nist_sp800_183; @aws_lambda_function_urls] [@ref19; @ref21; @atzori_iot_survey_2010; @botta_cloud_iot_2016].
+ 
++![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align="center"}
++
++La @fig-cap2-cuatro-capas presenta las cuatro capas descritas en esta sección. Los sensores dan origen a las mediciones; las tarjetas las organizan y transmiten; los servicios de AWS las almacenan y permiten consultarlas; y el dashboard las presenta al usuario.
++
+ La primera capa corresponde al entorno físico del generador eólico de eje vertical y sus variables asociadas. En esta capa se ubican sensores y dispositivos necesarios para el funcionamiento adecuado de la arquitectura. En la ESP1, ubicada a la altura del generador, se mide la velocidad de la turbina contando sus RPM con un sensor de efecto Hall, se mide el voltaje a partir del acondicionamiento de la señal sinusoidal y del uso del conversor análogo-digital, y se integra un módulo **GPS** para obtener información de ubicación del dispositivo. En la ESP2, ubicada a una altura media o alta de la turbina, se leen los datos del sensor **BME680**, el cual provee datos de presión atmosférica, temperatura, humedad y altitud; también se toma la fecha y hora del reloj de tiempo real **DS3231**, la velocidad del viento del anemómetro mediante pulsos, interrupciones y temporizadores, el uso de **memoria SD** para almacenamiento temporal de muestras y la pantalla **OLED** para visualización local de datos. Esta capa se relaciona con Gómez Flórez (2024), quien ya había trabajado la adquisición de variables físicas en turbinas eólicas de eje vertical, aunque con una arquitectura diferente basada en BeagleBone Black y servidor físico remoto [@gomez_prototipado_2024; @bosch_bme680_datasheet] [@ref4; @ref35; @bhutta_vawt_review_2012; @eriksson_turbine_concepts_2008; @calautit_micro_wind_2023].
+ 
+ La segunda capa corresponde al procesamiento Edge en el sistema embebido, para este caso el SoC **ESP32-C6**. Espressif Systems (2026a) documenta **ESP-NOW** como un protocolo de comunicación **Wi-Fi** sin conexión que permite enviar datos entre dispositivos ESP sin construir una red IP completa, lo cual justifica su uso entre la ESP1 y la ESP2. En esta capa, la ESP1 envía los datos medidos y estructurados a la ESP2 mediante **ESP-NOW**. La ESP2 consolida todos los datos en una estructura **json** y la transmite por **UART** a la ESP3, que actúa como gateway. La ESP3 recibe el paquete de datos, lo reconstruye, gestiona la conexión a la red Wi-Fi y la comunicación con **AWS IoT Core** mediante **MQTT** sobre **SSL/TLS**, y se encarga de enviar los datos una vez se conecta al tópico seguro. El NIST (2019) advierte que los sistemas IoT deben gestionar riesgos de seguridad, privacidad e integridad de los datos; por eso, esta etapa es clave, ya que los errores que aquí ocurren pueden propagarse a través del sistema hasta alojarse en la base de datos y generar análisis erróneos [@espressif_espnow; @nist_ir_8228] [@sisinni_industrial_iot_2018; @quincoces_mqtt_2019; @ref21; @ref10].
+@@ -35,6 +39,10 @@
+ Este trabajo se aborda desde la mirada de los modelos OSI y TCP/IP, siendo TCP/IP el modelo que se implementa en la práctica. El modelo OSI es útil porque explica de manera ordenada y detallada en qué nivel se gestiona cada función de la comunicación. IEEE Standards Association (2016) permite comprender la operación de redes inalámbricas en términos de funciones de capa física y de enlace, mientras que Eddy (2022) especifica TCP como protocolo de transporte orientado a conexión y entrega confiable. En el sistema de prueba que se implementa, la lectura por capas facilita la distinción entre señales a nivel de capa física, transmisión en capa de enlace, red IP, transporte seguro mediante **TLS** y aplicación de telemetría en las capas superiores [@iso_ieee_8802_11_2018; @rfc9293].
+ 
+ En la implementación real se hace uso del estándar TCP/IP, el cual simplifica el modelo OSI en cuatro capas: acceso a la red, Internet, transporte y aplicación. Espressif Systems (2026d) permite sustentar que **ESP-NOW** opera como un protocolo **Wi-Fi** sin conexión entre dispositivos ESP, principalmente sin requerir direccionamiento IP. En cambio, AWS (2026g) muestra que la salida hacia **AWS IoT Core** requiere conexión Wi-Fi, asignación de dirección IP, establecimiento de sesión TCP, negociación **TLS** y publicación mediante **MQTT** hacia un broker administrado por AWS. Por esta razón, el sistema combina tramos no IP en la comunicación local con un tramo IP seguro hacia la nube [@espressif_espnow; @aws_iot_protocols; @rfc8446].
++
++![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de herramientas de IA, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align="center"}
++
++La @fig-cap2-osi-tramos se lee por filas y por tramos de comunicación. ESP1 y ESP2 intercambian datos mediante ESP-NOW sobre tramas IEEE 802.11; ESP2 transmite el JSON consolidado por UART a ESP3; y ESP3 publica mediante MQTT sobre TLS, TCP e IP, con Wi-Fi en el acceso al router. Las tarjetas no corresponden a una sola capa. La comunicación serie se muestra como una interfaz local, sin atribuirle una pila OSI completa. La tabla siguiente conserva una lectura funcional del sistema: la fila de seguridad agrupa controles y no constituye una capa adicional del modelo OSI [@espressif_espnow; @espressif_uart_driver; @oasis_mqtt5; @rfc9293; @rfc8446].
+ 
+ | Capa conceptual | Implementación en el prototipo | Función técnica |
+ | --- | --- | --- |
+@@ -55,11 +63,15 @@
+ 
+ **ESP-NOW** es un protocolo propio de los dispositivos ESP soportado por Espressif para el entorno local de **esp-idf**. Espressif Systems (2026d) describe **ESP-NOW** como un protocolo de comunicación **Wi-Fi** sin conexión que permite comunicación directa entre dispositivos ESP mediante tramas de acción específicas, incluyendo registro de pares, callbacks de envío o recepción y transmisión de datos entre dispositivos. En este caso, se usa **ESP-NOW** porque es un protocolo flexible que permite intercomunicar dos o más ESP32 a través de sus direcciones MAC en la banda de 2.4 GHz, evitando construir una red IP completa. Esto es conveniente cuando se deben transmitir datos a un nodo integrador y se quiere reducir la complejidad de red. No obstante, su uso exige registrar pares de tarjetas, controlar direcciones MAC y configurar seguridad para garantizar cifrado en la transmisión cuando el sistema lo requiera [@espressif_espnow; @iso_ieee_8802_11_2018].
+ 
+-Dentro de la arquitectura, **ESP-NOW** se ubica en un nivel diferente a **MQTT**. OASIS (2019) define **MQTT** como un protocolo de mensajería publish/subscribe basado en clientes, broker y tópicos, mientras que Espressif Systems (2026d) presenta **ESP-NOW** como una comunicación local entre dispositivos ESP. Por ello, **MQTT** se asocia a la telemetría que sale hacia Internet y **AWS IoT Core**, mientras que **ESP-NOW** permite la comunicación entre ESPs en la red local, sin depender de un broker ni de conectividad IP. En este trabajo, **ESP-NOW** se presenta como un protocolo de borde o Edge que, aunque no pertenece a la capa cloud, brinda prestaciones útiles para sistemas IoT distribuidos en espacios físicos donde se requiere comunicación local ligera [@oasis_mqtt5; @espressif_espnow].
++Dentro de la arquitectura, **ESP-NOW** se ubica en un nivel diferente a **MQTT**. En la especificación MQTT Version 5.0, OASIS (2019) define **MQTT** como un protocolo de mensajería publish/subscribe basado en clientes, broker y tópicos, mientras que Espressif Systems (2026d) presenta **ESP-NOW** como una comunicación local entre dispositivos ESP. Por ello, **MQTT** se asocia a la telemetría que sale hacia Internet y **AWS IoT Core**, mientras que **ESP-NOW** permite la comunicación entre ESPs en la red local, sin depender de un broker ni de conectividad IP. En este trabajo, **ESP-NOW** se presenta como un protocolo de borde o Edge que, aunque no pertenece a la capa cloud, brinda prestaciones útiles para sistemas IoT distribuidos en espacios físicos donde se requiere comunicación local ligera [@oasis_mqtt5; @espressif_espnow].
+ 
+ Por otra parte, la comunicación **UART** entre ESP2 y ESP3 cumple una función diferente. Espressif Systems (2026h) documenta **UART** como un mecanismo de comunicación serial que permite transmisión y recepción de datos mediante un controlador dedicado. En este proyecto, la ESP3 puede estar cerca de la ESP2, por lo que se aprovecha **UART** para transferir el **json** consolidado desde el nodo integrador hacia el gateway de AWS y no interferir con la comunicación Wi-Fi de la ESP3. Aunque **UART** es un protocolo simple y robusto para distancias cortas, el NIST (2019) permite recordar que los sistemas IoT deben cuidar la integridad y confiabilidad de los datos transmitidos. Por ello, se deben tener en cuenta sus limitaciones y configuraciones de delimitadores, tamaño máximo de trama, control de errores y criterios de descarte para evitar publicar mensajes incompletos o corruptos en AWS [@espressif_uart_driver; @nist_ir_8228].
+ 
+ Desde el punto de vista de diseño, esta fue la solución propuesta a los problemas que surgieron en el camino con la adquisición y transmisión de datos en cada etapa. La combinación **ESP-NOW** + **UART** responde a la necesidad de comunicación en el espacio del generador eólico, aunque esta situación puede cambiar en otros sistemas y requerir nuevas arquitecturas. Espressif Systems (2026d) sustenta la comunicación local mediante **ESP-NOW**, mientras que AWS (2026g) permite sustentar la necesidad de conectar finalmente el sistema a una plataforma cloud mediante **MQTT** seguro. A su vez, esta combinación permite separar el dominio inalámbrico local del dominio de publicación a Internet, reduciendo la carga funcional sobre los diferentes nodos y especializando cada tarjeta en funciones específicas. Esta decisión también marca una diferencia frente a Gómez Flórez (2024), donde la arquitectura previa concentraba mayor parte del procesamiento en una BeagleBone Black y un servidor físico remoto [@espressif_espnow; @aws_iot_protocols; @gomez_prototipado_2024].
++
++![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de herramientas de IA, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align="center"}
++
++La @fig-cap2-comparacion-arquitecturas organiza la comparación por adquisición, procesamiento, almacenamiento, consulta y visualización. Permite reconocer qué funciones se conservan y cómo cambia su distribución entre dispositivos y servicios; no representa el cableado del sistema anterior [@gomez_prototipado_2024].
+ 
+ ## **MQTT**, telemetría y contrato de datos
+ 
+@@ -91,6 +103,8 @@
+ 
+ Para interconectar la sección de almacenamiento con el frontend de visualización se implementan funciones **Lambda** de AWS, las cuales permiten ejecutar código bajo demanda y actuar como intermediarias detrás de cada solicitud del usuario. AWS (2026k) describe **Lambda** Function URL como una función integrada que permite exponer una función **Lambda** mediante HTTPS, actuando como una API ligera para el dashboard. En este trabajo, esto limita que el dashboard consulte directamente las fuentes de datos, como **DynamoDB** o **S3**. En lugar de ello, el usuario realiza peticiones HTTP de tipo GET desde el dashboard a la URL de la función **Lambda**, y esta centraliza la validación de parámetros, la consulta específica a **S3** mediante **Athena** y Glue, la normalización de la respuesta en estructura **json** y la aplicación de políticas de acceso desde el navegador mediante **CORS**. AWS (2026l) permite sustentar la importancia de **CORS** para controlar las solicitudes entre diferentes orígenes en aplicaciones web [@aws_lambda_function_urls; @aws_lambda_url_cors].
+ 
++Como proyección, la separación entre información reciente e histórica puede explorarse en plataformas de supervisión de sistemas de potencia. Llevar esta idea al estudio de estabilidad requeriría definir otras variables, escalas de muestreo, condiciones de sincronización y tiempos de respuesta. Ese desarrollo queda fuera de la validación presentada: el prototipo se utiliza para monitoreo de la turbina y no implementa funciones de protección ni control de estabilidad.
++
+ ## Computación en el borde y gestión de concurrencia
+ 
+ **Edge Computing**, o computación en el borde, es una práctica que permite ejecutar parte del procesamiento en la fuente u origen de los datos, en este caso, en las tarjetas **ESP32-C6** que miden las variables del proceso. El NIST (2016) permite sustentar esta idea al considerar que los sistemas IoT no solo capturan datos, sino que también pueden realizar procesamiento local antes de enviar información a servicios externos. Esto reduce la dependencia de conectividad permanente y evita enviar datos desorganizados a la nube o a un servidor remoto. El firmware que se crea para el proceso local permite que estas tarjetas se comuniquen con los sensores, ejecuten los algoritmos de lectura de datos, cuenten pulsos combinando interrupciones y temporizadores de alta precisión, consoliden los datos en múltiples estructuras, serialicen la información y la publiquen en AWS, facilitando el procesamiento y la integridad del proceso. Espressif Systems (2026e) permite sustentar el uso de **FreeRTOS** en **esp-idf** para manejar tareas, sincronización y concurrencia en dispositivos **ESP32-C6** [@nist_sp800_183; @espressif_freertos] [@sisinni_industrial_iot_2018; @atzori_iot_survey_2010].
+--- original/03-arquitectura-hardware-iot-edge.qmd
++++ actualizada/03-arquitectura-hardware-iot-edge.qmd
+@@ -8,9 +8,13 @@
+ 
+ La @fig-arquitectura-iot-edge resume la arquitectura propuesta. En el nodo 1 (ESP1) se convierten señales de GPS, voltaje y RPM de la turbina en una estructura local. En el nodo 2 (ESP2) se agrega velocidad del viento, temperatura, presión, humedad, altitud, tiempo, visualización **OLED** y almacenamiento temporal en tarjeta **SD** y se transmite **json** consolidado mediante **UART**. En el nodo 3 (ESP3) se recibe el **json** por **UART**, se establece conectividad **Wi-Fi** y publica la telemetría por **MQTT** sobre **TLS** en **AWS IoT Core**. Por ende, el sistema no es únicamente una tarjeta con sensores conectados, sino un pipeline distribuido completo que garantiza desde la adquisición hasta la transmisión segura de la información recolectada [@nist_sp800_183; @gomez_prototipado_2024; @espressif_uart_driver; @aws_iot_protocols; @rfc8446].
+ 
++Para orientar la lectura, la sección 3.1 explica el propósito de la capa IoT Edge y la sección 3.2 establece sus requisitos funcionales. La sección 3.3 identifica los archivos de código usados como soporte; la sección 3.4 describe la distribución física de los nodos; y la sección 3.5 relaciona sus interfaces con el modelo de capas.
++
++Las secciones 3.6, 3.7 y 3.8 desarrollan, respectivamente, la adquisición en ESP1, la integración de datos en ESP2 y la publicación hacia AWS desde ESP3. Después se presenta el contrato de datos en 3.9, la gestión temporal en 3.10, la seguridad en 3.11 y el tratamiento de integridad y pérdida de datos en 3.12. La sección 3.13 reúne la estrategia de validación y la sección 3.14 cierra el capítulo con una síntesis.
++
+ ## Propósito de la capa **IoT Edge**
+ 
+-La capa **IoT Edge** tiene como función principal acercar el procesamiento de los datos al punto físico donde se miden las señales. En este proyecto, las medidas nacen de la necesidad de analizar el funcionamiento de un generador eólico de eje vertical de pequeña escala, así que se miden pulsos asociados a la rotación de la turbina, voltaje generado, coordenadas geográficas, velocidad del viento, temperatura, presión atmosférica, humedad y altitud. Si estas señales se envían hacia la nube sin procesamiento, muy seguramente podría recibir datos incompletos, no se sabría a qué timestamp pertenece ese dato y todo sería un caos. Por ello, el Edge cumple funciones de adquisición, limpieza, filtrado, agregación, almacenamiento temporal, serialización y control básico de la integridad de los datos, lo que permite tener una arquitectura más fiable, estable y económica [@nist_sp800_183; @botta_cloud_iot_2016; @gomez_prototipado_2024; @marjani_big_iot_2017; @nist_ir_8228].
++La capa **IoT Edge** tiene como función principal acercar el procesamiento de los datos al punto físico donde se miden las señales. En este proyecto, las medidas nacen de la necesidad de analizar el funcionamiento de un generador eólico de eje vertical de pequeña escala, así que se miden pulsos asociados a la rotación de la turbina, voltaje generado, coordenadas geográficas, velocidad del viento, temperatura, presión atmosférica, humedad y altitud. Si estas señales se envían hacia la nube sin procesamiento, muy seguramente podría recibir datos incompletos, no se sabría a qué *timestamp* pertenece ese dato y todo sería un caos. Por ello, el Edge cumple funciones de adquisición, limpieza, filtrado, agregación, almacenamiento temporal, serialización y control básico de la integridad de los datos, lo que permite tener una arquitectura más fiable, estable y económica [@nist_sp800_183; @botta_cloud_iot_2016; @gomez_prototipado_2024; @marjani_big_iot_2017; @nist_ir_8228].
+ 
+ Desde la perspectiva de hardware/sensado como servicio, la capa IoT Edge no se limita a conectar sensores a tarjetas ESP32-C6. Su función es convertir mediciones físicas en datos digitales organizados, trazables y listos para ser transmitidos. Por ello, el valor de esta capa no está solo en el dispositivo, sino en su capacidad para entregar telemetría confiable al resto de la arquitectura [@nist_sp800_183; @nist_ir_8228; @espressif_esp32c6_datasheet; @espressif_freertos].
+ 
+@@ -421,3 +425,5 @@
+ En este capítulo se propone una arquitectura IoT - Edge que convierte el generador eólico de eje vertical de pequeña escala en un sistema medible, distribuido y conectado a la red de Internet. El sistema se divide en tres nodos. La ESP1 captura las variables del generador AC y las transmite por **ESP-NOW**. En la ESP2 se consolidan las variables locales y remotas (ESP1), registra datos en la **microSD**, visualiza información en la pantalla **OLED** y genera un **json** con todos los datos del sistema. En la ESP3 se recibe el **json** por **UART** y se publica en **AWS IoT Core** mediante **MQTTs**. Esta estructura permite delimitar las responsabilidades, mejorar la depuración de problemas y explicar el sistema desde la medición de variables físicas hasta la telemetría cloud [@nist_sp800_183; @gomez_prototipado_2024; @espressif_espnow; @rfc8259_json; @espressif_uart_driver; @aws_iot_protocols].
+ 
+ El análisis del sistema evidencia que el diseño ya incorpora decisiones técnicas importantes que llevan este prototipo a un nivel más avanzado de desarrollo con el SoC **ESP32-C6**. Se hace uso de interrupciones, GPTimer, ADC calibrado, **I2C** compartido con mutex, almacenamiento CSV en memoria SD, promedios de variables continuas, valores centinela prefijados, **MQTTs** QoS 1 y autenticación con certificados. A su vez, se identifican mejoras necesarias en cifrado **ESP-NOW**, calibración de sensores, gestión de secretos y credenciales, validación del **json** y sincronización temporal más precisa [@espressif_esp32c6_datasheet; @espressif_esp32c6_gptimer; @espressif_esp32c6_adc_calibration; @espressif_i2c_driver; @espressif_sdspi_host_esp32c6; @aws_iot_x509].
++
++Con esta distribución queda definido el recorrido local de las mediciones y el mensaje que recibe la plataforma cloud. El capítulo siguiente continúa desde ese punto: describe la recepción en AWS y las rutas utilizadas para conservar, consultar y visualizar los datos.
+--- original/04-arquitectura-software-aws.qmd
++++ actualizada/04-arquitectura-software-aws.qmd
+@@ -4,7 +4,7 @@
+ 
+ Para este trabajo, la decisión de usar servicios administrados responde a 3 razones: 1) Se desea analizar la operación del sistema sin la administración y mantenimiento de servidores, 2) Se busca escalamiento por uso sin mayor complejidad arquitectural ya que el sistema puede crecer en número de turbinas, frecuencia de muestreo y tiempo de operación, 3) El sistema tiene dos patrones de visualización, por una parte requiere actualización constante del último paquete de datos con baja latencia (**DynamoDB**) y por otra parte proporciona series históricas filtradas por rango de fechas y variables (**S3** + Glue + **Athena**) [@aws_serverless_lens; @hashem_bigdata_cloud_2015; @marjani_big_iot_2017; @aws_dynamodb_core_components; @aws_s3_prefixes; @aws_athena_partitions].
+ 
+-![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-5.5 Thinking de OpenAI, 2026.](fig/cap4_arquitectura_software_aws_final.png){#fig-cap4-arquitectura-software-aws width=100% fig-align="center"}
++![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align="center"}
+ 
+ La @fig-cap4-arquitectura-software-aws sintetiza la arquitectura adoptada en este trabajo. El proceso inicia en la ESP3, la cual actúa como gateway y publica la estructura json mediante MQTTs en AWS IoT Core. Desde IoT Core, el mensaje se distribuye a dos rutas diferentes: 1) La ruta Latest para mantener el último paquete de datos actualizado a través de DynamoDB, 2) La ruta histórica para mantener la base de datos histórica y consultarla cuando el usuario lo requiera. El dashboard desplegado mediante S3 + CloudFront consume datos de la BD mediante Lambda Functions URLs.
+ 
+@@ -82,9 +82,24 @@
+ 
+ La ruta histórica almacena todos los mensajes recibidos desde la ESP3, la cual envía una estructura **json** con las variables y metadata definida cada diez segundos y que se almacenan en **Amazon S3**. Estos datos se almacenan en una estructura particionada por niveles a partir del tiempo **DD/MM/YY HH:mm:ss** que permite hacer uso de datos específicos y con alto nivel de granularidad. **S3** se usa como lago de datos por su durabilidad, bajo costo, capacidad de organizar objetos mediante prefijos y otras bondades como el control de versiones, niveles de seguridad, entre otros. En la implementación se usó un bucket llamado datos-turbina y una estructura temporal denominada processed/, con particiones por año, mes, día, hora y minuto (aproximadamente 5 paquetes/minuto). Esta organización facilita que **Athena** reduzca los datos escaneados cuando las consultas filtran por campos de partición, mejorando latencia y costos por consulta [@rfc8259_json; @aws_s3_prefixes; @aws_athena_partitions; @aws_athena_glue_catalog; @hashem_bigdata_cloud_2015; @marjani_big_iot_2017].
+ 
++::: {.content-visible when-format="pdf"}
++
++```{=latex}
++\begin{flushleft}
++\small\ttfamily
++s3://datos-turbina/processed/\allowbreak year=2026/\allowbreak month=05/\allowbreak day=18/\allowbreak hour=15/\allowbreak minute=22/
++\end{flushleft}
++```
++
++:::
++
++::: {.content-visible unless-format="pdf"}
++
+ ```text
+ s3://datos-turbina/processed/year=2026/month=05/day=18/hour=15/minute=22/
+ ```
++
++:::
+ Se definió usar la partición temporal planteada porque la telemetría IoT tiende a crecer de forma acumulativa, por ejemplo, en función del tiempo o evento que desencadena el muestreo. Si todos los **json** se almacenan en una única carpeta, se tendrán que escanear muchos objetos en cada consulta para encontrar lo requerido. Por el contrario, al particionar por timestamp, una consulta para un día u hora específica puede limitarse a los prefijos correspondientes. Esto mejora la latencia, reduce bastante los costos por consulta y facilita la navegación y mantenimiento del data lake del histórico [@aws_s3_prefixes; @aws_athena_partitions; @aws_athena_glue_catalog; @hashem_bigdata_cloud_2015; @marjani_big_iot_2017].
+ 
+ Una limitación de la versión actual es que los mensajes **json** pueden generar muchos objetos en **S3** si la frecuencia de publicación aumenta. Esta es una estrategia funcional para prototipado y validación, pero en una arquitectura más madura y con varios dispositivos si conviene compactar los datos por ventanas de tiempo y convertirlos a **Parquet**, reduciendo la cantidad de objetos y volumen escaneado por **Athena** [@rfc8259_json; @aws_s3_prefixes; @aws_athena_partitions; @aws_serverless_lens; @apache_parquet_format; @marjani_big_iot_2017].
+--- original/05-pruebas-validacion.qmd
++++ actualizada/05-pruebas-validacion.qmd
+@@ -5,6 +5,8 @@
+ La validación se diseñó con un enfoque incremental. Primero se verifican sensores y periféricos de manera aislada; luego se prueban las tres ESP32-C6 por separado; posteriormente se validan los enlaces ESP-NOW y UART; después se verifica la publicación desde ESP3 hacia AWS IoT Core; y finalmente se comprueba la persistencia, consulta y visualización. Esta secuencia es coherente con una arquitectura distribuida, ya que evita depurar simultáneamente errores de hardware, firmware, red, nube y frontend [@iso_ieee_29148_2018; @nist_ir_8228; @espressif_freertos; @espressif_espnow; @espressif_uart_driver; @aws_iot_protocols].
+ 
+ ## Estrategia general de validación
++
++En este trabajo, esta organización se denomina **procedimiento de validación incremental por etapas con trazabilidad de evidencias**. El nombre identifica la secuencia adoptada para comprobar el sistema, desde la adquisición hasta la visualización. Cada etapa relaciona la condición de prueba, el procedimiento, el resultado observado y la evidencia disponible; no se presenta como una certificación del prototipo.
+ 
+ Para la validación del sistema se proponen cinco niveles con el propósito de medir todo el proceso: 1) El nivel uno corresponde a la validación física de mediciones (sensores tanto en ESP1 como en ESP2), 2) El nivel dos busca validar el correcto funcionamiento del firmware a partir de la evaluación de las tareas concurrentes, 3) El nivel tres se encarga de la validación del funcionamiento de la comunicación local (tanto ESP-NOW entre ESP1-ESP2 y comunicación UART entre ESP2-ESP3), en el nivel cuatro se hace la validación de la arquitectura Cloud propuesta y en el nivel cinco a la validación del funcionamiento esperado del dashboard. La Tabla 1 resume esta estructura.
+ 
+@@ -35,6 +37,8 @@
+ 
+ Con la medición de voltaje es necesario tener un cuidado especial, pues se trata de un circuito analógico, calibración **ADC** y cálculo digital. Adicionalmente, deben limitarse los rangos de voltaje en la instrumentación de manera que no se afecten los periféricos de la ESP1. El criterio de aceptación se define de acuerdo con la necesidad actual, la cual consiste en validar el funcionamiento de la arquitectura, considerando que los datos de voltaje ya fueron contrastados frente a multímetro y osciloscopio en la tesis de maestría sobre el prototipado y análisis comparativo de dos turbinas eólicas de eje vertical [@gomez_prototipado_2024]. Por esta razón, en esta etapa se verifica principalmente que la lectura sea estable, que se mantenga dentro de rangos seguros para el **ADC** y que pueda integrarse correctamente al flujo de datos del sistema [@espressif_esp32c6_adc_calibration; @kester_data_conversion_2005; @nist_ir_8228].
+ 
++## Evidencias de validación por componente
++
+ ### Evidencias (Prueba ESP1)
+ 
+ ![ESP1 desenergizada: validación de condición de pérdida de enlace y valores controlados para voltaje y RPM.](images/pruebas_validacion/p01_esp1_desenergizada.jpg){#fig-esp1-desenergizada width="90%" fig-align="center"}
+@@ -51,7 +55,7 @@
+ 
+ ### Evidencias (Prueba ESP2)
+ 
+-![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp3-desenergizada fig-cap="ESP2 desenergizada: prueba de indisponibilidad en eslabón intermedio." width="90%" fig-align="center"}
++![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp2-desenergizada fig-cap="ESP2 desenergizada: prueba de indisponibilidad en eslabón intermedio." width="90%" fig-align="center"}
+ 
+ 
+ Se desenergiza la tarjeta ESP2 para inducir la interrupción del flujo hacia el gateway, validando que la arquitectura refleja la pérdida del componente intermedio.
+@@ -78,6 +82,8 @@
+ 
+ Se energiza nuevamente ESP3 y se comprueba por consola la ejecución del firmware y la publicación MQTT hacia AWS IoT Core.
+ 
++**Síntesis de la prueba.** La prueba de ESP3 muestra que, al retirar la alimentación del gateway, se interrumpe la llegada de nuevos mensajes a AWS IoT Core. La publicación se restablece al energizar nuevamente la tarjeta, según las evidencias de consola presentadas. Esta comprobación identifica el papel de ESP3 en la salida hacia la nube; no cuantifica el tiempo de recuperación.
++
+ ### Evidencias (Prueba AWS IoT Core)
+ 
+ ![IoT Core - recibiendo mensajes](images/pruebas_validacion/p10_iotcore_recibiendo_mensajes.png){#fig-iotcore-recibiendo fig-cap="Cliente de prueba MQTT: recepción de mensajes en el tópico de ingesta." width="90%" fig-align="center"}
+@@ -88,11 +94,15 @@
+ 
+ Se verifica la política IoT asociada al certificado/dispositivo, confirmando que las acciones permitidas habilitan la conexión y la publicación en el tópico autorizado.
+ 
++**Síntesis de la prueba.** Las evidencias de IoT Core permiten seguir la recepción del JSON y revisar los permisos asociados al dispositivo. Con ello se comprueba la conexión y publicación en el tópico usado durante la prueba, sin extender el resultado a una evaluación completa de seguridad.
++
+ ### Evidencias (Prueba DynamoDB)
+ 
+ ![DynamoDB turbina_latest](images/pruebas_validacion/p12_dynamodb_turbina_latest.png){#fig-dynamodb-turbina-latest fig-cap="DynamoDB (`turbina_latest`): verificación del último paquete por `clientId`." width="90%" fig-align="center"}
+ 
+ Se valida en la tabla `turbina_latest` la existencia de un único elemento actualizado para el `clientId`, confirmando la persistencia del “último dato” consumido por el dashboard.
++
++**Síntesis de la prueba.** La revisión de turbina_latest muestra un elemento actualizado para el clientId de prueba. Esta evidencia corresponde a la ruta del último dato y permite distinguirla del almacenamiento histórico que se revisa a continuación.
+ 
+ ### Evidencias (Prueba S3 + Glue + Athena)
+ 
+@@ -112,6 +122,8 @@
+ 
+ Se ejecuta una consulta en Athena para confirmar que los datos almacenados en S3 son consultables y que la ruta histórica funciona conforme a lo esperado.
+ 
++**Síntesis de la prueba.** La secuencia presentada permite seguir el dato almacenado en S3, su esquema en Glue y la consulta ejecutada en Athena. Se comprueba así el funcionamiento de la ruta histórica para el caso mostrado, sin evaluar todavía su rendimiento con grandes volúmenes de datos.
++
+ ### Evidencias (Prueba Lambda)
+ 
+ ![Lambda GetLatest](images/pruebas_validacion/p17_lambda_getlatest.png){#fig-lambda-getlatest fig-cap="AWS Lambda (GetLatest): verificación de la Function URL para consulta del último dato." width="90%" fig-align="center"}
+@@ -121,6 +133,8 @@
+ ![Lambda GetTimeseries](images/pruebas_validacion/p18_lambda_gettimeseries.png){#fig-lambda-gettimeseries fig-cap="AWS Lambda (GetTimeseries): verificación de la Function URL para consulta histórica." width="90%" fig-align="center"}
+ 
+ Se verifica la función `GetTimeseries` y su Function URL, confirmando la respuesta JSON para series temporales parametrizadas por métrica y ventana de tiempo.
++
++**Síntesis de la prueba.** Las pruebas de GetLatest y GetTimeseries muestran las dos formas de acceso a los datos: el último paquete y la serie histórica solicitada. Las respuestas JSON permiten enlazar el almacenamiento con la visualización sin que el usuario tenga que consultar los servicios desde la consola de AWS.
+ 
+ ### Evidencias (Prueba Dashboard)
+ 
+@@ -135,3 +149,11 @@
+ ![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap="Dashboard: consulta de últimos 15 minutos para velocidad del viento." width="90%" fig-align="center"}
+ 
+ Se valida en el dashboard la consulta histórica (últimos 15 minutos) para la variable de velocidad del viento, confirmando la integración con `GetTimeseries` y el renderizado de la serie.
++
++**Síntesis de la prueba.** Las evidencias del dashboard muestran el despliegue del frontend y una consulta de los últimos 15 minutos para velocidad del viento. El resultado permite comprobar la integración con GetTimeseries y la representación de la serie correspondiente.
++
++## Síntesis del capítulo
++
++Las pruebas documentadas permiten seguir el recorrido de la telemetría desde las tarjetas hasta el dashboard. Las desconexiones controladas muestran qué ocurre cuando falta un nodo y las evidencias de AWS permiten revisar la recepción, persistencia y consulta de los datos. Esta secuencia facilita ubicar el tramo que debe revisarse cuando la información deja de llegar.
++
++El alcance de las evidencias corresponde a las condiciones y consultas presentadas. No constituye una medición prolongada de disponibilidad, pérdida de paquetes o desempeño bajo carga. A partir de este funcionamiento comprobado, el capítulo siguiente analiza los parámetros que intervienen en los costos y el escalamiento del sistema.
+--- original/06-analisis-costos-resultados.qmd
++++ actualizada/06-analisis-costos-resultados.qmd
+@@ -55,7 +55,7 @@
+ 
+ ## Escenario base: una turbina
+ 
+-Para el análisis del escenario base se considera el monitoreo de una única turbina, publicación de datos JSON en AWS cada 10~12 segundos y mensajes JSON pequeños, de aproximadamente 262 bytes por mensaje enviado. Este escenario representa el prototipo actual, por lo que solo se tiene un `clientId`, una ruta para el último paquete de datos y una ruta para el histórico. En este caso, los costos esperados son relativamente bajos porque el volumen de datos es pequeño, las consultas históricas se limitan a un ejercicio estricto de monitoreo y la infraestructura no requiere servidores permanentes. Sin embargo, la arquitectura es escalable, y así como se tiene una turbina de prueba, podría escalarse a n cantidad  [@aws_serverless_lens; @aws_dynamodb_core_components].
++Para el análisis del escenario base se considera el monitoreo de una única turbina, publicación de datos JSON en AWS cada 10~12 segundos y mensajes JSON pequeños, de aproximadamente 262 bytes por mensaje enviado. Este escenario representa el prototipo actual, por lo que solo se tiene un `clientId`, una ruta para el último paquete de datos y una ruta para el histórico. En este caso, los costos esperados son relativamente bajos porque el volumen de datos es pequeño, las consultas históricas se limitan a un ejercicio estricto de monitoreo y la infraestructura no requiere servidores permanentes. Sin embargo, la arquitectura es escalable, y así como se tiene una turbina de prueba, podría escalarse a un número $n$ de turbinas  [@aws_serverless_lens; @aws_dynamodb_core_components].
+ 
+ | Componente | Comportamiento de costo | Observación |
+ |---|---|---|
+@@ -181,20 +181,22 @@
+ 
+ Si el costo observado difiere de la estimación, el modelo no se descarta, se calibra. Esa es precisamente la utilidad del enfoque paramétrico: permite iniciar con una estimación razonable, medir el comportamiento real de la arquitectura y ajustar los supuestos operativos a partir de evidencia.
+ 
+-## Escalamiento a n turbinas
++## Escalamiento a $n$ turbinas
+ 
+ Para escalar el sistema a más turbinas, por ejemplo diez, la arquitectura se puede estructurar bajo la misma lógica pero debe incorporar `clientId` como variable categórica central, donde cada ESP gateway es una categoría que contiene una data asociada. Cada nodo debe publicar con identidad única de manera que sea diferenciable, DynamoDB debe obtener un paquete por turbina, S3 debe organizar prefijos por tiempo y por dispositivo y Athena debe permitir filtros por `clientId` y rango temporal. La @tbl-escalamiento-diez resume los cambios requeridos.
+ 
+ | Capa | Una turbina | Diez turbinas | Recomendación |
+ |---|---|---|---|
+-| MQTT | Un tópico general | Tópico por dispositivo o prefijo | `sensor/{clientId}/data` |
++| MQTT | Un tópico general | Tópico por dispositivo o prefijo | Tópico por dispositivo |
+ | IoT Policy | Política amplia de prueba | Política por clientId o grupo | Mínimo privilegio |
+ | DynamoDB | Un ítem | Diez ítems actualizados | PK `clientId` |
+ | S3 | Prefijo temporal | Prefijo temporal + dispositivo | Facilitar consultas |
+ | Athena | Consulta por fecha | Consulta por fecha y dispositivo | Reducir escaneo |
+ | Dashboard | Un panel | Selector de turbina | Consulta filtrada |
+ 
+-: Ajustes de arquitectura para escalar a diez turbinas. {#tbl-escalamiento-diez}
++: Ajustes de arquitectura para escalar a diez turbinas. {#tbl-escalamiento-diez tbl-colwidths="[16,24,32,28]"}
++
++Ejemplo de tópico por dispositivo: `sensor/{clientId}/data`.
+ 
+ Además, escalar el sistema a múltiples turbinas también requiere planificar con detalle la estructura de la base de datos. Una estructura como processed/clientId=ESP32C6-AWS/year=2026/month=05/day=18/ está pensada para facilitar las consultas por dispositivo y fecha para una o pocas turbinas. Sin embargo, generar demasiadas particiones pequeñas para múltiples `clientId` puede aumentar la complejidad , dificultar la administración, el rendimiento y los costos. 
+ 
+--- original/07-conclusiones-trabajos-futuros.qmd
++++ actualizada/07-conclusiones-trabajos-futuros.qmd
+@@ -46,6 +46,8 @@
+ 
+ 9. Con una base de datos consolidada en AWS a partir de la lectura de múltiples dispositivos durante un tiempo suficiente, se recomienda avanzar hacia la consolidación de modelos analíticos que permitan explorar las relaciones entre las diferentes variables del sistema, lo que permitiría fortalecer la estimación de potencial energético, detección de anomalías, curvas de desempeño de las máquinas eléctricas, predicción de la generación y mantenimiento preventivo a partir del auto reconocimiento. Estos modelos son muy interesantes pero también dependen de la calidad de los datos, por lo que en este proceso de implementación deben atenderse las recomendaciones para la mejora en el proceso de adquisición de datos.
+ 
++10. Como línea de trabajo adicional, se propone estudiar la adaptación de la arquitectura de datos a la supervisión de sistemas de potencia y al soporte de análisis de estabilidad. Antes de implementar esa extensión se deberán definir las variables eléctricas, el muestreo, la sincronización y los tiempos de respuesta requeridos. Esta posibilidad no forma parte de los resultados de validación del prototipo presentado.
++
+ ## Cierre
+ 
+ El trabajo desarrollado constituye una base de partida para reproducir una arquitectura de hardware y software que permite el monitoreo de un generador eólico de pequeña escala mediante la integración de hardware IoT embebido con comunicación segura hacia AWS, consolidando un sistema de datos verificable de extremo a extremo y marcando un avance importante en la integración de un prototipo de generación de energía eléctrica con tecnologías de las industrias 4.0., lo que es aplicable y escalable en sistemas físicos reales.
+--- original/index.qmd
++++ actualizada/index.qmd
+@@ -41,3 +41,7 @@
+ ## Estructura del documento
+ 
+ El documento se organiza en siete capítulos. El capítulo 1 presenta la introducción, el problema, la justificación y los objetivos. El capítulo 2 desarrolla el marco de referencia sobre IoT, modelos de comunicación, protocolos, seguridad y serverless. El capítulo 3 describe la arquitectura de hardware IoT Edge basada en ESP32-C6. El capítulo 4 presenta la arquitectura de software en AWS. El capítulo 5 documenta las pruebas y validación del sistema. El capítulo 6 analiza costos, resultados y escalabilidad. Finalmente, el capítulo 7 presenta conclusiones y trabajos futuros.
++
++## Síntesis del capítulo
++
++El problema y los objetivos planteados conducen al desarrollo de una arquitectura que conecte las mediciones de la turbina con su almacenamiento y consulta. Los capítulos siguientes presentan los fundamentos de esa solución, su implementación y las pruebas realizadas para verificar el recorrido de los datos.

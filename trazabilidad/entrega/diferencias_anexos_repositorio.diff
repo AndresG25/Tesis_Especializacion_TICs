@@ -1,0 +1,61 @@
+--- antes/tesis/anexos/anexo-a-codigo-esp1.qmd
++++ despues/tesis/anexos/anexo-a-codigo-esp1.qmd
+@@ -1,7 +1,11 @@
+ # Anexo A — Código ESP1
+ 
+-Este anexo se reserva para el código completo del nodo ESP1, correspondiente a la etapa de adquisición de campo. En la versión final se debe incluir el archivo fuente principal, la ruta dentro del proyecto ESP-IDF y el hash SHA-256 de la versión compilada.
++Los códigos fuente y los elementos de configuración y documentación de los tres nodos del sistema se encuentran en el repositorio [Tesis_Especializacion_TICs de AndresG25](https://github.com/AndresG25/Tesis_Especializacion_TICs). Los anexos A, B y C orientan su consulta mediante una descripción de cada carpeta y de la función general de sus programas, sin reproducir los listados completos en el documento.
+ 
+-**Ruta de referencia:** `clase-UART/main/main7.c`
++El repositorio se mantiene privado durante la revisión académica. El director y los evaluadores pueden solicitar acceso al autor mediante [andres25@utp.edu.co](mailto:andres25@utp.edu.co), indicando su usuario de GitHub. La consulta del contenido requiere que el autor habilite ese acceso.
+ 
+-**Función principal:** lectura GPS, medición de voltaje, cálculo de RPM y envío ESP-NOW hacia ESP2.
++La carpeta [ESP1](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP1) contiene el proyecto de adquisición de campo, identificado originalmente como `clase-UART`. Su archivo principal es `ESP1/main/main7.c`; también se incluyen el componente `minmea` para interpretar las sentencias del GPS, los archivos CMake de compilación, la configuración base de ESP-IDF y un README con las conexiones y las instrucciones de uso.
++
++El programa lee la posición y el estado de fijación del GPS, adquiere la señal de voltaje mediante el ADC y calcula las RPM a partir de los pulsos del sensor Hall. Estas tareas actualizan una estructura compartida que se transmite periódicamente mediante ESP-NOW al nodo ESP2. Las funciones de inicialización coordinan los periféricos y las tareas de adquisición y envío.
++
++La documentación del repositorio permite identificar los pines utilizados, la dirección MAC del receptor que debe configurarse para cada montaje y la versión de ESP-IDF de referencia. De esta manera, el anexo relaciona la descripción de la etapa de campo con su implementación consultable.
+--- antes/tesis/anexos/anexo-b-codigo-esp2.qmd
++++ despues/tesis/anexos/anexo-b-codigo-esp2.qmd
+@@ -1,7 +1,11 @@
+ # Anexo B — Código ESP2
+ 
+-Este anexo se reserva para el código completo del nodo ESP2, correspondiente a la etapa de integración local. En la versión final se debe incluir el archivo fuente principal, la ruta dentro del proyecto ESP-IDF y el hash SHA-256 de la versión compilada.
++La carpeta [ESP2 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP2) contiene el proyecto de integración y procesamiento local, identificado originalmente como `Proyecto_Integrador`. El archivo principal es `ESP2/main/main7.c`. Se incluyen los componentes para el sensor BME680 y la pantalla SSD1306, una biblioteca auxiliar de conexión Wi-Fi, los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF y el README del nodo.
+ 
+-**Ruta de referencia:** `Proyecto_Integrador/main/main7.c`
++El programa recibe mediante ESP-NOW las variables adquiridas por ESP1 y las integra con la velocidad del viento y las mediciones ambientales locales. Consulta el reloj DS3231 para asociar fecha y hora a los datos, presenta información en la pantalla OLED y utiliza la microSD para registrar temporalmente las muestras y formar bloques de procesamiento. Después de acumular diez muestras válidas, genera un mensaje JSON y lo transmite por UART al nodo ESP3.
+ 
+-**Función principal:** recepción ESP-NOW, medición de viento y ambiente, RTC, microSD, OLED, construcción de JSON y envío UART hacia ESP3.
++Las funciones del código coordinan la recepción, la adquisición de sensores, el acceso al reloj, la escritura del archivo CSV, la visualización y la comunicación. El README explica las conexiones y las condiciones de funcionamiento, incluida la dependencia de la microSD para generar los mensajes y el reinicio del archivo temporal tras cada bloque. La biblioteca Wi-Fi auxiliar se conserva en el proyecto, aunque no es invocada por el programa principal de esta versión.
++
++El código y sus archivos de apoyo pueden consultarse a través del enlace de la carpeta. Las solicitudes de acceso al repositorio privado y las consultas sobre este nodo se atienden mediante el correo del autor.
++
++**Contacto:** [andres25@utp.edu.co](mailto:andres25@utp.edu.co).
+--- antes/tesis/anexos/anexo-c-codigo-esp3.qmd
++++ despues/tesis/anexos/anexo-c-codigo-esp3.qmd
+@@ -1,7 +1,9 @@
+ # Anexo C — Código ESP3
+ 
+-Este anexo se reserva para el código completo del gateway ESP3. En la versión final se debe incluir el archivo fuente principal, la ruta dentro del proyecto ESP-IDF y el hash SHA-256 de la versión compilada.
++La carpeta [ESP3 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP3) contiene el proyecto de la pasarela hacia AWS IoT Core, identificado originalmente como `AWS_IoT_Core`. Su archivo principal es `ESP3/main/main2.c`. La carpeta también incluye los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF, una plantilla de configuración local y las instrucciones para incorporar los certificados necesarios.
+ 
+-**Ruta de referencia:** `AWS_IoT_Core/main/main2.c`
++El programa configura la conexión Wi-Fi, inicializa el cliente MQTT con TLS y recibe por UART los mensajes enviados por ESP2. Las funciones de recepción reconstruyen el contenido delimitado por llaves y comprueban su tamaño antes de publicarlo en el tópico configurado de AWS IoT Core. Los manejadores de eventos administran el estado de las conexiones y sus intentos de reconexión.
+ 
+-**Función principal:** recepción JSON por UART, conexión Wi-Fi, establecimiento MQTT/TLS y publicación hacia AWS IoT Core.
++El README explica cómo definir el nombre de la red, el endpoint de AWS, el tópico y el identificador del cliente. Las contraseñas, el certificado de dispositivo y la llave privada se incorporan únicamente en el entorno local de compilación; el repositorio proporciona las plantillas e instrucciones correspondientes. También se describen las conexiones UART y las condiciones de operación de la pasarela.
++
++La implementación y la documentación se consultan mediante el enlace de la carpeta. Para solicitar acceso al repositorio privado o información adicional, puede escribirse a [andres25@utp.edu.co](mailto:andres25@utp.edu.co).
+--- antes/tesis/anexos/anexo-d-lambdas-frontend.qmd
++++ despues/tesis/anexos/anexo-d-lambdas-frontend.qmd
+@@ -1,5 +1,7 @@
+ # Anexo D — Lambdas y frontend
+ 
+-Este anexo se reserva para el código de las funciones Lambda y del frontend React/Vite. En la versión final se deben incluir, como mínimo, las funciones `GetLatest`, `GetTimeseries`, `ActualizarUltimoDatoDynamo`, el archivo `.env` sin secretos, `package.json` y los componentes principales del dashboard.
++Las funciones Lambda y el frontend React/Vite se describen en los capítulos correspondientes de esta tesis. Entre estos componentes se encuentran `GetLatest`, `GetTimeseries`, `ActualizarUltimoDatoDynamo` y los elementos del dashboard que permiten consultar y visualizar los datos del sistema.
+ 
+-No se deben publicar certificados, llaves privadas, contraseñas Wi-Fi ni tokens de acceso. Cuando sea necesario documentar configuración sensible, se debe reemplazar por variables genéricas.
++La entrega de código asociada a esta versión incluye los tres proyectos ESP descritos en los anexos A, B y C. Los fuentes de las funciones Lambda y del frontend no forman parte de los archivos incorporados en esta entrega. Su estado de disponibilidad se indica en la [documentación de alcance del repositorio](https://github.com/AndresG25/Tesis_Especializacion_TICs/blob/main/docs/ALCANCE_Y_TRAZABILIDAD.md), para distinguir el material consultable de los componentes pendientes de incorporación.
++
++Para solicitar estos elementos o información sobre su disponibilidad, el contacto del autor es [andres25@utp.edu.co](mailto:andres25@utp.edu.co). Las credenciales y los archivos privados de acceso al sistema se gestionan fuera del repositorio.

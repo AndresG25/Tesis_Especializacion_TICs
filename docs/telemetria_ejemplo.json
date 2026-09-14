@@ -1,0 +1,14 @@
+{
+  "timestamp": "13/09/26 10:30:00",
+  "wind_speed": 2.35,
+  "voltage": 4.8,
+  "temperature": 24.5,
+  "humidity": 62.0,
+  "pressure": 1013.25,
+  "altitude": 1440.0,
+  "lat": 4.8,
+  "lon": -75.7,
+  "rpm": 120.0,
+  "esp_now_connected": true,
+  "memory_usage": 32.5
+}

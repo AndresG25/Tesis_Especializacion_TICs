@@ -1,0 +1,230 @@
+--- antes/02-marco-referencia.qmd
++++ despues/02-marco-referencia.qmd
+@@ -22,7 +22,7 @@
+ 
+ Debido a la naturaleza del sistema y a la división por nodos adecuados a la distribución física y espacial del sistema eólico, se plantea una arquitectura de referencia con cuatro capas: física y sensórica, Edge o comunicación local, capa cloud para ETL y capa cloud para visualización. El NIST (2016) permite justificar esta división al considerar que las redes de cosas se componen de sensores, canales de comunicación, agregadores y servicios externos que permiten convertir eventos físicos en información digital. AWS (2026e), por su parte, permite sustentar el uso de funciones **Lambda** como mecanismo para exponer servicios HTTP ligeros dentro de una arquitectura cloud. Esta estructura permite explicar con mayor detalle cuál es el rol que cumple cada componente, como sensores, **DS3231**, pantalla **OLED** y memoria **SD**; cuál protocolo se usa en cada tramo; por qué se usa; y cuáles riesgos surgen cuando se pasa de señales físicas a información consultable desde un dashboard expuesto a la web [@nist_sp800_183; @aws_lambda_function_urls] [@ref19; @ref21; @atzori_iot_survey_2010; @botta_cloud_iot_2016].
+ 
+-![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align="center"}
++![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align="center" fig-pos="H"}
+ 
+ La @fig-cap2-cuatro-capas presenta las cuatro capas descritas en esta sección. Los sensores dan origen a las mediciones; las tarjetas las organizan y transmiten; los servicios de AWS las almacenan y permiten consultarlas; y el dashboard las presenta al usuario.
+ 
+@@ -40,7 +40,15 @@
+ 
+ En la implementación real se hace uso del estándar TCP/IP, el cual simplifica el modelo OSI en cuatro capas: acceso a la red, Internet, transporte y aplicación. Espressif Systems (2026d) permite sustentar que **ESP-NOW** opera como un protocolo **Wi-Fi** sin conexión entre dispositivos ESP, principalmente sin requerir direccionamiento IP. En cambio, AWS (2026g) muestra que la salida hacia **AWS IoT Core** requiere conexión Wi-Fi, asignación de dirección IP, establecimiento de sesión TCP, negociación **TLS** y publicación mediante **MQTT** hacia un broker administrado por AWS. Por esta razón, el sistema combina tramos no IP en la comunicación local con un tramo IP seguro hacia la nube [@espressif_espnow; @aws_iot_protocols; @rfc8446].
+ 
+-![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de herramientas de IA, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align="center"}
++```{=latex}
++\begin{landscape}
++```
++
++![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de herramientas de IA, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align="center" fig-pos="H"}
++
++```{=latex}
++\end{landscape}
++```
+ 
+ La @fig-cap2-osi-tramos se lee por filas y por tramos de comunicación. ESP1 y ESP2 intercambian datos mediante ESP-NOW sobre tramas IEEE 802.11; ESP2 transmite el JSON consolidado por UART a ESP3; y ESP3 publica mediante MQTT sobre TLS, TCP e IP, con Wi-Fi en el acceso al router. Las tarjetas no corresponden a una sola capa. La comunicación serie se muestra como una interfaz local, sin atribuirle una pila OSI completa. La tabla siguiente conserva una lectura funcional del sistema: la fila de seguridad agrupa controles y no constituye una capa adicional del modelo OSI [@espressif_espnow; @espressif_uart_driver; @oasis_mqtt5; @rfc9293; @rfc8446].
+ 
+@@ -69,9 +77,13 @@
+ 
+ Desde el punto de vista de diseño, esta fue la solución propuesta a los problemas que surgieron en el camino con la adquisición y transmisión de datos en cada etapa. La combinación **ESP-NOW** + **UART** responde a la necesidad de comunicación en el espacio del generador eólico, aunque esta situación puede cambiar en otros sistemas y requerir nuevas arquitecturas. Espressif Systems (2026d) sustenta la comunicación local mediante **ESP-NOW**, mientras que AWS (2026g) permite sustentar la necesidad de conectar finalmente el sistema a una plataforma cloud mediante **MQTT** seguro. A su vez, esta combinación permite separar el dominio inalámbrico local del dominio de publicación a Internet, reduciendo la carga funcional sobre los diferentes nodos y especializando cada tarjeta en funciones específicas. Esta decisión también marca una diferencia frente a Gómez Flórez (2024), donde la arquitectura previa concentraba mayor parte del procesamiento en una BeagleBone Black y un servidor físico remoto [@espressif_espnow; @aws_iot_protocols; @gomez_prototipado_2024].
+ 
+-![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de herramientas de IA, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align="center"}
++![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de herramientas de IA, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align="center" fig-pos="H"}
+ 
+ La @fig-cap2-comparacion-arquitecturas organiza la comparación por adquisición, procesamiento, almacenamiento, consulta y visualización. Permite reconocer qué funciones se conservan y cómo cambia su distribución entre dispositivos y servicios; no representa el cableado del sistema anterior [@gomez_prototipado_2024].
++
++```{=latex}
++\FloatBarrier
++```
+ 
+ ## **MQTT**, telemetría y contrato de datos
+ 
+--- antes/04-arquitectura-software-aws.qmd
++++ despues/04-arquitectura-software-aws.qmd
+@@ -4,7 +4,11 @@
+ 
+ Para este trabajo, la decisión de usar servicios administrados responde a 3 razones: 1) Se desea analizar la operación del sistema sin la administración y mantenimiento de servidores, 2) Se busca escalamiento por uso sin mayor complejidad arquitectural ya que el sistema puede crecer en número de turbinas, frecuencia de muestreo y tiempo de operación, 3) El sistema tiene dos patrones de visualización, por una parte requiere actualización constante del último paquete de datos con baja latencia (**DynamoDB**) y por otra parte proporciona series históricas filtradas por rango de fechas y variables (**S3** + Glue + **Athena**) [@aws_serverless_lens; @hashem_bigdata_cloud_2015; @marjani_big_iot_2017; @aws_dynamodb_core_components; @aws_s3_prefixes; @aws_athena_partitions].
+ 
+-![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align="center"}
++![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align="center" fig-pos="H"}
++
++```{=latex}
++\clearpage
++```
+ 
+ La @fig-cap4-arquitectura-software-aws sintetiza la arquitectura adoptada en este trabajo. El proceso inicia en la ESP3, la cual actúa como gateway y publica la estructura json mediante MQTTs en AWS IoT Core. Desde IoT Core, el mensaje se distribuye a dos rutas diferentes: 1) La ruta Latest para mantener el último paquete de datos actualizado a través de DynamoDB, 2) La ruta histórica para mantener la base de datos histórica y consultarla cuando el usuario lo requiera. El dashboard desplegado mediante S3 + CloudFront consume datos de la BD mediante Lambda Functions URLs.
+ 
+--- antes/05-pruebas-validacion.qmd
++++ despues/05-pruebas-validacion.qmd
+@@ -39,114 +39,148 @@
+ 
+ ## Evidencias de validación por componente
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba ESP1)
+ 
+-![ESP1 desenergizada: validación de condición de pérdida de enlace y valores controlados para voltaje y RPM.](images/pruebas_validacion/p01_esp1_desenergizada.jpg){#fig-esp1-desenergizada width="90%" fig-align="center"}
++![ESP1 desenergizada: validación de condición de pérdida de enlace y valores controlados para voltaje y RPM.](images/pruebas_validacion/p01_esp1_desenergizada.jpg){#fig-esp1-desenergizada width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se desenergiza la tarjeta transmisora (ESP1) y se verifica que el sistema marque pérdida de enlace (`esp_now_connected=false`) y que `voltage` y `rpm` adopten valores controlados para evitar interpretaciones físicas erróneas.
+ 
+-![Cliente MQTT - esp_now_connected false](images/pruebas_validacion/p02_iotcore_payload_espnow_false.png){#fig-iotcore-payload-esp1 fig-cap="Cliente de prueba MQTT (AWS IoT Core): verificación del paquete con `esp_now_connected=false` y valores controlados en variables remotas." width="90%" fig-align="center"}
++![Cliente MQTT - esp_now_connected false](images/pruebas_validacion/p02_iotcore_payload_espnow_false.png){#fig-iotcore-payload-esp1 fig-cap="Cliente de prueba MQTT (AWS IoT Core): verificación del paquete con `esp_now_connected=false` y valores controlados en variables remotas." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se inspecciona en el cliente de prueba MQTT de AWS IoT Core el último mensaje publicado y se confirma la marca `esp_now_connected=false`, junto con el tratamiento de dato perdido en las variables provenientes de ESP‑NOW.
+ 
+-![Consola esp-idf - flujo ESP1 a ESP2](images/pruebas_validacion/p03_esp1_logs_vscode.png){#fig-esp1-vscode-log fig-cap="Consola esp-idf (VS Code): verificación del flujo ESP1 → ESP2 tras reconexión." width="90%" fig-align="center"}
++![Consola esp-idf - flujo ESP1 a ESP2](images/pruebas_validacion/p03_esp1_logs_vscode.png){#fig-esp1-vscode-log fig-cap="Consola esp-idf (VS Code): verificación del flujo ESP1 → ESP2 tras reconexión." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se energiza nuevamente ESP1 mediante el PC y se valida en la consola del entorno esp-idf (VS Code) el restablecimiento del envío de datos y la recepción por parte de ESP2.
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba ESP2)
+ 
+-![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp2-desenergizada fig-cap="ESP2 desenergizada: prueba de indisponibilidad en eslabón intermedio." width="90%" fig-align="center"}
++![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp2-desenergizada fig-cap="ESP2 desenergizada: prueba de indisponibilidad en eslabón intermedio." width="65%" fig-align="center" fig-pos="H"}
+ 
+ 
+ Se desenergiza la tarjeta ESP2 para inducir la interrupción del flujo hacia el gateway, validando que la arquitectura refleja la pérdida del componente intermedio.
+ 
+-![Cliente MQTT - sin mensajes ESP2](images/pruebas_validacion/p05_iotcore_sin_mensajes_esp2.png){#fig-iotcore-sin-msg-esp2 fig-cap="Cliente de prueba MQTT (AWS IoT Core): ausencia de mensajes durante la desenergización de ESP2." width="90%" fig-align="center"}
++![Cliente MQTT - sin mensajes ESP2](images/pruebas_validacion/p05_iotcore_sin_mensajes_esp2.png){#fig-iotcore-sin-msg-esp2 fig-cap="Cliente de prueba MQTT (AWS IoT Core): ausencia de mensajes durante la desenergización de ESP2." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Con ESP2 desenergizada, se verifica en el cliente MQTT que no ingresan nuevos mensajes al tópico, confirmando el comportamiento esperado cuando el puente UART no está operativo.
+ 
+-![Consola esp-idf - UART ESP2](images/pruebas_validacion/p06_esp2_logs_vscode_uart.png){#fig-esp2-log-uart fig-cap="Consola esp-idf: re-energización de ESP2 y validación de transmisión por UART." width="90%" fig-align="center"}
++![Consola esp-idf - UART ESP2](images/pruebas_validacion/p06_esp2_logs_vscode_uart.png){#fig-esp2-log-uart fig-cap="Consola esp-idf: re-energización de ESP2 y validación de transmisión por UART." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se energiza nuevamente ESP2 desde el PC y se verifica por consola el cumplimiento de la tarea de lectura/ensamble y la transmisión del json mediante UART hacia el gateway.
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba ESP3)
+ 
+-![ESP3 desenergizada](images/pruebas_validacion/p07_esp3_desenergizada.jpg){#fig-esp3-desenergizada fig-cap="ESP3 desenergizada: prueba en el gateway." width="90%" fig-align="center"}
++![ESP3 desenergizada](images/pruebas_validacion/p07_esp3_desenergizada.jpg){#fig-esp3-desenergizada fig-cap="ESP3 desenergizada: prueba en el gateway." width="49%" fig-align="center" fig-pos="H"}
+ 
+ Se desenergiza la ESP3 (gateway) para validar el escenario de indisponibilidad del componente que publica hacia AWS IoT Core.
+ 
+-![Cliente MQTT - sin mensajes ESP3](images/pruebas_validacion/p08_iotcore_sin_mensajes_esp3.png){#fig-iotcore-sin-msg-esp3 fig-cap="Cliente de prueba MQTT (AWS IoT Core): ausencia de datos durante la desenergización de ESP3." width="90%" fig-align="center"}
++![Cliente MQTT - sin mensajes ESP3](images/pruebas_validacion/p08_iotcore_sin_mensajes_esp3.png){#fig-iotcore-sin-msg-esp3 fig-cap="Cliente de prueba MQTT (AWS IoT Core): ausencia de datos durante la desenergización de ESP3." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Con el gateway sin energía, se confirma en el cliente MQTT que no se reciben mensajes en el tópico de ingesta, lo cual valida la dependencia del flujo respecto a la ESP3.
+ 
+-![Consola esp-idf - MQTT ESP3](images/pruebas_validacion/p09_esp3_logs_vscode_mqtt.png){#fig-esp3-log-mqtt fig-cap="Consola esp-idf: verificación del funcionamiento de ESP3 al re-energizar." width="90%" fig-align="center"}
++![Consola esp-idf - MQTT ESP3](images/pruebas_validacion/p09_esp3_logs_vscode_mqtt.png){#fig-esp3-log-mqtt fig-cap="Consola esp-idf: verificación del funcionamiento de ESP3 al re-energizar." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se energiza nuevamente ESP3 y se comprueba por consola la ejecución del firmware y la publicación MQTT hacia AWS IoT Core.
+ 
+ **Síntesis de la prueba.** La prueba de ESP3 muestra que, al retirar la alimentación del gateway, se interrumpe la llegada de nuevos mensajes a AWS IoT Core. La publicación se restablece al energizar nuevamente la tarjeta, según las evidencias de consola presentadas. Esta comprobación identifica el papel de ESP3 en la salida hacia la nube; no cuantifica el tiempo de recuperación.
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba AWS IoT Core)
+ 
+-![IoT Core - recibiendo mensajes](images/pruebas_validacion/p10_iotcore_recibiendo_mensajes.png){#fig-iotcore-recibiendo fig-cap="Cliente de prueba MQTT: recepción de mensajes en el tópico de ingesta." width="90%" fig-align="center"}
++![IoT Core - recibiendo mensajes](images/pruebas_validacion/p10_iotcore_recibiendo_mensajes.png){#fig-iotcore-recibiendo fig-cap="Cliente de prueba MQTT: recepción de mensajes en el tópico de ingesta." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se suscribe el cliente de prueba MQTT al tópico configurado y se verifica la recepción de mensajes con estructura json válida.
+ 
+-![Política IoT](images/pruebas_validacion/p11_iotcore_politica.png){#fig-iot-policy fig-cap="Política IoT: validación de permisos asociados al dispositivo." width="90%" fig-align="center"}
++![Política IoT](images/pruebas_validacion/p11_iotcore_politica.png){#fig-iot-policy fig-cap="Política IoT: validación de permisos asociados al dispositivo." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se verifica la política IoT asociada al certificado/dispositivo, confirmando que las acciones permitidas habilitan la conexión y la publicación en el tópico autorizado.
+ 
+ **Síntesis de la prueba.** Las evidencias de IoT Core permiten seguir la recepción del JSON y revisar los permisos asociados al dispositivo. Con ello se comprueba la conexión y publicación en el tópico usado durante la prueba, sin extender el resultado a una evaluación completa de seguridad.
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba DynamoDB)
+ 
+-![DynamoDB turbina_latest](images/pruebas_validacion/p12_dynamodb_turbina_latest.png){#fig-dynamodb-turbina-latest fig-cap="DynamoDB (`turbina_latest`): verificación del último paquete por `clientId`." width="90%" fig-align="center"}
++![DynamoDB turbina_latest](images/pruebas_validacion/p12_dynamodb_turbina_latest.png){#fig-dynamodb-turbina-latest fig-cap="DynamoDB (`turbina_latest`): verificación del último paquete por `clientId`." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se valida en la tabla `turbina_latest` la existencia de un único elemento actualizado para el `clientId`, confirmando la persistencia del “último dato” consumido por el dashboard.
+ 
+ **Síntesis de la prueba.** La revisión de turbina_latest muestra un elemento actualizado para el clientId de prueba. Esta evidencia corresponde a la ruta del último dato y permite distinguirla del almacenamiento histórico que se revisa a continuación.
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba S3 + Glue + Athena)
+ 
+-![S3 processed](images/pruebas_validacion/p13_s3_processed_prefix.png){#fig-s3-processed fig-cap="Amazon S3: validación del bucket y prefijos temporales en `processed/`." width="90%" fig-align="center"}
++![S3 processed](images/pruebas_validacion/p13_s3_processed_prefix.png){#fig-s3-processed fig-cap="Amazon S3: validación del bucket y prefijos temporales en `processed/`." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se verifica el bucket `datos-turbina` y la estructura de carpetas/prefijos temporales dentro de `processed/`, evidenciando la persistencia del histórico.
+ 
+-![S3 objeto json ](images/pruebas_validacion/p14_s3_json_objeto.png){#fig-s3-json-object fig-cap="Amazon S3: verificación de un objeto json  almacenado en el histórico." width="90%" fig-align="center"}
++![S3 objeto json ](images/pruebas_validacion/p14_s3_json_objeto.png){#fig-s3-json-object fig-cap="Amazon S3: verificación de un objeto json  almacenado en el histórico." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se inspecciona un archivo json específico almacenado en S3 y se confirma su contenido y consistencia con el contrato de datos.
+ 
+-![Glue table](images/pruebas_validacion/p15_glue_tabla_raw_processed.png){#fig-glue-table fig-cap="AWS Glue Data Catalog: verificación de la tabla y del esquema." width="90%" fig-align="center"}
++![Glue table](images/pruebas_validacion/p15_glue_tabla_raw_processed.png){#fig-glue-table fig-cap="AWS Glue Data Catalog: verificación de la tabla y del esquema." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se verifica que AWS Glue reconoce el esquema de la tabla que referencia el histórico en S3, habilitando consultas posteriores en Athena.
+ 
+-![Athena consulta](images/pruebas_validacion/p16_athena_consulta_basica.png){#fig-athena-consulta fig-cap="Amazon Athena: ejecución de una consulta básica sobre el histórico." width="90%" fig-align="center"}
++![Athena consulta](images/pruebas_validacion/p16_athena_consulta_basica.png){#fig-athena-consulta fig-cap="Amazon Athena: ejecución de una consulta básica sobre el histórico." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se ejecuta una consulta en Athena para confirmar que los datos almacenados en S3 son consultables y que la ruta histórica funciona conforme a lo esperado.
+ 
+ **Síntesis de la prueba.** La secuencia presentada permite seguir el dato almacenado en S3, su esquema en Glue y la consulta ejecutada en Athena. Se comprueba así el funcionamiento de la ruta histórica para el caso mostrado, sin evaluar todavía su rendimiento con grandes volúmenes de datos.
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba Lambda)
+ 
+-![Lambda GetLatest](images/pruebas_validacion/p17_lambda_getlatest.png){#fig-lambda-getlatest fig-cap="AWS Lambda (GetLatest): verificación de la Function URL para consulta del último dato." width="90%" fig-align="center"}
++![Lambda GetLatest](images/pruebas_validacion/p17_lambda_getlatest.png){#fig-lambda-getlatest fig-cap="AWS Lambda (GetLatest): verificación de la Function URL para consulta del último dato." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se verifica la función `GetLatest` y su Function URL, validando que la API devuelve el último paquete disponible para un `clientId`.
+ 
+-![Lambda GetTimeseries](images/pruebas_validacion/p18_lambda_gettimeseries.png){#fig-lambda-gettimeseries fig-cap="AWS Lambda (GetTimeseries): verificación de la Function URL para consulta histórica." width="90%" fig-align="center"}
++![Lambda GetTimeseries](images/pruebas_validacion/p18_lambda_gettimeseries.png){#fig-lambda-gettimeseries fig-cap="AWS Lambda (GetTimeseries): verificación de la Function URL para consulta histórica." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se verifica la función `GetTimeseries` y su Function URL, confirmando la respuesta JSON para series temporales parametrizadas por métrica y ventana de tiempo.
+ 
+ **Síntesis de la prueba.** Las pruebas de GetLatest y GetTimeseries muestran las dos formas de acceso a los datos: el último paquete y la serie histórica solicitada. Las respuestas JSON permiten enlazar el almacenamiento con la visualización sin que el usuario tenga que consultar los servicios desde la consola de AWS.
+ 
++```{=latex}
++\FloatBarrier
++```
++
+ ### Evidencias (Prueba Dashboard)
+ 
+-![Dashboard en S3](images/pruebas_validacion/p19_s3_web_assets.png){#fig-s3-web fig-cap="Dashboard web: alojamiento del frontend en Amazon S3." width="90%" fig-align="center"}
++![Dashboard en S3](images/pruebas_validacion/p19_s3_web_assets.png){#fig-s3-web fig-cap="Dashboard web: alojamiento del frontend en Amazon S3." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se valida el despliegue del dashboard estático en S3, confirmando la disponibilidad de los artefactos del frontend.
+ 
+-![CloudFront distribución](images/pruebas_validacion/p20_cloudfront_distribution.png){#fig-cloudfront-distribution fig-cap="CloudFront: distribución configurada para servir el dashboard con baja latencia." width="90%" fig-align="center"} [@ref21; @quincoces_mqtt_2019; @botta_cloud_iot_2016]
++![CloudFront: distribución configurada para servir el dashboard con baja latencia.](images/pruebas_validacion/p20_cloudfront_distribution.png){#fig-cloudfront-distribution fig-cap="CloudFront: distribución configurada para servir el dashboard con baja latencia." width="90%" fig-align="center" fig-pos="H"}
++
++[@ref21; @quincoces_mqtt_2019; @botta_cloud_iot_2016]
+ 
+ Se verifica la distribución de CloudFront que expone el dashboard, evidenciando la capa de entrega (CDN) sobre el contenido estático.
+ 
+-![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap="Dashboard: consulta de últimos 15 minutos para velocidad del viento." width="90%" fig-align="center"}
++![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap="Dashboard: consulta de últimos 15 minutos para velocidad del viento." width="90%" fig-align="center" fig-pos="H"}
+ 
+ Se valida en el dashboard la consulta histórica (últimos 15 minutos) para la variable de velocidad del viento, confirmando la integración con `GetTimeseries` y el renderizado de la serie.
+ 

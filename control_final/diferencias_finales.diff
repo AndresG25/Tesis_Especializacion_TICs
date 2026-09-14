@@ -1,0 +1,109 @@
+--- antes/_quarto.yml
++++ despues/_quarto.yml
+@@ -24,9 +24,9 @@
+ lang: es
+ 
+ crossref:
+-  fig-title: "Figura nro."
++  fig-title: "Figura"
+   tbl-title: "Tabla nro."
+-  fig-prefix: "Figura nro."
++  fig-prefix: "Figura"
+   tbl-prefix: "Tabla nro."
+   sec-prefix: "Sección"
+   eq-prefix: "Ecuación"
+--- antes/tex/preamble.tex
++++ despues/tex/preamble.tex
+@@ -36,7 +36,7 @@
+   \renewcommand\bibname{Referencias}
+   \renewcommand\tablename{Tabla nro.}
+ }
+-\captionsetup[figure]{name=Figura nro.}
++\captionsetup[figure]{name=Figura}
+ 
+ % Profundidad de numeración
+ \setcounter{secnumdepth}{4}
+--- antes/02-marco-referencia.qmd
++++ despues/02-marco-referencia.qmd
+@@ -22,7 +22,7 @@
+ 
+ Debido a la naturaleza del sistema y a la división por nodos adecuados a la distribución física y espacial del sistema eólico, se plantea una arquitectura de referencia con cuatro capas: física y sensórica, Edge o comunicación local, capa cloud para ETL y capa cloud para visualización. El NIST (2016) permite justificar esta división al considerar que las redes de cosas se componen de sensores, canales de comunicación, agregadores y servicios externos que permiten convertir eventos físicos en información digital. AWS (2026e), por su parte, permite sustentar el uso de funciones **Lambda** como mecanismo para exponer servicios HTTP ligeros dentro de una arquitectura cloud. Esta estructura permite explicar con mayor detalle cuál es el rol que cumple cada componente, como sensores, **DS3231**, pantalla **OLED** y memoria **SD**; cuál protocolo se usa en cada tramo; por qué se usa; y cuáles riesgos surgen cuando se pasa de señales físicas a información consultable desde un dashboard expuesto a la web [@nist_sp800_183; @aws_lambda_function_urls] [@ref19; @ref21; @atzori_iot_survey_2010; @botta_cloud_iot_2016].
+ 
+-![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align="center" fig-pos="H"}
++![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align="center" fig-pos="H"}
+ 
+ La @fig-cap2-cuatro-capas presenta las cuatro capas descritas en esta sección. Los sensores dan origen a las mediciones; las tarjetas las organizan y transmiten; los servicios de AWS las almacenan y permiten consultarlas; y el dashboard las presenta al usuario.
+ 
+@@ -44,7 +44,7 @@
+ \begin{landscape}
+ ```
+ 
+-![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de herramientas de IA, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align="center" fig-pos="H"}
++![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align="center" fig-pos="H"}
+ 
+ ```{=latex}
+ \end{landscape}
+@@ -77,7 +77,7 @@
+ 
+ Desde el punto de vista de diseño, esta fue la solución propuesta a los problemas que surgieron en el camino con la adquisición y transmisión de datos en cada etapa. La combinación **ESP-NOW** + **UART** responde a la necesidad de comunicación en el espacio del generador eólico, aunque esta situación puede cambiar en otros sistemas y requerir nuevas arquitecturas. Espressif Systems (2026d) sustenta la comunicación local mediante **ESP-NOW**, mientras que AWS (2026g) permite sustentar la necesidad de conectar finalmente el sistema a una plataforma cloud mediante **MQTT** seguro. A su vez, esta combinación permite separar el dominio inalámbrico local del dominio de publicación a Internet, reduciendo la carga funcional sobre los diferentes nodos y especializando cada tarjeta en funciones específicas. Esta decisión también marca una diferencia frente a Gómez Flórez (2024), donde la arquitectura previa concentraba mayor parte del procesamiento en una BeagleBone Black y un servidor físico remoto [@espressif_espnow; @aws_iot_protocols; @gomez_prototipado_2024].
+ 
+-![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de herramientas de IA, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align="center" fig-pos="H"}
++![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align="center" fig-pos="H"}
+ 
+ La @fig-cap2-comparacion-arquitecturas organiza la comparación por adquisición, procesamiento, almacenamiento, consulta y visualización. Permite reconocer qué funciones se conservan y cómo cambia su distribución entre dispositivos y servicios; no representa el cableado del sistema anterior [@gomez_prototipado_2024].
+ 
+--- antes/04-arquitectura-software-aws.qmd
++++ despues/04-arquitectura-software-aws.qmd
+@@ -4,7 +4,7 @@
+ 
+ Para este trabajo, la decisión de usar servicios administrados responde a 3 razones: 1) Se desea analizar la operación del sistema sin la administración y mantenimiento de servidores, 2) Se busca escalamiento por uso sin mayor complejidad arquitectural ya que el sistema puede crecer en número de turbinas, frecuencia de muestreo y tiempo de operación, 3) El sistema tiene dos patrones de visualización, por una parte requiere actualización constante del último paquete de datos con baja latencia (**DynamoDB**) y por otra parte proporciona series históricas filtradas por rango de fechas y variables (**S3** + Glue + **Athena**) [@aws_serverless_lens; @hashem_bigdata_cloud_2015; @marjani_big_iot_2017; @aws_dynamodb_core_components; @aws_s3_prefixes; @aws_athena_partitions].
+ 
+-![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align="center" fig-pos="H"}
++![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align="center" fig-pos="H"}
+ 
+ ```{=latex}
+ \clearpage
+--- antes/05-pruebas-validacion.qmd
++++ despues/05-pruebas-validacion.qmd
+@@ -122,9 +122,17 @@
+ 
+ Se valida en la tabla `turbina_latest` la existencia de un único elemento actualizado para el `clientId`, confirmando la persistencia del “último dato” consumido por el dashboard.
+ 
++```{=latex}
++\begin{samepage}
++```
++
+ **Síntesis de la prueba.** La revisión de turbina_latest muestra un elemento actualizado para el clientId de prueba. Esta evidencia corresponde a la ruta del último dato y permite distinguirla del almacenamiento histórico que se revisa a continuación.
+ 
+ ```{=latex}
++\end{samepage}
++```
++
++```{=latex}
+ \FloatBarrier
+ ```
+ 
+@@ -180,14 +188,22 @@
+ 
+ Se verifica la distribución de CloudFront que expone el dashboard, evidenciando la capa de entrega (CDN) sobre el contenido estático.
+ 
+-![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap="Dashboard: consulta de últimos 15 minutos para velocidad del viento." width="90%" fig-align="center" fig-pos="H"}
++![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap="Dashboard: consulta de últimos 15 minutos para velocidad del viento." width="82%" fig-align="center" fig-pos="H"}
+ 
+ Se valida en el dashboard la consulta histórica (últimos 15 minutos) para la variable de velocidad del viento, confirmando la integración con `GetTimeseries` y el renderizado de la serie.
+ 
+ **Síntesis de la prueba.** Las evidencias del dashboard muestran el despliegue del frontend y una consulta de los últimos 15 minutos para velocidad del viento. El resultado permite comprobar la integración con GetTimeseries y la representación de la serie correspondiente.
+ 
++```{=latex}
++\begin{samepage}
++```
++
+ ## Síntesis del capítulo
+ 
+ Las pruebas documentadas permiten seguir el recorrido de la telemetría desde las tarjetas hasta el dashboard. Las desconexiones controladas muestran qué ocurre cuando falta un nodo y las evidencias de AWS permiten revisar la recepción, persistencia y consulta de los datos. Esta secuencia facilita ubicar el tramo que debe revisarse cuando la información deja de llegar.
+ 
+ El alcance de las evidencias corresponde a las condiciones y consultas presentadas. No constituye una medición prolongada de disponibilidad, pérdida de paquetes o desempeño bajo carga. A partir de este funcionamiento comprobado, el capítulo siguiente analiza los parámetros que intervienen en los costos y el escalamiento del sistema.
++
++```{=latex}
++\end{samepage}
++```

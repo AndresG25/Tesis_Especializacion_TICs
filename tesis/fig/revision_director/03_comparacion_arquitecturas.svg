@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="455" height="429" viewBox="0 0 455 429">
+<defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#52616A" stroke-width="1.1"/></marker></defs>
+<rect width="455" height="429" fill="white"/>
+<text x="8" y="20.00" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="700" fill="#173747">Evolución de la arquitectura de monitoreo</text>
+<text x="8" y="44.48" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">Comparación funcional con el antecedente de Gómez Flórez (2024)</text>
+<path d="M8 59.64 H447" fill="none" stroke="#52616A" stroke-width="1"/>
+<rect x="103" y="71" width="164" height="42" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<rect x="275" y="71" width="172" height="42" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="111" y="89.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">ARQUITECTURA</text>
+<text x="111" y="101.80" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">PRECEDENTE</text>
+<text x="283" y="89.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">ARQUITECTURA</text>
+<text x="283" y="101.80" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">PROPUESTA</text>
+<text x="8" y="145.00" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="700" fill="#173747">Adquisición</text>
+<rect x="103" y="123" width="164" height="46" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<rect x="275" y="123" width="172" height="46" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="111" y="138.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#173747">BeagleBone Black</text>
+<text x="111" y="152.80" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">Arduino de protección</text>
+<text x="283" y="138.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">ESP1: variables del</text>
+<text x="283" y="150.80" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">generador</text>
+<text x="283" y="165.60" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">ESP2: variables ambientales</text>
+<text x="8" y="198.00" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="700" fill="#173747">Procesamiento</text>
+<rect x="103" y="176" width="164" height="46" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<rect x="275" y="176" width="172" height="46" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="111" y="191.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#173747">BeagleBone Black</text>
+<text x="111" y="205.80" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">Procesamiento con R</text>
+<text x="283" y="191.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">Integración distribuida en</text>
+<text x="283" y="203.80" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">ESP32-C6</text>
+<text x="283" y="218.60" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">ESP3: gateway hacia AWS</text>
+<text x="8" y="251.00" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="700" fill="#173747">Almacenamiento</text>
+<rect x="103" y="229" width="164" height="46" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<rect x="275" y="229" width="172" height="46" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="111" y="244.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#173747">MySQL</text>
+<text x="111" y="258.80" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">Servidor físico remoto</text>
+<text x="283" y="244.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">DynamoDB: último dato</text>
+<text x="283" y="258.80" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">Amazon S3: histórico</text>
+<text x="8" y="304.00" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="700" fill="#173747">Consulta</text>
+<rect x="103" y="282" width="164" height="46" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<rect x="275" y="282" width="172" height="46" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="111" y="297.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#173747">Procesamiento y consulta</text>
+<text x="111" y="311.80" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">en el entorno anterior</text>
+<text x="283" y="297.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">AWS Lambda</text>
+<text x="283" y="311.80" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">AWS Glue + Amazon Athena</text>
+<text x="8" y="357.00" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="700" fill="#173747">Visualización</text>
+<rect x="103" y="335" width="164" height="46" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<rect x="275" y="335" width="172" height="46" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="111" y="350.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#173747">Aplicación Shiny</text>
+<text x="283" y="350.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">Dashboard React/Vite</text>
+<text x="283" y="364.80" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">Amazon S3 + CloudFront</text>
+<text x="8" y="410.00" font-family="DejaVu Sans, sans-serif" font-size="8.7" font-weight="400" fill="#173747">Comparación por funciones, basada en el antecedente descrito en la tesis; no es un esquema de</text>
+<text x="8" y="421.14" font-family="DejaVu Sans, sans-serif" font-size="8.7" font-weight="400" fill="#173747">cableado.</text>
+</svg>

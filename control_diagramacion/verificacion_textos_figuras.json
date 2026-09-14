@@ -1,0 +1,30 @@
+[
+  {
+    "figura": "01_capas_arquitectura",
+    "textos_originales": 23,
+    "textos_conservados": true,
+    "ancho": 455,
+    "alto": 467
+  },
+  {
+    "figura": "02_osi_arquitectura_matriz",
+    "textos_originales": 71,
+    "textos_conservados": true,
+    "ancho": 590,
+    "alto": 392
+  },
+  {
+    "figura": "03_comparacion_arquitecturas",
+    "textos_originales": 29,
+    "textos_conservados": true,
+    "ancho": 455,
+    "alto": 429
+  },
+  {
+    "figura": "04_arquitectura_aws",
+    "textos_originales": 28,
+    "textos_conservados": true,
+    "ancho": 455,
+    "alto": 503
+  }
+]

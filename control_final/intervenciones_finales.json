@@ -1,0 +1,58 @@
+[
+  {
+    "archivo": "_quarto.yml",
+    "antes": "fig-title: \"Figura nro.\"",
+    "despues": "fig-title: \"Figura\"",
+    "ocurrencias": 1,
+    "motivo": "Rótulo de todas las figuras."
+  },
+  {
+    "archivo": "_quarto.yml",
+    "antes": "fig-prefix: \"Figura nro.\"",
+    "despues": "fig-prefix: \"Figura\"",
+    "ocurrencias": 1,
+    "motivo": "Referencias cruzadas en el texto."
+  },
+  {
+    "archivo": "tex/preamble.tex",
+    "antes": "\\captionsetup[figure]{name=Figura nro.}",
+    "despues": "\\captionsetup[figure]{name=Figura}",
+    "ocurrencias": 1,
+    "motivo": "Nombre en los pies del PDF."
+  },
+  {
+    "archivo": "02-marco-referencia.qmd",
+    "antes": "herramientas de IA",
+    "despues": "ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026",
+    "ocurrencias": 3,
+    "motivo": "Atribución completa de las figuras añadidas, según el modelo indicado por el autor."
+  },
+  {
+    "archivo": "04-arquitectura-software-aws.qmd",
+    "antes": "herramientas de IA",
+    "despues": "ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026",
+    "ocurrencias": 1,
+    "motivo": "Atribución completa de las figuras añadidas, según el modelo indicado por el autor."
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "**Síntesis de la prueba.** La revisión de turbina_latest muestra un elemento actualizado para el clientId de prueba. Esta evidencia corresponde a la ruta del último dato y permite distinguirla del almacenamiento histórico que se revisa a continuación.",
+    "despues": "```{=latex}\r\n\\begin{samepage}\r\n```\r\n\r\n**Síntesis de la prueba.** La revisión de turbina_latest muestra un elemento actualizado para el clientId de prueba. Esta evidencia corresponde a la ruta del último dato y permite distinguirla del almacenamiento histórico que se revisa a continuación.\r\n\r\n```{=latex}\r\n\\end{samepage}\r\n```",
+    "ocurrencias": 1,
+    "motivo": "Mantener unida la síntesis de DynamoDB al volver a renderizar."
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "## Síntesis del capítulo\r\n\r\nLas pruebas documentadas permiten seguir el recorrido de la telemetría desde las tarjetas hasta el dashboard. Las desconexiones controladas muestran qué ocurre cuando falta un nodo y las evidencias de AWS permiten revisar la recepción, persistencia y consulta de los datos. Esta secuencia facilita ubicar el tramo que debe revisarse cuando la información deja de llegar.\r\n\r\nEl alcance de las evidencias corresponde a las condiciones y consultas presentadas. No constituye una medición prolongada de disponibilidad, pérdida de paquetes o desempeño bajo carga. A partir de este funcionamiento comprobado, el capítulo siguiente analiza los parámetros que intervienen en los costos y el escalamiento del sistema.",
+    "despues": "```{=latex}\r\n\\begin{samepage}\r\n```\r\n\r\n## Síntesis del capítulo\r\n\r\nLas pruebas documentadas permiten seguir el recorrido de la telemetría desde las tarjetas hasta el dashboard. Las desconexiones controladas muestran qué ocurre cuando falta un nodo y las evidencias de AWS permiten revisar la recepción, persistencia y consulta de los datos. Esta secuencia facilita ubicar el tramo que debe revisarse cuando la información deja de llegar.\r\n\r\nEl alcance de las evidencias corresponde a las condiciones y consultas presentadas. No constituye una medición prolongada de disponibilidad, pérdida de paquetes o desempeño bajo carga. A partir de este funcionamiento comprobado, el capítulo siguiente analiza los parámetros que intervienen en los costos y el escalamiento del sistema.\r\n\r\n```{=latex}\r\n\\end{samepage}\r\n```",
+    "ocurrencias": 1,
+    "motivo": "Mantener unidos el título y los dos párrafos del cierre del capítulo 5."
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap=\"Dashboard: consulta de últimos 15 minutos para velocidad del viento.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}",
+    "despues": "![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap=\"Dashboard: consulta de últimos 15 minutos para velocidad del viento.\" width=\"82%\" fig-align=\"center\" fig-pos=\"H\"}",
+    "ocurrencias": 1,
+    "motivo": "Reservar una línea adicional para el cierre sin cambiar la captura original ni la tipografía del texto."
+  }
+]

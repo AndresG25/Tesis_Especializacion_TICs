@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="590" height="392" viewBox="0 0 590 392">
+<defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#52616A" stroke-width="1.1"/></marker></defs>
+<rect width="590" height="392" fill="white"/>
+<text x="8" y="20.00" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="700" fill="#173747">Relación de las capas con la arquitectura desarrollada</text>
+<text x="8" y="43.20" font-family="DejaVu Sans, sans-serif" font-size="9.5" font-weight="400" fill="#173747">Lectura por tramo: ESP-NOW, UART y publicación MQTT segura hacia AWS</text>
+<path d="M8 58.36 H582" fill="none" stroke="#52616A" stroke-width="1"/>
+<text x="12" y="70.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">MODELO OSI</text>
+<text x="103" y="70.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">TCP/IP</text>
+<text x="181" y="70.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">ESP1 → ESP2</text>
+<text x="314" y="70.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">ESP2 → ESP3</text>
+<text x="447" y="70.00" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="700" fill="#187D86">ESP3 → AWS</text>
+<text x="181" y="84.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">ESP-NOW</text>
+<text x="314" y="84.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">UART</text>
+<text x="447" y="84.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Wi-Fi + Internet</text>
+<rect x="8" y="94" width="86" height="23" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="12" y="109.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">7 Aplicación</text>
+<rect x="8" y="120" width="86" height="23" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="12" y="135.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">6 Presentación</text>
+<rect x="8" y="146" width="86" height="23" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="12" y="161.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">5 Sesión</text>
+<rect x="8" y="175" width="86" height="35" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="12" y="190.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">4 Transporte</text>
+<rect x="8" y="214" width="86" height="35" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="12" y="229.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">3 Red</text>
+<rect x="8" y="253" width="86" height="33" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="12" y="268.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">2 Enlace</text>
+<rect x="8" y="290" width="86" height="33" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="12" y="305.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">1 Física</text>
+<rect x="99" y="94" width="73" height="75" rx="3" fill="#F5F8F3" stroke="#44734C" stroke-width="0.7"/>
+<text x="103" y="107.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#44734C">Aplicación</text>
+<text x="103" y="119.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Funciones de</text>
+<text x="103" y="130.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">las capas</text>
+<text x="103" y="141.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">superiores</text>
+<rect x="99" y="175" width="73" height="35" rx="3" fill="#F5F8F3" stroke="#44734C" stroke-width="0.7"/>
+<text x="103" y="188.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#44734C">Transporte</text>
+<rect x="99" y="214" width="73" height="35" rx="3" fill="#F5F8F3" stroke="#44734C" stroke-width="0.7"/>
+<text x="103" y="227.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#44734C">Internet</text>
+<rect x="99" y="253" width="73" height="70" rx="3" fill="#F5F8F3" stroke="#44734C" stroke-width="0.7"/>
+<text x="103" y="266.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#44734C">Acceso a la</text>
+<text x="103" y="277.65" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#44734C">red</text>
+<text x="103" y="290.30" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Enlace y</text>
+<text x="103" y="301.30" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">medio físico</text>
+<rect x="177" y="94" width="128" height="75" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="181" y="107.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">Datos del generador</text>
+<text x="181" y="119.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Voltaje, RPM y GPS en una</text>
+<text x="181" y="130.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">estructura binaria.</text>
+<text x="181" y="141.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Firmware: organiza e</text>
+<text x="181" y="152.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">interpreta el mensaje.</text>
+<rect x="310" y="94" width="128" height="75" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="314" y="107.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#187D86">JSON consolidado</text>
+<text x="314" y="119.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Medidas del generador +</text>
+<text x="314" y="130.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">variables ambientales +</text>
+<text x="314" y="141.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">marca temporal.</text>
+<text x="314" y="152.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Firmware: serializa y</text>
+<text x="314" y="163.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">reconstruye el mensaje.</text>
+<rect x="443" y="94" width="139" height="75" rx="3" fill="#F3F6FB" stroke="#3565A0" stroke-width="0.7"/>
+<text x="447" y="107.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#3565A0">MQTT: aplicación</text>
+<text x="447" y="119.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">JSON como carga útil. TLS</text>
+<text x="447" y="130.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">protege el canal entre ESP3</text>
+<text x="447" y="141.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">y AWS y opera sobre TCP.</text>
+<rect x="177" y="175" width="128" height="35" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<text x="181" y="188.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#52616A">Sin TCP ni UDP</text>
+<text x="181" y="200.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">en este tramo</text>
+<rect x="177" y="214" width="128" height="35" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<text x="181" y="227.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#52616A">Sin IP</text>
+<text x="181" y="239.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">en este tramo</text>
+<rect x="310" y="175" width="128" height="35" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<text x="314" y="188.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#52616A">Sin TCP ni UDP</text>
+<text x="314" y="200.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">en este tramo</text>
+<rect x="310" y="214" width="128" height="35" rx="3" fill="#F6F7F8" stroke="#52616A" stroke-width="0.7"/>
+<text x="314" y="227.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#52616A">Sin IP</text>
+<text x="314" y="239.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">en este tramo</text>
+<rect x="443" y="175" width="139" height="35" rx="3" fill="#F3F6FB" stroke="#3565A0" stroke-width="0.7"/>
+<text x="447" y="188.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#3565A0">TCP</text>
+<text x="447" y="200.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Transporte fiable y ordenado</text>
+<rect x="443" y="214" width="139" height="35" rx="3" fill="#F3F6FB" stroke="#3565A0" stroke-width="0.7"/>
+<text x="447" y="227.00" font-family="DejaVu Sans, sans-serif" font-size="9.1" font-weight="700" fill="#3565A0">IP</text>
+<text x="447" y="239.65" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Encaminamiento hacia AWS</text>
+<rect x="177" y="253" width="128" height="33" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="181" y="266.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="700" fill="#187D86">ESP-NOW</text>
+<text x="181" y="278.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Tramas 802.11 y dir. MAC</text>
+<rect x="177" y="290" width="128" height="33" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="181" y="303.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="700" fill="#187D86">Radio de 2,4 GHz</text>
+<text x="181" y="315.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Medio inalámbrico</text>
+<rect x="310" y="253" width="128" height="70" rx="3" fill="#F2F8F8" stroke="#187D86" stroke-width="0.7"/>
+<text x="314" y="266.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="700" fill="#187D86">Comunicación serie¹</text>
+<text x="314" y="278.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">UART: bytes con bits de</text>
+<text x="314" y="289.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">inicio y parada. TX/RX:</text>
+<text x="314" y="300.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">señales eléctricas entre</text>
+<text x="314" y="311.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">ESP2 y ESP3.</text>
+<rect x="443" y="253" width="139" height="33" rx="3" fill="#F3F6FB" stroke="#3565A0" stroke-width="0.7"/>
+<text x="447" y="266.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="700" fill="#3565A0">Wi-Fi / IEEE 802.11</text>
+<text x="447" y="278.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Enlace ESP3 ↔ router²</text>
+<rect x="443" y="290" width="139" height="33" rx="3" fill="#F3F6FB" stroke="#3565A0" stroke-width="0.7"/>
+<text x="447" y="303.00" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="700" fill="#3565A0">Radio de 2,4 GHz</text>
+<text x="447" y="315.52" font-family="DejaVu Sans, sans-serif" font-size="9" font-weight="400" fill="#173747">Acceso Wi-Fi desde ESP3²</text>
+<text x="8" y="338.00" font-family="DejaVu Sans, sans-serif" font-size="9.2" font-weight="700" fill="#173747">Las tarjetas ejecutan varias funciones; cada columna representa un enlace, no una capa.</text>
+<text x="8" y="351.00" font-family="DejaVu Sans, sans-serif" font-size="8.7" font-weight="400" fill="#173747">Las tres capas OSI superiores se agrupan de forma conceptual: no son módulos separados del firmware.</text>
+<text x="8" y="363.00" font-family="DejaVu Sans, sans-serif" font-size="8.7" font-weight="400" fill="#173747">¹ UART se muestra como interfaz serie; no equivale por sí sola a una pila OSI de dos capas.</text>
+<text x="8" y="375.00" font-family="DejaVu Sans, sans-serif" font-size="8.7" font-weight="400" fill="#173747">² Wi-Fi corresponde al primer salto. Desde el router hasta AWS intervienen otros enlaces y medios.</text>
+<text x="8" y="387.00" font-family="DejaVu Sans, sans-serif" font-size="8.3" font-weight="400" fill="#173747">Base: ITU-T X.200, documentación ESP-IDF y especificación MQTT. Elaboración propia.</text>
+</svg>

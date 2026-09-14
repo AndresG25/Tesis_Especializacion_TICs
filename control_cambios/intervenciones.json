@@ -1,0 +1,149 @@
+[
+  {
+    "file": "02-marco-referencia.qmd",
+    "comment": "1",
+    "old": "La primera capa corresponde al entorno físico",
+    "new": "![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align=\"center\"}\n\nLa @fig-cap2-cuatro-capas presenta las cuatro capas descritas en esta sección. Los sensores dan origen a las mediciones; las tarjetas las organizan y transmiten; los servicios de AWS las almacenan y permiten consultarlas; y el dashboard las presenta al usuario.\n\nLa primera capa corresponde al entorno físico"
+  },
+  {
+    "file": "02-marco-referencia.qmd",
+    "comment": "2",
+    "old": "| Capa conceptual | Implementación en el prototipo | Función técnica |",
+    "new": "![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de herramientas de IA, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align=\"center\"}\n\nLa @fig-cap2-osi-tramos se lee por filas y por tramos de comunicación. ESP1 y ESP2 intercambian datos mediante ESP-NOW sobre tramas IEEE 802.11; ESP2 transmite el JSON consolidado por UART a ESP3; y ESP3 publica mediante MQTT sobre TLS, TCP e IP, con Wi-Fi en el acceso al router. Las tarjetas no corresponden a una sola capa. La comunicación serie se muestra como una interfaz local, sin atribuirle una pila OSI completa. La tabla siguiente conserva una lectura funcional del sistema: la fila de seguridad agrupa controles y no constituye una capa adicional del modelo OSI [@espressif_espnow; @espressif_uart_driver; @oasis_mqtt5; @rfc9293; @rfc8446].\n\n| Capa conceptual | Implementación en el prototipo | Función técnica |"
+  },
+  {
+    "file": "02-marco-referencia.qmd",
+    "comment": "3",
+    "old": "OASIS (2019) define **MQTT** como un protocolo de mensajería publish/subscribe basado en clientes, broker y tópicos,",
+    "new": "En la especificación MQTT Version 5.0, OASIS (2019) define **MQTT** como un protocolo de mensajería publish/subscribe basado en clientes, broker y tópicos,"
+  },
+  {
+    "file": "02-marco-referencia.qmd",
+    "comment": "4",
+    "old": "## **MQTT**, telemetría y contrato de datos",
+    "new": "![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de herramientas de IA, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align=\"center\"}\n\nLa @fig-cap2-comparacion-arquitecturas organiza la comparación por adquisición, procesamiento, almacenamiento, consulta y visualización. Permite reconocer qué funciones se conservan y cómo cambia su distribución entre dispositivos y servicios; no representa el cableado del sistema anterior [@gomez_prototipado_2024].\n\n## **MQTT**, telemetría y contrato de datos"
+  },
+  {
+    "file": "02-marco-referencia.qmd",
+    "comment": "5",
+    "old": "## Computación en el borde y gestión de concurrencia",
+    "new": "Como proyección, la separación entre información reciente e histórica puede explorarse en plataformas de supervisión de sistemas de potencia. Llevar esta idea al estudio de estabilidad requeriría definir otras variables, escalas de muestreo, condiciones de sincronización y tiempos de respuesta. Ese desarrollo queda fuera de la validación presentada: el prototipo se utiliza para monitoreo de la turbina y no implementa funciones de protección ni control de estabilidad.\n\n## Computación en el borde y gestión de concurrencia"
+  },
+  {
+    "file": "03-arquitectura-hardware-iot-edge.qmd",
+    "comment": "6",
+    "old": "a qué timestamp pertenece ese dato",
+    "new": "a qué *timestamp* pertenece ese dato"
+  },
+  {
+    "file": "03-arquitectura-hardware-iot-edge.qmd",
+    "comment": "8",
+    "old": "## Propósito de la capa **IoT Edge**",
+    "new": "Para orientar la lectura, la sección 3.1 explica el propósito de la capa IoT Edge y la sección 3.2 establece sus requisitos funcionales. La sección 3.3 identifica los archivos de código usados como soporte; la sección 3.4 describe la distribución física de los nodos; y la sección 3.5 relaciona sus interfaces con el modelo de capas.\n\nLas secciones 3.6, 3.7 y 3.8 desarrollan, respectivamente, la adquisición en ESP1, la integración de datos en ESP2 y la publicación hacia AWS desde ESP3. Después se presenta el contrato de datos en 3.9, la gestión temporal en 3.10, la seguridad en 3.11 y el tratamiento de integridad y pérdida de datos en 3.12. La sección 3.13 reúne la estrategia de validación y la sección 3.14 cierra el capítulo con una síntesis.\n\n## Propósito de la capa **IoT Edge**"
+  },
+  {
+    "file": "03-arquitectura-hardware-iot-edge.qmd",
+    "comment": "9",
+    "append": "\r\nCon esta distribución queda definido el recorrido local de las mediciones y el mensaje que recibe la plataforma cloud. El capítulo siguiente continúa desde ese punto: describe la recepción en AWS y las rutas utilizadas para conservar, consultar y visualizar los datos.\r\n"
+  },
+  {
+    "file": "04-arquitectura-software-aws.qmd",
+    "comment": "10",
+    "old": "![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-5.5 Thinking de OpenAI, 2026.](fig/cap4_arquitectura_software_aws_final.png)",
+    "new": "![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png)"
+  },
+  {
+    "file": "04-arquitectura-software-aws.qmd",
+    "comment": "11",
+    "old": "```text\ns3://datos-turbina/processed/year=2026/month=05/day=18/hour=15/minute=22/\n```",
+    "new": "::: {.content-visible when-format=\"pdf\"}\n\n```{=latex}\n\\begin{flushleft}\n\\small\\ttfamily\ns3://datos-turbina/processed/\\allowbreak year=2026/\\allowbreak month=05/\\allowbreak day=18/\\allowbreak hour=15/\\allowbreak minute=22/\n\\end{flushleft}\n```\n\n:::\n\n::: {.content-visible unless-format=\"pdf\"}\n\n```text\ns3://datos-turbina/processed/year=2026/month=05/day=18/hour=15/minute=22/\n```\n\n:::"
+  },
+  {
+    "file": "index.qmd",
+    "comment": "12",
+    "append": "\r\n## Síntesis del capítulo\r\n\r\nEl problema y los objetivos planteados conducen al desarrollo de una arquitectura que conecte las mediciones de la turbina con su almacenamiento y consulta. Los capítulos siguientes presentan los fundamentos de esa solución, su implementación y las pruebas realizadas para verificar el recorrido de los datos.\r\n"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "13",
+    "old": "Para la validación del sistema se proponen cinco niveles",
+    "new": "En este trabajo, esta organización se denomina **procedimiento de validación incremental por etapas con trazabilidad de evidencias**. El nombre identifica la secuencia adoptada para comprobar el sistema, desde la adquisición hasta la visualización. Cada etapa relaciona la condición de prueba, el procedimiento, el resultado observado y la evidencia disponible; no se presenta como una certificación del prototipo.\n\nPara la validación del sistema se proponen cinco niveles"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "13-14",
+    "old": "### Evidencias (Prueba ESP1)",
+    "new": "## Evidencias de validación por componente\n\n### Evidencias (Prueba ESP1)"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "14-identificador",
+    "old": "![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp3-desenergizada",
+    "new": "![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp2-desenergizada"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "14",
+    "old": "### Evidencias (Prueba AWS IoT Core)",
+    "new": "**Síntesis de la prueba.** La prueba de ESP3 muestra que, al retirar la alimentación del gateway, se interrumpe la llegada de nuevos mensajes a AWS IoT Core. La publicación se restablece al energizar nuevamente la tarjeta, según las evidencias de consola presentadas. Esta comprobación identifica el papel de ESP3 en la salida hacia la nube; no cuantifica el tiempo de recuperación.\n\n### Evidencias (Prueba AWS IoT Core)"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "14",
+    "old": "### Evidencias (Prueba DynamoDB)",
+    "new": "**Síntesis de la prueba.** Las evidencias de IoT Core permiten seguir la recepción del JSON y revisar los permisos asociados al dispositivo. Con ello se comprueba la conexión y publicación en el tópico usado durante la prueba, sin extender el resultado a una evaluación completa de seguridad.\n\n### Evidencias (Prueba DynamoDB)"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "14",
+    "old": "### Evidencias (Prueba S3 + Glue + Athena)",
+    "new": "**Síntesis de la prueba.** La revisión de turbina_latest muestra un elemento actualizado para el clientId de prueba. Esta evidencia corresponde a la ruta del último dato y permite distinguirla del almacenamiento histórico que se revisa a continuación.\n\n### Evidencias (Prueba S3 + Glue + Athena)"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "14",
+    "old": "### Evidencias (Prueba Lambda)",
+    "new": "**Síntesis de la prueba.** La secuencia presentada permite seguir el dato almacenado en S3, su esquema en Glue y la consulta ejecutada en Athena. Se comprueba así el funcionamiento de la ruta histórica para el caso mostrado, sin evaluar todavía su rendimiento con grandes volúmenes de datos.\n\n### Evidencias (Prueba Lambda)"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "14",
+    "old": "### Evidencias (Prueba Dashboard)",
+    "new": "**Síntesis de la prueba.** Las pruebas de GetLatest y GetTimeseries muestran las dos formas de acceso a los datos: el último paquete y la serie histórica solicitada. Las respuestas JSON permiten enlazar el almacenamiento con la visualización sin que el usuario tenga que consultar los servicios desde la consola de AWS.\n\n### Evidencias (Prueba Dashboard)"
+  },
+  {
+    "file": "05-pruebas-validacion.qmd",
+    "comment": "12-14",
+    "append": "\r\n**Síntesis de la prueba.** Las evidencias del dashboard muestran el despliegue del frontend y una consulta de los últimos 15 minutos para velocidad del viento. El resultado permite comprobar la integración con GetTimeseries y la representación de la serie correspondiente.\r\n\r\n## Síntesis del capítulo\r\n\r\nLas pruebas documentadas permiten seguir el recorrido de la telemetría desde las tarjetas hasta el dashboard. Las desconexiones controladas muestran qué ocurre cuando falta un nodo y las evidencias de AWS permiten revisar la recepción, persistencia y consulta de los datos. Esta secuencia facilita ubicar el tramo que debe revisarse cuando la información deja de llegar.\r\n\r\nEl alcance de las evidencias corresponde a las condiciones y consultas presentadas. No constituye una medición prolongada de disponibilidad, pérdida de paquetes o desempeño bajo carga. A partir de este funcionamiento comprobado, el capítulo siguiente analiza los parámetros que intervienen en los costos y el escalamiento del sistema.\r\n"
+  },
+  {
+    "file": "06-analisis-costos-resultados.qmd",
+    "comment": "15",
+    "old": "podría escalarse a n cantidad",
+    "new": "podría escalarse a un número $n$ de turbinas"
+  },
+  {
+    "file": "06-analisis-costos-resultados.qmd",
+    "comment": "15",
+    "old": "## Escalamiento a n turbinas",
+    "new": "## Escalamiento a $n$ turbinas"
+  },
+  {
+    "file": "06-analisis-costos-resultados.qmd",
+    "comment": "16",
+    "old": "| MQTT | Un tópico general | Tópico por dispositivo o prefijo | `sensor/{clientId}/data` |",
+    "new": "| MQTT | Un tópico general | Tópico por dispositivo o prefijo | Tópico por dispositivo |"
+  },
+  {
+    "file": "06-analisis-costos-resultados.qmd",
+    "comment": "16",
+    "old": ": Ajustes de arquitectura para escalar a diez turbinas. {#tbl-escalamiento-diez}",
+    "new": ": Ajustes de arquitectura para escalar a diez turbinas. {#tbl-escalamiento-diez tbl-colwidths=\"[16,24,32,28]\"}\n\nEjemplo de tópico por dispositivo: `sensor/{clientId}/data`."
+  },
+  {
+    "file": "07-conclusiones-trabajos-futuros.qmd",
+    "comment": "5",
+    "old": "## Cierre",
+    "new": "10. Como línea de trabajo adicional, se propone estudiar la adaptación de la arquitectura de datos a la supervisión de sistemas de potencia y al soporte de análisis de estabilidad. Antes de implementar esa extensión se deberán definir las variables eléctricas, el muestreo, la sincronización y los tiempos de respuesta requeridos. Esta posibilidad no forma parte de los resultados de validación del prototipo presentado.\n\n## Cierre"
+  }
+]

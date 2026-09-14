@@ -1,0 +1,240 @@
+% -------------------------------------------------------------------------
+% FRONTMATTER MANUAL PARA TESIS EN QUARTO
+% Este archivo se carga antes del cuerpo principal del documento.
+% No debe estar dentro de index.qmd para evitar que Quarto lo trate como capítulo.
+% -------------------------------------------------------------------------
+
+\frontmatter
+
+% -------------------------------------------------------------------------
+% PORTADA
+% -------------------------------------------------------------------------
+
+\begin{titlepage}
+\thispagestyle{empty}
+\newgeometry{left=2.7cm,right=2.7cm,top=1.2cm,bottom=1.2cm}
+
+\begin{center}
+
+\vspace*{0.05cm}
+
+\includegraphics[width=0.27\textwidth]{fig/logo_utp.png}
+
+\vspace{0.85cm}
+
+{\Large\bfseries
+\parbox{0.94\textwidth}{
+\centering
+Desarrollo de una arquitectura escalable de Big Data en AWS\\
+alimentada mediante un sistema de IoT
+}
+}
+
+\vspace{0.45cm}
+
+{\large\bfseries
+Aplicación en monitoreo de generación eólica de pequeña escala
+}
+
+\vspace{0.95cm}
+
+{\large\bfseries
+Carlos Andrés Gómez Flórez
+}
+
+\vspace{0.90cm}
+
+Trabajo de grado presentado como requisito para optar al título de:
+
+\vspace{0.30cm}
+
+{\large\bfseries
+Especialista en Tecnologías de la Información y las Comunicaciones
+}
+
+\vspace{0.80cm}
+
+Director:
+
+\vspace{0.20cm}
+
+{\large\bfseries
+Alexander Molina Cabrera
+}
+
+\vspace{0.55cm}
+
+Codirector:
+
+\vspace{0.20cm}
+
+{\large\bfseries
+César Augusto Jaramillo Acevedo
+}
+
+\vfill
+
+{\large Universidad Tecnológica de Pereira}
+
+\vspace{0.15cm}
+
+Facultad de Ingenierías
+
+\vspace{0.15cm}
+
+Programa de Especialización en Tecnologías de la Información y las Comunicaciones
+
+\vspace{0.15cm}
+
+Pereira, Risaralda
+
+\vspace{0.15cm}
+
+2026
+
+\end{center}
+
+\restoregeometry
+\end{titlepage}
+
+% -------------------------------------------------------------------------
+% NOTA DE ACEPTACIÓN
+% -------------------------------------------------------------------------
+
+\cleardoublepage
+\thispagestyle{empty}
+
+\vspace*{3.0cm}
+
+\begin{center}
+{\Large\bfseries Nota de Aceptación}
+\end{center}
+
+\vspace{3.0cm}
+
+\begin{flushright}
+\rule{8cm}{0.4pt}\\
+Nombre del director\\
+Director
+
+\vspace{1.8cm}
+
+\rule{8cm}{0.4pt}\\
+Jurado
+
+\vspace{1.8cm}
+
+\rule{8cm}{0.4pt}\\
+Jurado
+\end{flushright}
+
+\vfill
+
+\begin{center}
+Pereira, 2026
+\end{center}
+
+% -------------------------------------------------------------------------
+% PÁGINA DE DERECHOS / INFORMACIÓN INSTITUCIONAL
+% -------------------------------------------------------------------------
+
+\cleardoublepage
+\thispagestyle{empty}
+
+\vspace*{4.2cm}
+
+\noindent
+\textbf{Desarrollo de una arquitectura escalable de Big Data en AWS alimentada mediante un sistema de IoT: Aplicación en monitoreo de generación eólica de pequeña escala}
+
+\vspace{0.6cm}
+
+\noindent
+\copyright\ Carlos Andrés Gómez Flórez
+
+\vspace{0.6cm}
+
+\noindent
+Pereira, 2026
+
+\vspace{0.6cm}
+
+\noindent
+Programa de Especialización en Tecnologías de la Información y las Comunicaciones
+
+\vspace{0.35cm}
+
+\noindent
+Universidad Tecnológica de Pereira
+
+\vspace{0.35cm}
+
+\noindent
+Carrera 27 No. 10-02 Barrio Álamos - Risaralda - Colombia
+
+\vspace{0.35cm}
+
+\noindent
+Tel. (+57)(6)3137122
+
+\vspace{0.35cm}
+
+\noindent
+www.utp.edu.co
+
+% -------------------------------------------------------------------------
+% RESUMEN
+% -------------------------------------------------------------------------
+
+\cleardoublepage
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+
+En este trabajo se propone, desarrolla y valida una arquitectura para adquirir, transmitir, almacenar, procesar y visualizar datos de un generador eólico de pequeña escala. La solución integra un subsistema embebido distribuido basado en tarjetas ESP32-C6, comunicación local entre nodos, datos en formato json, publicación segura mediante MQTTs hacia AWS IoT Core y una capa de almacenamiento y consulta soportada en servicios serverless de AWS.
+
+El sistema de adquisición se organiza en tres etapas: un nodo de campo que mide variables del generador, un nodo integrador local que consolida variables ambientales y operativas y estructura el mensaje de telemetría, y un gateway IoT encargado de la conectividad Wi-Fi, la sesión MQTT segura y la publicación de datos hacia la nube.
+
+En la capa cloud, la arquitectura usa AWS IoT Core para la ingesta MQTTs, DynamoDB para conservar el último dato por dispositivo, S3 como repositorio histórico, Glue y Athena para catalogar y consultar series temporales, Lambda como API serverless y un dashboard React/Vite servido mediante S3 y CloudFront. Esta separación distingue la ruta de datos casi en tiempo real de la ruta histórica, reduciendo costos y facilitando la escalabilidad.
+
+La contribución principal es una metodología reproducible para instrumentar, transmitir y analizar datos de pequeños sistemas eólicos integrando IoT, cloud computing y Big Data, con trazabilidad desde la sensórica y el firmware hasta la visualización web y la validación experimental.
+
+\vspace{0.5cm}
+
+\noindent
+\textbf{Palabras clave:} ESP32-C6, IoT, MQTT, TLS, AWS IoT Core, Big Data, DynamoDB, Amazon S3, Athena, Lambda, generación eólica, sistemas embebidos, dashboard web.
+
+% -------------------------------------------------------------------------
+% ABSTRACT
+% -------------------------------------------------------------------------
+
+\cleardoublepage
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+This work proposes, develops and validates an architecture to acquire, transmit, store, process and visualize data from a small-scale wind generator. The solution integrates a distributed embedded subsystem based on ESP32-C6 boards, local communication between nodes, data in json format, secure MQTTs publication to AWS IoT Core, and a storage and query layer supported by AWS serverless services.
+
+The acquisition system is organized into three stages: a field node that measures generator variables, a local integration node that consolidates environmental and operational variables and structures the telemetry message, and an IoT gateway responsible for Wi-Fi connectivity, the secure MQTT session and data publication to the cloud.
+
+In the cloud layer, the architecture uses AWS IoT Core for MQTTs ingestion, DynamoDB to keep the latest value per device, S3 as the historical repository, Glue and Athena to catalog and query time series, Lambda as a serverless API, and a React/Vite dashboard served through S3 and CloudFront. This separation distinguishes the near-real-time data path from the historical path, reducing costs and facilitating scalability.
+
+The main contribution is a reproducible methodology to instrument, transmit and analyze data from small wind systems by integrating IoT, cloud computing and Big Data, with traceability from sensors and firmware to web visualization and experimental validation.
+
+\vspace{0.5cm}
+
+\noindent
+\textbf{Keywords:} ESP32-C6, IoT, MQTT, TLS, AWS IoT Core, Big Data, DynamoDB, Amazon S3, Athena, Lambda, wind generation, embedded systems, web dashboard.
+
+% -------------------------------------------------------------------------
+% ÍNDICES
+% -------------------------------------------------------------------------
+
+\cleardoublepage
+\tableofcontents
+
+\cleardoublepage
+\listoftables
+
+\cleardoublepage
+\listoffigures
+
+\cleardoublepage
+\mainmatter

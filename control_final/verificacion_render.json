@@ -1,0 +1,33 @@
+{
+  "paginas_pdf": 138,
+  "figuras_numeradas": 27,
+  "prefijo_figuras": "Figura",
+  "figura_nro_restantes": 0,
+  "figuras_con_atribucion_gpt6": [
+    "2.2",
+    "2.3",
+    "2.4",
+    "4.1"
+  ],
+  "creditos_originales_conservados": [
+    "2.1",
+    "3.1"
+  ],
+  "pruebas_en_orden": 8,
+  "sintesis_dynamodb_completa": 99,
+  "cierre_capitulo_5_completo": 104,
+  "sin_paginas_con_linea_suelta": true,
+  "timestamp_cursiva_verificado": 43,
+  "parrafos_sintesis_capitulo_3": 3,
+  "comentarios_atendidos": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9
+  ],
+  "comentario_incompleto": 7
+}

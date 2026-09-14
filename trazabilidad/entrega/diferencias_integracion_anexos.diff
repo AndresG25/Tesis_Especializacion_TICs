@@ -1,0 +1,37 @@
+--- antes/tesis/anexos/anexo-a-codigo-esp1.qmd
++++ integrado/tesis/anexos/anexo-a-codigo-esp1.qmd
+@@ -1,11 +1,11 @@
+ # Anexo A — Código ESP1
+ 
+-Los códigos fuente y los elementos de configuración y documentación de los tres nodos del sistema se encuentran en el repositorio [Tesis_Especializacion_TICs de AndresG25](https://github.com/AndresG25/Tesis_Especializacion_TICs). Los anexos A, B y C orientan su consulta mediante una descripción de cada carpeta y de la función general de sus programas, sin reproducir los listados completos en el documento.
++Los códigos fuente, los elementos de configuración y documentación del sistema y el proyecto editable de la tesis se encuentran en el repositorio [Tesis_Especializacion_TICs de AndresG25](https://github.com/AndresG25/Tesis_Especializacion_TICs). Los anexos A, B y C orientan su consulta mediante una descripción de cada carpeta y de la función general de sus programas, sin reproducir los listados completos en el documento.
+ 
+ El repositorio se mantiene privado durante la revisión académica. El director y los evaluadores pueden solicitar acceso al autor mediante [andres25@utp.edu.co](mailto:andres25@utp.edu.co), indicando su usuario de GitHub. La consulta del contenido requiere que el autor habilite ese acceso.
+ 
+-La carpeta [ESP1](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP1) contiene el proyecto de adquisición de campo, identificado originalmente como `clase-UART`. Su archivo principal es `ESP1/main/main7.c`; también se incluyen el componente `minmea` para interpretar las sentencias del GPS, los archivos CMake de compilación, la configuración base de ESP-IDF y un README con las conexiones y las instrucciones de uso.
++La carpeta [ESP1](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP1/Firmware%20nodo%20ESP1%20-%20Variables%20Generador) contiene el proyecto denominado «Firmware nodo ESP1 - Variables Generador». Su archivo principal es `main/main7.c`, ubicado dentro de esa carpeta descriptiva. También se incluyen el componente `minmea` para interpretar las sentencias del GPS, los archivos CMake de compilación, la configuración base de ESP-IDF y un README con las conexiones y las instrucciones de uso.
+ 
+ El programa lee la posición y el estado de fijación del GPS, adquiere la señal de voltaje mediante el ADC y calcula las RPM a partir de los pulsos del sensor Hall. Estas tareas actualizan una estructura compartida que se transmite periódicamente mediante ESP-NOW al nodo ESP2. Las funciones de inicialización coordinan los periféricos y las tareas de adquisición y envío.
+ 
+-La documentación del repositorio permite identificar los pines utilizados, la dirección MAC del receptor que debe configurarse para cada montaje y la versión de ESP-IDF de referencia. De esta manera, el anexo relaciona la descripción de la etapa de campo con su implementación consultable.
++La carpeta `tesis/` del mismo repositorio aloja los fuentes de este documento. El proyecto `Tesis_Especializacion_TICs.Rproj`, situado en la raíz, permite trabajar desde RStudio con la tesis y las carpetas ESP1, ESP2 y ESP3 bajo un único control de versiones Git. Los archivos README orientan la configuración, la compilación y la consulta de cada componente.
+--- antes/tesis/anexos/anexo-b-codigo-esp2.qmd
++++ integrado/tesis/anexos/anexo-b-codigo-esp2.qmd
+@@ -1,6 +1,6 @@
+ # Anexo B — Código ESP2
+ 
+-La carpeta [ESP2 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP2) contiene el proyecto de integración y procesamiento local, identificado originalmente como `Proyecto_Integrador`. El archivo principal es `ESP2/main/main7.c`. Se incluyen los componentes para el sensor BME680 y la pantalla SSD1306, una biblioteca auxiliar de conexión Wi-Fi, los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF y el README del nodo.
++La carpeta [ESP2 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP2/Firmware%20nodo%202%20-%20Variables%20ambientables%20e%20integraci%C3%B3n%20con%20ESP1) contiene el proyecto denominado «Firmware nodo 2 - Variables ambientables e integración con ESP1». Su archivo principal es `main/main7.c`, ubicado dentro de esa carpeta descriptiva. Se incluyen los componentes para el sensor BME680 y la pantalla SSD1306, una biblioteca auxiliar de conexión Wi-Fi, los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF y el README del nodo.
+ 
+ El programa recibe mediante ESP-NOW las variables adquiridas por ESP1 y las integra con la velocidad del viento y las mediciones ambientales locales. Consulta el reloj DS3231 para asociar fecha y hora a los datos, presenta información en la pantalla OLED y utiliza la microSD para registrar temporalmente las muestras y formar bloques de procesamiento. Después de acumular diez muestras válidas, genera un mensaje JSON y lo transmite por UART al nodo ESP3.
+ 
+--- antes/tesis/anexos/anexo-c-codigo-esp3.qmd
++++ integrado/tesis/anexos/anexo-c-codigo-esp3.qmd
+@@ -1,6 +1,6 @@
+ # Anexo C — Código ESP3
+ 
+-La carpeta [ESP3 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP3) contiene el proyecto de la pasarela hacia AWS IoT Core, identificado originalmente como `AWS_IoT_Core`. Su archivo principal es `ESP3/main/main2.c`. La carpeta también incluye los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF, una plantilla de configuración local y las instrucciones para incorporar los certificados necesarios.
++La carpeta [ESP3 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP3/Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core) contiene el proyecto denominado «Firmware nodo 3 e integración con AWS_IoT_Core». Su archivo principal es `main/main2.c`, ubicado dentro de esa carpeta descriptiva. También incluye los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF, una plantilla de configuración local y las instrucciones para incorporar los certificados necesarios.
+ 
+ El programa configura la conexión Wi-Fi, inicializa el cliente MQTT con TLS y recibe por UART los mensajes enviados por ESP2. Las funciones de recepción reconstruyen el contenido delimitado por llaves y comprueban su tamaño antes de publicarlo en el tópico configurado de AWS IoT Core. Los manejadores de eventos administran el estado de las conexiones y sus intentos de reconexión.
+ 

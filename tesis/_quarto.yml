@@ -1,0 +1,75 @@
+project:
+  type: book
+  output-dir: output
+
+book:
+  title: "Desarrollo de una arquitectura escalable de Big Data en AWS alimentada mediante un sistema de IoT"
+  subtitle: "Aplicación en monitoreo de generación eólica de pequeña escala"
+  author: "Carlos Andrés Gómez Flórez"
+  chapters:
+    - index.qmd
+    - 02-marco-referencia.qmd
+    - 03-arquitectura-hardware-iot-edge.qmd
+    - 04-arquitectura-software-aws.qmd
+    - 05-pruebas-validacion.qmd
+    - 06-analisis-costos-resultados.qmd
+    - 07-conclusiones-trabajos-futuros.qmd
+  appendices:
+    - anexos/anexo-a-codigo-esp1.qmd
+    - anexos/anexo-b-codigo-esp2.qmd
+    - anexos/anexo-c-codigo-esp3.qmd
+    - anexos/anexo-d-lambdas-frontend.qmd
+
+bibliography: bibliografia.bib
+lang: es
+
+crossref:
+  fig-title: "Figura"
+  tbl-title: "Tabla nro."
+  fig-prefix: "Figura"
+  tbl-prefix: "Tabla nro."
+  sec-prefix: "Sección"
+  eq-prefix: "Ecuación"
+
+format:
+  pdf:
+    documentclass: book
+    papersize: letter
+    classoption:
+      - 12pt
+      - oneside
+    pdf-engine: pdflatex
+    title-block-style: none
+    toc: false
+    lof: false
+    lot: false
+    number-sections: true
+    colorlinks: true
+    linkcolor: black
+    citecolor: black
+    urlcolor: blue
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    geometry:
+      - includeheadfoot
+      - inner=3cm
+      - outer=2.5cm
+      - top=2.5cm
+      - bottom=2.5cm
+      - bindingoffset=0cm
+    include-in-header:
+      - tex/preamble.tex
+    include-before-body:
+      - tex/frontmatter.tex
+    cite-method: natbib
+    biblio-style: plainnat
+    keep-tex: true
+
+  html:
+    toc: true
+    number-sections: true
+    theme: cosmo
+
+  docx:
+    toc: true
+    number-sections: true

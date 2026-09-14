@@ -1,0 +1,510 @@
+\documentclass[letterpaper,12pt, oneside]{book} 
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{pgf-pie}
+\usepackage{lipsum}  % Para generar texto de ejemplo
+\usepackage{array}  % Para personalizar columnas de tabla
+\usepackage{framed}  % Para crear el recuadro
+
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{ifthen}
+\usepackage{xcolor}
+\usepackage{amsmath,amsfonts} 
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{adjustbox}
+
+\usepackage[pdfborder={0 0 1}, 
+colorlinks=true, 
+linkcolor=black, 
+citecolor=blue!50!black, 
+urlcolor=blue, 
+pdfstartview=FitH, 
+bookmarks=true, 
+bookmarksnumbered=true, 
+bookmarksopen=true, 
+pdftitle=Título del Documento, 
+pdfauthor=Walter Gil-Gonzalez, 
+pdfsubject=Tesis Doctoral, 
+pdfkeywords=palabra clave1]{hyperref}
+\usetikzlibrary{decorations.pathmorphing}
+
+\usetikzlibrary{arrows,shadows,fadings}
+\usetikzlibrary{circuits.ee.IEC}
+ \usepackage{booktabs} 
+\usepackage[round]{natbib}
+\bibliographystyle{plainnat}
+\setcounter{secnumdepth}{4}
+% Configuración de márgenes
+%----------------------- Margenes (NTC1486)-----------------
+\usepackage[includeheadfoot,dvipdfm]{geometry}
+\geometry{inner={2cm},outer={2cm},top={1.6cm},
+          bottom={1.6cm},bindingoffset={1cm}}
+%----------------------- Permitir las tildes ---------------
+
+\usepackage[spanish, es-noindentfirst]{babel}
+\decimalpoint
+\usepackage[utf8]{inputenc}					
+\addto\captionsspanish{%
+  \renewcommand\contentsname{Índice general}
+	\renewcommand\bibname{Referencias}
+	\renewcommand\tablename{Tabla nro.}}
+ \captionsetup[figure]{name=Figura nro.}
+
+% ------------  Nomenclatura -------
+\usepackage[intoc]{nomencl}
+\usepackage{etoolbox}
+\usepackage{ifthen}
+\renewcommand{\nomname}{Nomenclatura y Notaciones}
+\newcommand{\nma}[3][A]{\nomenclature[#1]{#2}{#3}}
+\newcommand{\nmc}[3][C]{\nomenclature[#1]{#2}{#3}}
+\newcommand{\nmf}[3][F]{\nomenclature[#1]{#2}{#3}}
+\newcommand{\nmp}[3][P]{\nomenclature[#1]{#2}{#3}}
+\newcommand{\nmv}[3][V]{\nomenclature[#1]{#2}{#3}}
+\newcommand{\nmx}[3][X]{\nomenclature[#1]{#2}{#3}}
+\newcommand{\nmy}[3][Y]{\nomenclature[#1]{#2}{#3}}
+\makenomenclature
+ 
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+
+
+% Configura el espaciado de 1.5 líneas
+\usepackage{setspace}
+\onehalfspacing
+
+% 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\color{gray}{\thepage}}
+\fancyhead[RE,LO]{\color{gray}{\nouppercase{\leftmark}}}
+%\fancyfoot[CE,CO]{\hfill \scriptsize{\color{gray}{www.utp.edu.co}}}
+\fancyfoot[LE,RO]{}
+\usepackage[none]{hyphenat}
+
+% Figuras
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+
+
+% Formato de los capitulos
+\usepackage{fmtcount,titlesec,lmodern,microtype}
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}
+  {\filleft\hspace*{-60pt}%
+    {%
+      \normalfont\Large%
+        \textls[180]{\textsc{\chaptertitlename}}%
+    }\hspace{10pt}%
+    {\setlength\fboxsep{0pt}%
+   {%
+      \centering\fontsize{20}{90}\selectfont\thechapter}%
+    }%
+  }
+  {10pt}
+  {\titlerule[2.5pt]\vskip3pt\LARGE}
+
+% Información de la tesis
+\title{Desarrollo de una arquitectura escalable de Big Data en AWS alimentada mediante un sistema de IoT: Aplicación en monitoreo de generación eólica de pequeña escala}
+\def\author{Carlos Andrés Gómez Flórez}
+\date{\today}
+\def\advisor{Alexander Molina Cabrera}
+\def\typeproyect{Tesis de Especialización}
+\def\titleproyect{Desarrollo de una arquitectura escalable de Big Data en AWS alimentada mediante un sistema de IoT: Aplicación en monitoreo de generación eólica de pequeña escala}
+%\def\advisora{}
+\def\degree{Ingeniero Electricista}
+\def\university{Universidad Tecnológica de Pereira}
+\def\department{Especialización en Tecnologías de la Información y las Comunicaciones}
+\def\degreedate{UTP, 2025}
+\def\date{Octubre de 2025}
+%def\ISBN{ISBN}
+\begin{document}
+
+% Portada
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{Fig/logo_utp.png}  % Logo de la universidad
+       % \vspace{1cm}
+        
+       % {\LARGE \university \par}
+        %\vspace{-2cm}
+        
+        {\huge\bfseries \typeproyect\par}
+        \vspace{0.5cm}
+        {\Large\bfseries \titleproyect\par}
+
+        
+        \vfill
+         \begin{flushright}
+        {PRESENTADA POR:\par}
+        {\Large \author\par}
+        {DIRIGIDA POR:\par}
+        {\Large Ph.D. \advisor\par}
+        %{\Large Dr. \advisora\par}
+        {\large \degreedate\par}
+        %{\large \ISBN\par}
+        \end{flushright}
+        
+        \vspace{1cm}
+      %  Presentada para optar al grado de:\\
+       % {\large \degree\par}
+        %en el\\
+        %{\large \department\par}
+       % \vfill
+        
+        
+    \end{center}
+\end{titlepage}
+
+% Página en blanco después de la portada
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\thispagestyle{empty}
+
+\begin{flushright}
+\vfill
+\textbf{\Large{Nota de Aceptaci\'on}} \\
+\vfill
+
+\rule{8cm}{1pt} \\
+\rule{8cm}{1pt} \\
+\rule{8cm}{1pt} \\
+\rule{8cm}{1pt} \\
+\vspace{1cm}
+\rule{8cm}{1pt} \\
+\advisor. Director \\
+\vspace{1cm}
+%\rule{8cm}{1pt} \\
+%\CODIR . Co-Director \\
+\vspace{1cm}
+\rule{8cm}{1pt}\\
+Jurado \\
+
+\vfill
+Pereira, \date \\
+\end{flushright}
+
+
+\newpage
+\thispagestyle{empty}
+\small
+\noindent\titleproyect\\
+$	\copyright$\author
+\vfill
+\noindent Pereira, \date \\
+Programa de Especializaci\'on en Tecnolog\'ias de la Informaci\'on y las Comunicaciones\\
+Universidad Tecnol\'ogica de Pereira \\
+Carrera 27 No 10-02 Barrio Álamos - Risaralda - Colombia \\
+Tel. (+57)(6)3137122 \\
+\textit{www.utp.edu.co}\\
+Versi\'on web disponible en: \textit{http://recursosbiblioteca.utp.edu.co/tesisd/index.html}
+\normalsize
+
+
+
+
+
+% Página en blanco después de la segunda portada
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+
+% Agradecimientos
+%\chapter*{Agradecimientos}
+%\lipsum[1-3]
+
+% Resumen
+\chapter*{Resumen}
+
+En este trabajo de tesis se propone, se desarrolla y se valida una arquitectura en la nube de AWS, escalable, segura y de bajo costo para la adquisición, transmisión, procesamiento y visualización de datos de un sistema de generación eólica de muy pequeña escala articulado con sistemas embebidos para el desarrollo de dispositivos de Internet de las Cosas (IoT) y servicios de computación en la nube. Este proyecto responde a una necesidad identificada, y es que no se cuenta con una metodología accesible, reproducible y soportaba en dispositivos que permitan desarrollo de hardware y software propio para el monitoreo de este tipo de sistemas. A partir de esta necesidad, se formula la pregunta de investigación sobre cómo diseñar e implementar una arquitectura de Big Data escalable y ecónomica para gestionar todo el pipeline de datos en este contexto. 
+
+El objetivo general es desarrollar una metodología escalable de Big Data alimentada mediante dispositivos IoT para el monitoreo de las variables físicas de un generador eólico de prueba a pequeña escala. Metodológicamente, el proyecto se concibe desde la revisión de literatura especializada en conceptos base de las redes de datos, protocolos de comunicación para IoT, ciencia de datos, computación en la nube y ciberseguridad, hasta el prototipado y construcción de sistemas ciberfísicos a partir del SoC (System on Chip) ESP32, el cual permite el desarrollo a partir de software y hardware libre de manera extremadamente económica, seguido por la implementación del pipeline de datos en AWS para recepción, almacenamiento, procesamiento y visualización. 
+
+En la etapa de IoT Edge, los nodos ESP32 capturan datos de variables clave del sistema tales como velocidad del viento, temperatura, humedad y presión atmosférica para modelar la potencia eólica de entrada, velocidad del eje y voltaje del generador para modelar la potencia de salida y así identificar el rendimiento de la turbina. Los datos se transmiten de forma segura mediante MQTT/TLS hacia AWS IoT Core, donde se prepara su almacenamiento en Amazon S3, se procesan mediante ETL con AWS Glue y se visualizan en una aplicación creada con React, alojada en AWS Amplify y accedida mediante una API Gateway diseñada para este propósito. A su vez, esta arquitectura adopta estrategias de Hardening en los dispositivos y estrategias de Zero Trust para reducir la superficie de ataque y mejorar la contención frente a amenazas externas, permitiendo una supervisión remota eficiente, la detección temprana de anomalías y la optimización del rendimiento del sistema. 
+
+Se obtiene como resultado un prototipo funcional validado de extremo a extremo, con la documentación pertinente sobre los desafíos y trabajos futuros, adicionalmente, se evidencia la factibilidad económica de este enfoque con un presupuesto de hardware aproximado de 100 USD. La contribución principal de este proyecto es la entrega de un marco reproducible orientado al monitoreo de pequeños sistemas eólicos, extendible a pequeños sistemas solares o de otro tipo, con capacidad de ser usado en investigación aplicada, docencia y proyectos comunitarios. 
+
+Palabras clave: IoT, ESP32, MQTT, TLS/SSL, AWS IoT Core, Amazon S3, API Gateway, Zero Trust, monitoreo eólico, Big Data, ETL, AWS Amplify, desarrollo de software, ciencia de datos. 
+
+
+% Índice
+\newpage
+\tableofcontents
+\addcontentsline{toc}{chapter}{Índice general}
+% Listas de figuras y tablas (si es necesario)
+\renewcommand{\listtablename}{Índice de tablas}
+\listoftables
+\addcontentsline{toc}{chapter}{Índice de tablas}
+\listoffigures
+\addcontentsline{toc}{chapter}{Índice de figuras}
+\cleardoublepage
+\markboth{Nomenclatura}{Nomenclatura}
+\printnomenclature[2cm]
+
+% Contenido de la tesis
+\newpage
+\chapter{Introducción}
+\label{Cap1}
+
+\textit{En este capítulo se realiza el planteamiento del problema, delimitando las áreas en las cuales se trabajará, se plantean los objetivos y la ruta metodológica para la materialización de cada objetivo.}\\
+
+\section{Planteamiento del problema} \label{C1:sec2}
+
+La transición energética es una realidad latente en la mayoría de países del mundo, pues el calentamiento global sobreacelerado cada vez es más amenazante y requiere de buscar fuentes de energía que generen menor cantidad de emisiones de gases de efecto invernadero (GEI) al ambiente y permitan la electrificación de una gran cantidad de procesos que dependen de energía térmica. La Unidad de Planeación Minero Energética (UPME), es la entidad del Estado encargada elaborar el Plan Indicativo de Expansión de la Generación (PIEG) en Colombia,  a través de este insumo técnico se proporcionan señales sobre cómo debería evolucionar el sistema eléctrico colombiano, en \cite{ref1} se puede observar en el escenario de \textbf{Transición Energética Justa (TEJ)} que a nivel de Colombia se tiene una apuesta muy interesante en la implementación de proyectos energéticos con fuentes renovables no convencionales como la energía eólica, solar y otro tipo de energéticos menores. También, se puede apreciar que en términos del uso de la energía eólica se piensa en el viento como un energético aprovechable a gran escala y principalmente costa afuera (offshore). Sin embargo, eso no impide que se puedan plantear soluciones eólicas a pequeña escala para aprovechar la fuerza del viento en otros espacios. 
+
+En el prototipado de sistemas eólicos se deben abordar retos desde diferentes campos. Por un lado, se encuentra todo lo asociado al diseño mecánico y prototipado de las piezas. Por otra parte, todo lo asociado a la ciencia de los datos necesarios para interpretar el sistema eléctrico. En \cite{ref2} se analizó recientemente la evolución de la generación eléctrica a partir de turbinas eólicas de eje vertical, las cuales en años recientes han tenido un aumento importante en su uso para aplicaciones pequeñas de generación eléctrica a partir del viento. Como se mencionó, en \cite{ref3} se puede apreciar que uno de los retos actuales es todo lo relacionado con la optimización de perfiles aerodinámicos y puesta en funcionamiento de estos sistemas para comparar su operación bajo diferentes condiciones de operación con el propósito de mejorar cada vez más los sistemas. 
+
+En los últimos años ha ganado mayor interés el estudio de la implementación de sistemas eólicos a pequeña escala, pues es factible construir turbinas para almacenar la energía eléctrica generada y utilizarla para múltiples fines. En \cite{ref4} se muestra de manera amplia algunos usos entre los sistemas de energía eólica y el Internet de las Cosas (IoT), permitiendo observar que este tipo de sistemas se usan desde el almacenamiento de energía para alimentar sistemas de IoT que hacen medición de algunas variables del entorno como en la implementación de sistemas IoT que permitan estudiar el sistema eólico. El IoT ha ganado en los últimos años mayor campo en los sitemas de comunicaciones dada su versatilidad en lugares aislados y la facilidad de acceso a internet. En \cite{ref5} se puede observar el desarrollo de un sistema de medición de variables para un generador eólico simulado con un motor y soportado en Arduino y un modulo WiFi tipo Bolt, el cual busca obtener datos de vibración de la turbina, temperatura, humedad, velocidad del eje, voltaje, entre otras. Lo anterior, permite evidenciar la necesidad de adquirir datos del sistema y la importancia de desarrollar sistemas para el procesamiento de estos datos. 
+
+Este enfoque, junto a la evolución de nuevas tecnologías, han permitido que se pueda profundizar en otras áreas de estudio bastante importantes. En \cite{ref6} se muestra una interesante búsqueda sobre el avance en las "Small-Scale Wind Energy Portable Turbines" (SWEPTs), las cuales son pequeñas turbinas eólicas que pueden ser usadas en vehículos. Adicionalmente, se introduce de qué manera se pueden usar sistemas de IoT para el monitoreo y control en tiempo real de este tipo de sistemas.  En \cite{ref7} se describe la forma con la cual se implementó un sistema de mantenimiento en un sistema eólico a través de una cámara conectada de manera remota a partir de IoT, lo que permite monitorear en tiempo real, previendo mejoras y reduciendo costos de manera considerable. Como se muestra en \cite{ref8}, recientemente se ha profundizado en la implementación de sistemas de aprendizaje de máquina para análisis de predicción y mantenimiento predictivo en turbinas eólicas a partir de la adquisición de datos del sistema con técnicas de IoT. 
+
+Como se puede observar a partir de lo anterior, hay mucho campo de trabajo en el área de análisis de los pequeños sistemas eólicos. En \cite{ref9} se puede profundizar sobre los aspectos importantes para el diseño de las diferentes arquitecturas IoT, así como las ventajas y retos asociados a la implementación de este tipo de sistemas. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.45\linewidth]{conexiones.png}
+    \caption{Idea general de las interconexiones IoT (tomada de \citep{ref9})}
+\end{figure}
+
+Con el crecimiento de la cantidad de dispositivos conectados a Internet se han incrementado los riesgos asociados a la seguridad digital de estos procesos, pues al estar conectados a la red se es vulnerable a ataques, robos de información o salida de operación de los procesos. En \cite{ref10} se abordan los retos y preocupaciones entorno a los sistemas IoT, permitiendo identificar la latente necesidad de abordar el problema de la ciberseguridad en este tipo de redes como algo fundamental. La seguridad de los sistemas de transmisión, almacenamiento y procesamiento de datos es esencial. A partir de la integración de los sistemas IoT con otro tipo de sistemas se han ampliado el riesgo y vulnerabilidad, sumado al desconocimiento propio de la dinámica de los ciberataques. Por eso, se muestra una amplia gama de enfoques utilizados a partir de machine learning y deep learning para fortalecer la detección de ataques a los sistemas IoT. En \cite{ref11} se refuerza la idea sobre la necesidad de priorizar la seguridad del sistema, en muchas aplicaciones un ciberataque podría incluso poner en riesgo la vida de personas. Por otra parte, se abordan otros retos asociados a los sistemas IoT, como lo son la escalabilidad, la interoperabilidad y la heterogeneidad, aspectos necesarios para mejorar la confiabilidad y la operación de los sistemas IoT. 
+
+En \cite{ref12} se propuso previamente la caracterización de dos prototipos de turbinas eólicas de eje vertical a partir de la captación de datos del proceso con sensores electrónicos y circuitos eléctricos diseñados para el fin planteado. El proceso de transmisión de datos se realizó a partir de IoT con una tarjeta BeagleBone y protocolo MQTT. La recepción de datos se hizo con Python de manera remota en un computador portatil, se almacenaron en una base de datos de MySQL, se procesaron con R y se visualizaron con una aplicación de escritorio creada con Shiny de R.  En este sistema se pueden medir variables del sistema que son esenciales para determinar la potencia eólica de entrada, la potencia mecánica de salida y variables del sistema de generación tales como: velocidad del viento, temperatura, presión atmosférica, velocidad del eje de la turbina y voltaje generado. 
+
+A partir del planteamiento anterior, en el contexto de los sistemas de monitoreo es posible mencionar que aunque hay avances notables en las plataformas y uso de tecnologías IoT, no se cuenta con una metodología de bajo costo, escalable y accesible que permita construir una arquitectura de Big Data alimentada por sistemas IoT y soportada en infraestructura de nube para el monitoreo de sistemas eólicos de pequeña escala. En este sentido, se plantea la pregunta que guía este trabajo: ¿cómo diseñar e implementar una arquitectura escalable, económica y soportada en AWS, que gestione de manera eficiente el ciclo completo de adquisición, procesamiento y visualización de datos, y que sea aplicable a la generación eólica de pequeña escala?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Justificación} \label{sec3}
+
+Cada vez hay mayor preocupación y urgentes llamados a los gobiernos por parte equipos de ciencia a través de sus reportes para que se aceleren las transiciones energéticas y se tomen otro tipo de médidas relacionadas con el uso de la tierra para ralentizar el calentamiento global. El aumento de la temperatura promedio en el planeta no tiene precedentes y su crecimiento se ha sobreacelerado conforme se han desarrollado los países, pues esto ha requerido de generar energía eléctrica y mecánica principalmente a partir del uso de hidrocarburos y carbón. En \cite{ref13} se muestra la evolución de la temperatura global y se puede notar como su crecimiento tiene una tendencia exponencial, y no es de asombrar, pues en los últimos años se ha sobrepasado el umbral de 1.5 °C que tanto se advirtió a través de los diversos informes del International Panel for Climate Change (IPCC). En \cite{ref14}, se sugiere que existe una alta correlación entre el aumento de temperatura promedio mundial y la emisión de dióxido de carbono (CO\textsubscript{2}), a partir de esta sencilla pero compleja hipótesis se presume que si bien existe un alto nivel de correlación entre el aumento de temperatura y el aumento en la demanda de energía, se debe procurar buscar formas alternativas para generar energía reduciendo las emisiones de gases de efecto invernadero, entre esos el CO\textsubscript{2}. 
+
+Una de las motivaciones de profundizar en este proyecto es el de explorar el potencial para generar energía eléctrica a partir de turbinas eólicas a muy pequeña escala. Para ello, es necesario probar de múltiples maneras los prototipos propuestos y bajo diversos escenarios, procurando brindar las medidas de seguridad necesarias. Como se puede observar en \cite{ref43}, a nivel de zonas no interconectadas en Colombia el uso de la tecnología eólica es despreciable, siendo mayoritariamente Diesel y en menor proporción Solar Fotovoltaica. También, como se puede observar en \cite{ref15}, para el año 2017 se identificó por la Superintendencia de Servicios Públicos Domiciliarios (SSPD) que las Zonas No Interconectadas (ZNI) correspondían a aproximadamente el 52\% del territorio del país y que esto cobijaba a aproximadamente 1.9 millones de personas. Esto permite identificar un área de oportunidad bastante importante en el aprovechamiento del viento a pequeña escala pero también de otros recursos como el sol, la biomasa y el agua. 
+
+Por otra parte, si bien el desarrollo de la generación eólica en Colombia aún no ha madurado lo suficiente y ha tenido algunos focos de resistencia social, se siguen teniendo grandes expectativas para el desarrollo de grandes proyectos principalmente offshore en el Caribe Colombiano. Actualmente, se puede apreciar en el portal digital de Sinergox de Expertos en Mercados (XM) \cite{ref16} la participación actual en el Sistema Interconectado Nacional (SIN) por energético, evidenciando que la evolución de la energía eólica en el país ha sido poca, planteando que se tiene un gran campo por explorar en todas las escalas. En \cite{ref1} se puede evidenciar en diversos escenarios que a 2037 el país planea facilitar la puesta en operación de múltiples proyectos eólicos que se han asignado por subastas o por compromisos en cargos de confiabilidad. En \cite{ref1} (tabla 5-5) se observa que se tiene en perspectiva más de 1 Gw de generación eólica, siendo una de las mayores asignaciones, sin embargo, podría plantearse que es poca energía teniendo en cuenta la participación de otros energéticos como los térmicos y el hidráulico. 
+
+En \cite{ref17} la Agencia Internacional de Energía (IEA) plantea la importancia de algunos retos asociados a la digitalización de las redes eléctricas, ya que este proceso es fundamental en la inserción de fuentes de energía limpias para monitorear e intercambiar información que permita tomar decisiones en todas las etapas de los procesos, además porque las redes tienden a estar más interconectadas y gestionadas en tiempo real. Se habla sobre los efectos negativos de los bajos niveles de inversión en esta area, ya que la digitalización de las redes eléctricas podría suponer ahorros millonarios en renovación de algunos sistemas eléctricos, mantenimientos y extensión de la vida útil de los sistemas. Como también se puede apreciar en \cite{ref18}, empresas importantes del sector energético a nivel mundial le apuestan a la digitalización de los procesos eléctricos, pues es una apueesta interesante para reducir costos, mejorar los enfoques de mantenimiento y permite controlar de manera más estratégica los activos a partir del análisis permanente de datos. 
+
+A raíz de la rápida evolución tecnológica en el mundo de la sensorica y los sistemas embebidos, hoy es posible acceder a una gran cantidad de activos tecnológicos que permiten realizar monitoreo a diversas variables físicas de forma económica y accesible a partir de múltiples protocolos y tecnologías de comunicación. El Internet de las Cosas (IoT) ha llamado la atención en la digitalización de las redes eléctricas al permitir la monitorización en tiempo real, la automatización de procesos y la integración eficiente con sistemas de almacenamiento de datos. Según \cite{ref19}, el IoT facilita la recopilación de datos masivos (Big Data) desde sensores distribuidos en la red, lo que mejora la toma de decisiones al permitir analizar los datos adquiridos. Además, \cite{ref20} destaca la integración del IoT con sistemas de monitoreo para turbinas eólicas entre otro tipo de aplicaciones relacionadas con el campo de la energía, transporte, seguridad, smart cities, entre otros. Por otro lado, \cite{ref21} resalta que la digitalización de las redes eléctricas mediante IoT es una gran oportunidad para aportar al desarrollo de las redes inteligentes (smart grids), en la medida en la que aportan información constante que es usada por los centros de control para garantizar la operación y planificar el uso de los recursos energéticos. En \cite{ref22} se muestra una implementación de un sistema de transmisión de datos con IoT de una turbina eólica a Azure Cloud para así garantizar el almacenamiento y visualización de sus datos en tiempo real. 
+
+
+A causa del acelerado desarrollo de dispositivos para sensar, transmitir y almacenar datos, ha sido posible avanzar en la predicción en sistemas energéticos y climáticos, los cuales han mejorado significativamente gracias al análisis de Big Data, permitiendo una mayor precisión en la gestión de recursos renovables. En el caso de los sistemas eólicos, el uso de Big Data combinado con Machine Learning (ML) ha revolucionado la predicción de la generación de energía, permitiendo anticipar fluctuaciones en la velocidad del viento y optimizar la operación de las turbinas. Según \cite{ref23}, los modelos predictivos basados en ML pueden analizar grandes volúmenes de datos históricos y en tiempo real, mejorando la precisión de las previsiones y reduciendo la incertidumbre asociada a la energía eólica. Además, el IoT juega un papel crucial en este proceso, ya que los sensores instalados en las turbinas transmiten datos operativos, como velocidad del viento, temperatura, presión, velocidad de la turbina, a plataformas en la nube para su procesamiento. Un caso reciente destacado por \cite{ref24} es el uso de IoT y ML para la predicción en sistemas eólicos, donde se compararon 3 diferentes modelos de predicción. 
+
+A partir del panorama anteriormente planteado, en este proyecto se busca profundizar en la integración de múltiples tecnologías de las industrias 4.0. que permitan generar un proceso de obtención, transmisión, almacenamiento y visualización de datos de manera segura, sistemática y autoescalable. Para todo proceso de analítica de datos es esencial tener datos, y tener datos implica desarrollar sistemas ciberfísicos que tengan la capacidad de gestionar las medidas que se requieren. En este proyecto se mejorará el sistema electrónico de adquisición de datos presentado en \cite{ref12}, procurando incluir un mecanismo de georeferenciación y manejo independiente de la turbina con el SoC ESP32. Asimismo, se mejorará el sistema de almacenamiento de datos, el cual se migrará a la nube de AWS haciendo uso de los servicios para conexión con dispositivos IoT, bases de datos, seguridad, entre otros servicios. El proposito de crear estos sistemas diseñados para soportar análisis de Big Data, es lograr tener en un futuro grandes volúmenes de datos provenientes de diferentes tipos de turbinas eólicas bajo diversas condiciones climáticas, analizarlas e intentar encontrar soluciones óptimas para el aprovechamiento del viento en la generación de energía eléctrica a pequeña escala.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Objetivos} \label{sec4}
+
+\subsection{Objetivo general}
+
+Desarrollar una arquitectura escalable de Big Data en AWS alimentada mediante un sistema de IoT para monitoreo de un generador eólico de pequeña escala.
+
+\subsection{Objetivos específicos}
+\begin{enumerate}
+
+    \item Desarrollar un sistema de adquisición de datos para un pequeño generador eólico de eje vertical a partir del SoC ESP32. 
+    
+    \item Desarrollar una arquitectura para la recepción, almacenamiento y procesamiento de datos soportado en AWS IoT Core y otros servicios de AWS. 
+
+    \item Desarrollar una interfaz de visualización para los datos de interés almacenados en AWS. 
+    
+    \item Validar el funcionamiento del prototipo, documentar los desafios y trabajos potenciales.
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estado del arte} \label{sec5}
+
+En los últimos 15 años se ha acelerado la instalación de plantas de generación de energía eléctrica a partir del aprovechamiento del viento como recurso primario. Como se puede observar en \cite{ref25}, la generación eólica tiene una tendencia mundial de crecimiento exponencial, al igual que la energía solar. Como se indica en \cite{ref26}, lo anterior se debe a que los energéticos fósiles como el petróleo y el carbón son cada vez menos atractivos por la relación existente entre aumento de la temperatura del planeta y la emisión de material particulado y gases de efecto invernadero \cite{ref27}, los cuales son ocasionados por la combustión e ineficiente gestión de este tipo de energéticos fósiles. 
+
+Ahora, reemplazar la energía generada por los energéticos de origen fósil no es una tarea sencilla. El planeta entero lleva siglos desarrollando sus economías a partir de estos, y reemplazarlos a partir de otros energéticos no contaminantes implica desarrollar la industria de la generación eléctrica a una escala que supera con creces los desarrollos actuales. Como se indica en el Balance Minero Energético Colombiano de la UPME, el consumo de energía para el año 2023 en términos de hidrocarburos (Gasolina + Diesel) destinados al sector transporte, superaron por 2,33 veces el consumo de energía eléctrica suministrada por el Sistema Interconectado Nacional (SIN) \cite{ref28}.
+
+\textbf{\href{https://andres25.shinyapps.io/BECO19-23/#1}{Visualizar BECO 2019--2023}}
+
+A partir de la idea anterior, surge la necesidad de plantear soluciones energéticas en todos los niveles que permitan aprovechar recursos primarios como el sol, el viento, la biomasa, entre otros, para generar energía eléctrica que permita reemplazar las energías fósiles que usamos en el diario vivir. En \cite{ref12}  se presentó una amplia argumentación sobre el uso de las turbinas eólicas de eje vertical para la generación eléctrica a pequeña escala y en \cite{ref29} se muestra como a partir del año 2006 el crecimiento de investigaciones en Scopus sobre turbinas eólicas de eje vertical (VAWT) ha sido significativo, abriendo una serie de oportunidades de desarrollo en el campo del aprovechamiento eólico a pequeña escala, ya que estas turbinas como se indica en \cite{ref12} son utilizadas principalmente a este nivel. 
+
+También, se estudia cómo la variabilidad del viento representa uno de los mayores retos en la generación eólica, la cual obedece a múltiples factores climáticos y geográficos que se escapan del control humano y que hacen de este un fenómeno estocástico. En \cite{ref30} se revisan múltiples técnicas de control de frecuencia eléctrica en redes con alta penetración de energía eólica, ya que debido a la variabilidad del viento, la energía generada no siempre coincide con la demanda, lo que puede causar fluctuaciones en el sistema comprometiendo su estabilidad. En \cite{ref31} se aborda la necesidad de estudiar el comportamiento del viento en diferentes escalas de tiempo y la importancia del monitoreo permanente como una herramienta para la adquisición de datos reales. Según los autores, se estudiaron alrededor de 40 años de datos sobre el comportamiento del viento en estados unidos (eeuu) con el objetivo de comprender la variabilidad de este recurso y su papel en la planeación e integración en las redes eléctricas.
+
+En esta línea, en \cite{ref32} se presenta una revisión general sobre diferentes métodos y tendencias de condiciones monitoreo para turbinas eólicas, por su nombre en inglés (WTCM). En esta investigación se muestra la relación existente entre el monitoreo y el mantenimiento, permitiendo identificar cómo a partir de un monitoreo fiable se pueden planificar de mejor manera las acciones de mantenimiento y atender de mejor manera las fallas cuando se presentan. Se diferencia entre las técnicas intrusivas a nivel de subsistemas que monitorean elementos específicos y las técnicas globales o no intrusivas que buscan analizar la integridad completa de la turbina. Por ejemplo, en la figura 9 de este artículo, se presenta un modelo para el monitoreo de un sistema de conversión de energía eólico, por su nombre en ingles (WECS), en el cual se destaca la importancia de medir variables como las vibraciones en diferentes componentes, la temperatura ambiente y en diferentes componentes, la potencia eléctrica, la velocidad de rotación del eje, entre otras variables como la oscilación de torre que puede ser de mayor aplicación a gran escala. 
+
+Por otra parte, en la actualidad se pueden encontrar otro tipo de tecnologías que pueden facilitar la medición de variables en los métodos de monitoreo. En los últimos años, ha incrementado  de manera vertiginosa el uso del Internet de las Cosas, por sus siglas en inglés (IoT). Como se indica en \cite{ref33}, para 2019 se contabilizaban alrededor de 10 billones de dispositivos IoT conectados a Internet, para 2024 fueron alrededor de 18 billones y para 2030 se proyectan más de 40 billones de dispositivos. Asimismo, la integración de tecnologías IoT y plataformas en la nube ha permitido la evolución en el monitoreo de turbinas eólicas, especialmente en sistemas de pequeña escala. En el estudio de \cite{ref34}, se presenta un sistema que mide parámetros críticos como la velocidad del viento, temperatura ambiente, voltaje y corriente de la batería. Estos datos se registran mediante un datalogger y se transmiten a la nube de Microsoft Azure, donde se almacenan y visualizan en tiempo real utilizando Microsoft Power BI. Esta arquitectura permite una supervisión remota eficiente, facilitando la detección temprana de anomalías y optimizando el rendimiento del sistema. 
+
+Complementando esta perspectiva, en \cite{ref35}\cite{ref42} se ofrece una revisión de las técnicas de monitoreo de condiciones en turbinas eólicas. Se destacan métodos como el análisis de vibraciones, monitoreo de temperatura, análisis de aceite y emisiones acústicas que permiten una evaluación más detallada del estado de los componentes de la turbina, así como del monitoreo inteligente por fibra óptica para medir variables relevantes como velocidad y dirección del viento, ángulo de ataque, posición del rotor, sobrecalentamiento, entre otras. Estas técnicas, al integrarse con sistemas IoT y plataformas en la nube, potencian la capacidad de diagnóstico y mantenimiento predictivo, reduciendo costos operativos y mejorando la confiabilidad del sistema al permitir el almacenamiento y análisis de grandes volúmenes de datos de manera rápida y segura con servicios de computación en la nube. En \cite{ref36} se propone una metodología de monitoreo de datos de interés mediante IoT en sistemas de redes inteligentes. Estos datos se procesan mediante algoritmos de aprendizaje automático para detectar anomalías y optimizar el rendimiento del sistema. La integración de técnicas de aprendizaje automático en sistemas de monitoreo representa un avance importante en la gestión eficiente de la energía, pues, al combinar la recopilación de datos en tiempo real con algoritmos avanzados de análisis, se mejora la capacidad de detección temprana de fallos, se optimiza el mantenimiento predictivo y se pueden predecir tendencias en la demanda y generación de energía, contribuyendo así a una mayor sostenibilidad y eficiencia de los sistemas, en línea con las políticas sobre uso racional y eficiente de la energía.
+
+Adicionalmente, como se plantea en \cite{ref37}, uno de los desafíos más críticos en la implementación de sistemas de monitoreo para estos sistemas eléctricos es la seguridad de las redes IoT que los sustentan. La proliferación de dispositivos conectados a Internet ha ampliado significativamente la superficie de ataque, exponiendo vulnerabilidades como contraseñas predeterminadas, firmware desactualizado, servicios o puertos innecesarios habilitados y falta de cifrado en las comunicaciones, lo cual ha sido ampliamente documentado en evaluaciones de riesgo para entornos IoT. 
+
+En \cite{ref40}, se plantea que para mitigar estos riesgos, se han desarrollado enfoques de ciberseguridad específicos para sistemas IoT, entre estos, se propone el hardening de dispositivos como una de las estrategias de protección. Esta consiste en deshabilitar funciones innecesarias, cerrar puertos no utilizados, modificar usuarios-claves por defecto y fijar reglas para las actualizaciones de firmware \cite{ref38} \cite{ref39}. Además, la implementación de arquitecturas de seguridad como Zero Trust y la segmentación de redes pueden ser buenas opciones para reducir el impacto de ataques y mejorar la contención de amenazas.
+
+Asimismo, en \cite{ref41} se muestra como el uso de técnicas de aprendizaje automático y aprendizaje profundo se ha convertido en un enfoque emergente para detectar patrones de ataques, anomalías en el tráfico y comportamientos no autorizados en redes IoT, favoreciendo una respuesta temprana ante incidentes y permitiendo generar trazabilidad y auditoría a los sistemas. 
+
+Por último, en este trabajo se pretende dar continuidad al trabajo realizado por el autor en \cite{ref12}, en el cual se propuso una arquitectura para la medición de datos a partir de computación clásica y así comparar dos turbinas eólicas de eje vertical, implementando IoT a partir de una tarjeta de desarrollo BeagleBone Black con almacenamiento de datos en una base de datos MySQL administrada en un servidor físico remoto, el cual se conecta al broker donde se envían los datos de manera automática y hace las acciones necesarias para almacenar, procesar y visualizar los datos del proceso. Se pretende plantear una arquitectura alternativa soportada también en IoT con un SoC de bajo consumo, con almacenamiento en la nube de AWS y médidas básicas de ciberseguridad en el sistema IoT que permita proteger la infraestructura del sistema y garantizar que se cuente con un sistema menos vulnerable a las amenazas que se pueden presentar en la red.
+
+\chapter {Diseño e implementación de la arquitectura de hardware (IoT Edge)} \label{Cap2}
+
+%%%%%%%%%%%%%%%
+
+\textit{Este capítulo se centrará en el diseño paso a paso de toda la arquitectura de hardware, desarrollo electrónico, diseño de sistemas eléctricos, georreferenciación de la turbina eólica y programación de los SoC utilizados para el desarrollo del sistema. Asimismo, se hará una documentación minuciosa de los protocolos de capa física, enlace de datos, de red y transporte utilizados para garantizar una comunicación confiable y segura.}\\
+
+\subsection{Condiciones generales del sistema}
+
+En este proyecto se desarrollará un sistema orientado a la adquisición de datos de un generador eólico de eje vertical de prueba con su correspondiente estación meteorológica para el monitoreo de sus variables fundamentales, permitiendo su procesamiento \textbf{end to end} y la caracterización de este tipo de sistemas. Esto es importante porque abre la posibilidad a generar evaluaciones de rendimiento del sistema, monitoreo permanente y seguimiento del comportamiento de diversos elementos del sistema. 
+
+En \cite{ref12}, trabajo precedente sobre el cual se plantea este trabajo actual, se planteó la siguiente arquitectura: 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Fig/Sistema-1.png}
+    \caption{Arquitectura versión local (tomada de \citep{ref12})}
+    \label{fig: C2:1}
+\end{figure}
+\FloatBarrier
+
+Como se puede observar en la figura nro. \ref{fig: C2:1}, se desarrolló un sistema de adquisición de datos que permitió la evaluación del rendimiento de dos tipos de turbinas eólicas diferentes a partir de la adquisición y análisis de las variables relevantes del sistema. Este proceso se realizó con dos tipos de sistemas embebidos diferentes. Por un lado, la medición de variables eléctricas como el voltaje se realizó con un Arduino dado que es una tarjeta relativamente económica, y si hubiesen variaciones inesperadas del voltaje que pudieran dañar la tarjeta, esta sería fácilmente reemplazable. Por otra parte, para la medición de variables como la velocidad del eje y las variables climáticas se usó una tarjeta de desarrollo BeagleBone Black, la cual posee una mayor capacidad de procesamiento, mayores prestaciones, se soporta en sistema operativo Linux y cumplió con los requerimientos requeridos para el sistema en condiciones de laboratorio, sin embargo, se podría concluir que esta tarjeta es sobredimensionada para los requerimientos de este sistema. 
+
+Para este trabajo, se plantea una arquitectura soportada en el SoC ESP32-C6, el cual posee múltiples cualidades y prestaciones técnicas que son apropiadas para desarrollar los objetivos planteados anteriormente. A continuación, se presenta la arquitectura base propuesta, en la cual se aprecia la manera en la cual se usará la ESP32 en este proyecto y su integración con la arquitectura de nube de AWS, la cual se desarrollará con profundidad en el capítulo 3. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Fig/ArquitecturaV1.png}
+    \caption{Arquitectura propuesta}
+    \label{fig: C2:2}
+\end{figure}
+\FloatBarrier
+
+\subsection{System On Chip - SoC ESP32}
+
+Tomando como referencia la información suministrada por el fabricante en el datasheet \cite{ref44}, el System on Chip, SoC ESP32, consiste en una gran familia de sistemas embebidos fabricados originalmente por la empresa Espressif que integra en una única tarjeta una unidad microcontroladora (MCU), radio WiFi (IEEE 802.11) y Bluetooth. El ESP32 clásico, ESP32 WRoom, incorpora hasta dos núcleos Tensilica Xtensa LX6 de hasta 240 MHz y 32-bit, conectividad WiFi802.11 b/g/n (2.4 GHz, hasta 150 Mb/s), Bluetooth 4.2 clásico  (BR/EDR) y de baja energía, Bluetooth Low Energy (BLE). Además, cuenta con un amplio conjunto de periféricos que permiten el desarrollo de un sinfín de aplicaciones: convertidor análogo-digital de 12 bits (ADC), convertidor digital-analógico,  interfaz periférica en serie (SPI), protocolo I\textsuperscript{2}C, I\textsuperscript{2}S, protocolo UART, canales PWM, y una gran variedad de pines digitales para todo tipo de usos. Adicionalmente, en seguridad, incorpora arranque seguro (Secure Boot), permite el cifrado de la memoria Flash, aceleradores criptográficos de AES/SHA/RSA/ECC y generador de números aleatorios (RNG), lo que lo hace ideal para desarrollo de sistemas IoT. 
+
+Adicionalmente, a nivel de software, el kit de desarrollo de software (SDK) de ESP-IDF, incluye ESP-TLS (Transport Layer Security) encima de MbedTLS o WolfSSL, lo que permite generar conexiones seguras con cifrado end to end, por ejemplo, MQTT seguro sobre TLS (MQTTS) o HTTPS. Además, toda la familia de ESP soporta el protocolo ESP-NOW, el cual es un protocolo punto a punto (peer to peer, P2P) que usa tramas 802.11 (capa de enlace en el modelo OSI), y prescinde del protocolo de Internet (IP) y del protocolo de control de transmisión (TCP). ESP-NOW incorpora protección CCMP y un esquema de claves maestra primaria (Primary Master Key, PMK) y claves maestras locales (Local Master Keys, LMK); la PMK cifra la LMK mediante AES-128 y la LMK protege las tramas Unicast, las cuales llevan como destino único la dirección MAC del receptor.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Fig/Diagrama-ESP.png}
+    \caption{Diagrama de bloques ESP32 (tomada de \citep{ref44})}
+    \label{fig: C2:3}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{SoC ESP32-C6}
+
+Por otra parte, como se detalla en \cite{ref45}, la tarjeta ESP32-C6 es una versión más avanzada que la ESP32 WRoom tradicional. Es un SoC con núcleo RISC-V (Reduced Instruction Set Computer – Five) de alto desempeño y un RISC-V de ultra bajo consumo para tareas en reposo. Presenta algunas innovaciones con respecto a la ESP32 tradicional como lo es su radio multiprotocolo: Wi-Fi 6 (IEEE 802.11ax) en 2.4 GHz, Bluetooth 5 (BLE) y IEEE 802.15.4 para Thread 1.3 y Zigbee 3.0, los cuales coexisten y  comparten antena internamente. En Wi-Fi 6 soporta funciones como OFDMA (Orthogonal Frequency-Division Multiple Access) en subida y bajada, MU-MIMO (Multi-User Multiple-Input Multiple-Output) en downlink, WMM (Wi-Fi Multimedia), agregación A-MPDU/A-MSDU, ACK en bloque, FTM 802.11mc (Fine Time Measurement) y TWT (Target Wake Time), que mejoran eficiencia y latencia en entornos densos. El núcleo HP RISC-V opera hasta 160 MHz y el LP RISC-V hasta 20 MHz. En memoria integra 320 KB de ROM, 512 KB de SRAM para el núcleo HP y 16 KB de SRAM para el núcleo LP. 
+Espressif
+
+En periféricos, el C6 incorpora los bloques habituales para instrumentación: ADC, SPI, I\textsuperscript{2}C, I\textsuperscript{2}S, UART (incluido LP-UART), control de motor por PWM (MCPWM), contador de pulsos (Pulse Counter, PCNT), RMT, TWAI/CAN, USB Serial/JTAG y temporizadores, además de eFuse, firma digital, HMAC, AES/SHA/RSA/ECC, RNG, cifrado de flash y arranque seguro a nivel de hardware.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Fig/Diagrama-ESPC6.png}
+    \caption{Diagrama de bloques ESP32-C6 (tomada de \citep{ref45})}
+    \label{fig: C2:4}
+\end{figure}
+\FloatBarrier
+
+Se eligió este SoC, dadas las prestaciones en sus protocolos de comunicación de radiofrecuencia previendo el uso de Zigbee y Threads en el desarrollo del sistema. Como se desarrollará posteriormente, la necesidad se pudo solucionar haciendo uso del protocolo ESP-NOW, el cual es compatible con toda la familia de ESP32, sin embargo, se siguen conservando múltiples ventajas con respecto a la ESP32 tradicional que pueden ser exploradas en la profundización del proyecto y con una comparación en el costo económico realmente ínfima. 
+
+\subsection{Esquema de medición de variables del sistema}
+
+\subsection{Firmware y proceso de programación}
+
+\subsection{Comunicación entre ESP a través de ESP-NOW}
+
+\subsection{Implementación de MQTT con SSL/TLS para transmisión segura a AWS}
+
+%%%%%%%%%%%%%%%
+
+\chapter{Diseño e implementación de la arquitectura de software en AWS} \label{Cap3}
+
+%%%%%%%
+%%%%%%%
+\chapter{Pruebas de despliegue y validación} \label{Cap4}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Análisis de resultados} \label{Cap5}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Conclusiones y trabajos futuros}
+
+\textit{En este capítulo se presentan las conclusiones del trabajo realizado y las propuestas para trabajos futuros.}
+
+\section{Conclusiones}
+
+En este trabajo, se desarrollaron dos prototipos funcionales de turbinas eólicas de eje vertical para generación de energía eléctrica a pequeña escala: una tipo Savonius, basada en el principio aerodinámico de fuerza de arrastre, y otra tipo H-Darrieus, basada en el principio aerodinámico de fuerza de elevación o sustentación. A partir de estos prototipos y del análisis de los datos obtenidos del proceso, se presentan las siguientes conclusiones: 
+
+\begin{itemize}
+   \item Se diseñaron y prototiparon dos tipos de turbinas eólicas de eje vertical mediante impresión 3D, a partir de una extensa revisión del estado del arte y la validación a través de un proceso de implementación práctica.
+   
+   \item Se construyó un sistema de captación, transmisión y visualización de datos, soportado en software libre y código abierto. Esto demostró ser una forma eficiente y potente para la evaluación y monitoreo en tiempo real de este tipo de procesos, dado que a partir de 2 tarjetas electrónicas, las cuales no superan los 500.000 pesos en el caso de la BeagleBone y los 70.000 pesos en el caso del ArduinoMega, se pudieron medir los datos, hacer los cálculos para encontrar la velocidad del viento y transmitirlos vía internet sin inconvenientes de transmisión. Como se mostró, fue posible construir la base de datos con el sistema tomando medidas de manera remota con un hardware robusto y económico, procesarlos y visualizarlos en la aplicación desarrollada con un enfoque soportado netamente en software libre, gratuito y open source que puede ser adaptable o escalable según las necesidades del usuario, mostrando estar al nivel de aplicaciones o sistemas que pueden ser mucho más costosos.
+      
+   \item Se demostró la viabilidad técnica para implementar este tipo de proyectos debido a la facilidad de acceso a los materiales, la tecnología y la modularidad que permite la manufactura aditiva. Como se pudo establecer en el capítulo de resultados, el costo de impresión y de los materiales es relativamente bajo, algunos costos como el de la BeagleBone y el motor son algo elevados pero permiten adaptarse a aplicaciones de mayor escala. La impresión 3D se mostró como una tecnología accesible, fácil de implementar y muy económica, superando las expectativas iniciales.
+   
+   \item Se encontraron diversos valores de coeficientes de potencia para las turbinas bajo diferentes condiciones de operación. Para la turbina tipo Savonius se obtuvo un Cp máximo del 16\% a una velocidad del viento aproximadamente de 4 m/s. Para la turbina tipo H-Darrieus se obtuvo un Cp máximo de aproximadamente 18\% a una velocidad del viento cercana a los 4.5 m/s. Para la turbina Savonius fue posible hacer un análisis más detallado ya que se pudieron obtener velocidades de acuerdo a su operación nominal, caso contrario de la turbina tipo H-Darrieus, la cual no pudo operar a las velocidades de viento que puedan revelar su máxima eficiencia.
+   
+   \item Es necesario disponer de espacios más adecuados para este tipo de pruebas y estudios. Si se desea continuar desarrollando esta línea de investigación a diferentes escalas, se requerirá un túnel de viento con mayor capacidad que permita generar velocidades de viento más altas y contar con una zona de admisión más grande para generar pruebas en turbinas de mayor tamaño y potencia. Así mismo, se requiere de software especializado para la simulación de este tipo de sistemas y áreas del conocimiento que las puedan desarrollar.
+   
+   \item Para entornos donde las velocidades del viento son bajas, se recomienda experimentar más con turbinas de tipo Savonius. Como se pudo verificar con las pruebas realizadas, las turbinas tipo Savonius tienen una baja velocidad de arranque, la cual oscila entre 1 a 3 m/s, y también de operación, la cual mostró velocidades hasta de 200 RPM con velocidades de viento entre 4 a 5 m/s. Se comprobó que la turbina tipo H-Darrieus necesita hasta un 90\% adicional de velocidad del viento que la Savonius para arrancar. Se propone continuar profundizando en este tipo de desarrollos y estudios con el propósito de llegar a un prototipo completamente funcional y útil.
+   
+   \item Se propone profundizar en el estudio y prototipado de turbinas H-Darrieus con diversos tipos de perfiles y tecnologías aerodinámicas en entornos con velocidades del viento mayores a las experimentadas en este trabajo. Esto permitirá estudiarlas a velocidades que teóricamente son de operación para este tipo de turbinas. Como se pudo comprobar en el análisis, se tuvo una salida de voltaje ligeramente mayor que la turbina Savonius a velocidades del generador similares, se evidenció una variación hasta del 15\% mayor. Una posible hipótesis es que al tener una inercia mucho mayor la H-Darrieus que la Savonius ($>$ 5 veces), su velocidad rotacional es más estable ante cualquier variación que pueda afectar la velocidad y la transmisión de potencia. Se hace necesario continuar experimentando y desarrollando este tipo de turbinas, dado que se evidenció que existe un gran potencial de desarrollo con este tipo de tecnologías.
+\end{itemize}
+
+\section{Trabajos futuros}
+
+Con base en la identificación de los retos y oportunidades durante la realización de este proyecto, es posible plantear los siguientes trabajos futuros para continuar desarrollando y profundizando sobre esta línea:
+
+\begin{itemize}
+
+\item Continuar experimentando con diferentes tipos de turbinas y perfiles aerodinámicos. Se pueden implementar comparaciones entre diferentes estructuras de turbina Savonius, entre turbinas con álabes curvos, entre diferentes perfiles aerodinámicos en el caso de las turbinas Darrieus y entre diferentes tipos de turbinas mixtas.
+
+\item Experimentar con la variación de materiales para la elaboración de diferentes tipos de turbinas. Se pueden experimentar materiales como PLA, ABS, ASA, PP, Nylon, materiales compuestos (resinas poliméricas), acrílico, aluminio, madera tipo balsa, PVC, entre otros materiales que se consideren. Lo anterior, sujeto a analizar el rendimiento de las turbinas y su comportamiento bajo diferentes escenarios con materiales de diferentes características.
+
+\item Considerar la instalación de sensores de temperatura en puntos críticos que puedan ser monitoreados de manera permanente para un análisis térmico particular en un período de funcionamiento prolongado.
+
+\item Establecer una metodología para la simulación y evaluación de este tipo de sistemas eólicos mediante simulación CFD, FEA, MBD, entre otros tipos que puedan considerarse. Esto permitirá evaluar las condiciones que tienen limitaciones en la práctica y fortalecer el enfoque de diseño.
+
+\item Implementar los prototipos en un entorno real que permita la evaluación en terreno, la implementación del sistema de datos de manera autónoma y la identificación de oportunidades de mejora de todo el sistema en su conjunto.
+
+\item Implementar diferentes tipos de turbinas en lugares con diferentes pisos térmicos para evaluar el rendimiento de la turbina bajo diversas condiciones ambientales, variación de la densidad del aire y encontrar lugares donde estas implementaciones sean más eficientes o prácticas.
+
+\item Contribuir con un análisis de posibles impactos ambientales que puedan generarse en el entorno a partir de la implementación de este tipo de sistemas eólicos a pequeña escala.
+
+\item Desarrollar el sistema de medición de corriente de manera que pueda ser escalable y permita la medición de pequeñas corrientes para encontrar en tiempo real la potencia eléctrica generada. Esto, asociado al fortalecimiento del enfoque del sistema de captación de datos con una instrumentación más robusta y adecuada para estos sistemas.
+
+\item Fortalecer el sistema de transmisión y almacenamiento de datos a partir de la implementación de la lectura centralizada de los datos de varias turbinas distribuidas, permitiendo analizar el comportamiento del viento y variables asociadas en un entorno no muy amplio pero que permita la implementación de estos sistemas con comunicación entre los dispositivos. Surge la necesidad de evaluar e implementar otros protocolos de transmisión de datos.
+
+\item Generar un sistema de almacenamiento para estos sistemas basado en BigData y Cloud Computing, permitiendo almacenar en la nube la información recolectada en tiempo real y visualizar la información de manera web permanentemente sin las limitaciones de infraestructura evidenciadas durante la implementación de la aplicación web desarrollada.
+
+\item A partir de la recolección de muchos datos, se pueden encontrar patrones para el entrenamiento de modelos que permitan aprender del sistema. Este tipo de modelos pueden entrenarse para solucionar los problemas de pérdida de datos por transmisión o fallos en el hardware y datos atípicos, como llevarlos a un nivel de entrenamiento que permita hacer posibles predicciones o generar pronósticos sobre las condiciones futuras para la generación.
+
+\item Adaptar un mecanismo de veleta al anemómetro que facilite determinar la dirección del viento. Esto permitirá analizar el coeficiente de potencia de las turbinas en función del ángulo de ataque del viento.
+
+\item Integrar el sistema de medición de dirección del viento al sistema de BigData y, a partir de la recolección de millones de datos, trabajar en la implementación de sistemas que permitan el control de posición de los álabes de las turbinas para optimizar de mejor manera la captación de viento y, por ende, la generación de las fuerzas que actúan sobre la generación del movimiento rotacional.
+
+\end{itemize}
+
+%\bibliographystyle{ieeetr}
+
+% Bibliografía
+%\renewcommand\bibsection{\chapter*{Referencias}}
+\bibliography{bibliografia}
+%\addcontentsline{toc}{chapter}{Referencias}
+
+% \chapter*{Anexos}
+
+\end{document}
+

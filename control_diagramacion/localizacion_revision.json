@@ -1,0 +1,197 @@
+[
+  {
+    "pdf": 24,
+    "impresa": 11,
+    "texto": "Figura nro. 2.2: Organización funcional de la arquitectura propuesta en cuatro capas. Fuente:"
+  },
+  {
+    "pdf": 28,
+    "impresa": 15,
+    "texto": "Figura nro. 2.3: Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración"
+  },
+  {
+    "pdf": 32,
+    "impresa": 19,
+    "texto": "Figura nro. 2.4: Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024)"
+  },
+  {
+    "pdf": 72,
+    "impresa": 59,
+    "texto": "Figura nro. 4.1: Arquitectura de software en AWS para el sistema IoT de monitoreo eólico."
+  },
+  {
+    "pdf": 89,
+    "impresa": 76,
+    "texto": "Evidencias (Prueba ESP1)"
+  },
+  {
+    "pdf": 89,
+    "impresa": 76,
+    "texto": "Figura nro. 5.1: ESP1 desenergizada: validación de condición de pérdida de enlace y valores"
+  },
+  {
+    "pdf": 90,
+    "impresa": 77,
+    "texto": "Figura nro. 5.2: Cliente MQTT - esp_now_connected false"
+  },
+  {
+    "pdf": 91,
+    "impresa": 78,
+    "texto": "Figura nro. 5.3: Consola esp-idf - flujo ESP1 a ESP2"
+  },
+  {
+    "pdf": 92,
+    "impresa": 79,
+    "texto": "Evidencias (Prueba ESP2)"
+  },
+  {
+    "pdf": 92,
+    "impresa": 79,
+    "texto": "Figura nro. 5.4: ESP2 desenergizada"
+  },
+  {
+    "pdf": 93,
+    "impresa": 80,
+    "texto": "Figura nro. 5.5: Cliente MQTT - sin mensajes ESP2"
+  },
+  {
+    "pdf": 94,
+    "impresa": 81,
+    "texto": "Figura nro. 5.6: Consola esp-idf - UART ESP2"
+  },
+  {
+    "pdf": 95,
+    "impresa": 82,
+    "texto": "Evidencias (Prueba ESP3)"
+  },
+  {
+    "pdf": 95,
+    "impresa": 82,
+    "texto": "Figura nro. 5.7: ESP3 desenergizada"
+  },
+  {
+    "pdf": 96,
+    "impresa": 83,
+    "texto": "Figura nro. 5.8: Cliente MQTT - sin mensajes ESP3"
+  },
+  {
+    "pdf": 97,
+    "impresa": 84,
+    "texto": "Figura nro. 5.9: Consola esp-idf - MQTT ESP3"
+  },
+  {
+    "pdf": 97,
+    "impresa": 84,
+    "texto": "Síntesis de la prueba. La prueba de ESP3 muestra que, al retirar la alimentación del gateway,"
+  },
+  {
+    "pdf": 98,
+    "impresa": 85,
+    "texto": "Evidencias (Prueba AWS IoT Core)"
+  },
+  {
+    "pdf": 98,
+    "impresa": 85,
+    "texto": "Figura nro. 5.10: IoT Core - recibiendo mensajes"
+  },
+  {
+    "pdf": 98,
+    "impresa": 85,
+    "texto": "Figura nro. 5.11: Política IoT"
+  },
+  {
+    "pdf": 98,
+    "impresa": 85,
+    "texto": "Síntesis de la prueba. Las evidencias de IoT Core permiten seguir la recepción del JSON y"
+  },
+  {
+    "pdf": 99,
+    "impresa": 86,
+    "texto": "Evidencias (Prueba DynamoDB)"
+  },
+  {
+    "pdf": 99,
+    "impresa": 86,
+    "texto": "Figura nro. 5.12: DynamoDB turbina_latest"
+  },
+  {
+    "pdf": 99,
+    "impresa": 86,
+    "texto": "Síntesis de la prueba. La revisión de turbina_latest muestra un elemento actualizado para el"
+  },
+  {
+    "pdf": 99,
+    "impresa": 86,
+    "texto": "Evidencias (Prueba S3 + Glue + Athena)"
+  },
+  {
+    "pdf": 99,
+    "impresa": 86,
+    "texto": "Figura nro. 5.13: S3 processed"
+  },
+  {
+    "pdf": 100,
+    "impresa": 87,
+    "texto": "Figura nro. 5.14: S3 objeto json"
+  },
+  {
+    "pdf": 100,
+    "impresa": 87,
+    "texto": "Figura nro. 5.15: Glue table"
+  },
+  {
+    "pdf": 100,
+    "impresa": 87,
+    "texto": "Figura nro. 5.16: Athena consulta"
+  },
+  {
+    "pdf": 101,
+    "impresa": 88,
+    "texto": "Síntesis de la prueba. La secuencia presentada permite seguir el dato almacenado en S3, su"
+  },
+  {
+    "pdf": 101,
+    "impresa": 88,
+    "texto": "Evidencias (Prueba Lambda)"
+  },
+  {
+    "pdf": 101,
+    "impresa": 88,
+    "texto": "Figura nro. 5.17: Lambda GetLatest"
+  },
+  {
+    "pdf": 102,
+    "impresa": 89,
+    "texto": "Figura nro. 5.18: Lambda GetTimeseries"
+  },
+  {
+    "pdf": 102,
+    "impresa": 89,
+    "texto": "Síntesis de la prueba. Las pruebas de GetLatest y GetTimeseries muestran las dos formas de"
+  },
+  {
+    "pdf": 103,
+    "impresa": 90,
+    "texto": "Evidencias (Prueba Dashboard)"
+  },
+  {
+    "pdf": 103,
+    "impresa": 90,
+    "texto": "Figura nro. 5.19: Dashboard en S3"
+  },
+  {
+    "pdf": 103,
+    "impresa": 90,
+    "texto": "Figura nro. 5.20: CloudFront: distribución configurada para servir el dashboard con baja latencia."
+  },
+  {
+    "pdf": 104,
+    "impresa": 91,
+    "texto": "Figura nro. 5.21: Dashboard 15 min"
+  },
+  {
+    "pdf": 104,
+    "impresa": 91,
+    "texto": "Síntesis de la prueba. Las evidencias del dashboard muestran el despliegue del frontend y una"
+  }
+]

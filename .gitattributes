@@ -1,0 +1,8 @@
+# Preservar los bytes y los finales de línea de los fuentes recibidos.
+# -text desactiva la conversión CRLF/LF; los diffs de texto siguen disponibles.
+* -text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.zip binary

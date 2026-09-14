@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Si utiliza este software en un trabajo académico, cite al autor y añada el commit de la versión consultada."
+type: software
+title: "Sistema IoT para monitoreo eólico con ESP32-C6 y AWS"
+authors:
+  - family-names: "Gómez Flórez"
+    given-names: "Carlos Andrés"
+    email: "andres25@utp.edu.co"
+repository-code: "https://github.com/AndresG25/Tesis_Especializacion_TICs"
+url: "https://github.com/AndresG25/Tesis_Especializacion_TICs"
+abstract: "Firmware de tres nodos ESP32-C6 para adquisición de variables de un generador eólico, integración local y envío a AWS IoT Core."
+keywords:
+  - ESP32-C6
+  - ESP-IDF
+  - IoT
+  - ESP-NOW
+  - AWS IoT Core
+  - monitoreo eólico

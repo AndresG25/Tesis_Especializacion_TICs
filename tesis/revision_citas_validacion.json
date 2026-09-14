@@ -1,0 +1,13 @@
+{
+  "bib_entries": 89,
+  "used_citation_keys": 39,
+  "missing_bibliographic_citation_keys": [],
+  "quarto_crossrefs_detected": [
+    "fig-cap4-arquitectura-software-aws",
+    "tbl-costos-estimados-base",
+    "tbl-escalamiento-diez",
+    "tbl-parametros-costos",
+    "tbl-plan-prueba-24h",
+    "tbl-reglas-escenario-base."
+  ]
+}

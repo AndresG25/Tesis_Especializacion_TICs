@@ -1,0 +1,69 @@
+% Evita que Quarto/Pandoc genere una portada automática.
+% La portada institucional se construye manualmente en index.qmd.
+\makeatletter
+\renewcommand{\maketitle}{}
+\makeatother
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{framed}
+\usepackage{xcolor}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, decorations.pathmorphing, shadows, fadings, circuits.ee.IEC}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{nomencl}
+
+% Nombres institucionales en español
+\addto\captionsspanish{%
+  \renewcommand\contentsname{Índice general}
+  \renewcommand\bibname{Referencias}
+  \renewcommand\tablename{Tabla nro.}
+}
+\captionsetup[figure]{name=Figura}
+
+% Profundidad de numeración
+\setcounter{secnumdepth}{4}
+
+% Espaciado
+\onehalfspacing
+\sloppy
+
+% Encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\color{gray}{\thepage}}
+\fancyhead[L]{\color{gray}{\nouppercase{\leftmark}}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Formato de capítulos inspirado en la plantilla Overleaf original
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}
+  {\filleft
+    {\normalfont\Large\textsc{\chaptertitlename}}\hspace{10pt}
+    {\centering\fontsize{20}{90}\selectfont\thechapter}}
+  {10pt}
+  {\titlerule[2.5pt]\vskip3pt\LARGE}
+
+% Nomenclatura opcional
+\renewcommand{\nomname}{Nomenclatura y Notaciones}
+\makenomenclature
+
+% Columnas centradas
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}

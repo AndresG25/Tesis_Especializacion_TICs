@@ -1,0 +1,38 @@
+# Introducción
+
+La transición energética requiere de grandes esfuerzos para suplir la demanda energética, esto, implica avanzar hacia el aprovechamiento energético en todas las escalas. Lo anterior, ha generado que la energía eólica a pequeña escala gane interés en diferentes áreas de la investigación, la formación académica y en la implementación de soluciones energéticas distribuidas. Para conocer el estado de la operación constantemente, se requiere implementar sistemas con la capacidad de medir de manera continua las diferentes variables operativas y ambientales que influyen en la generación eólica. En este trabajo, se propone una arquitectura de datos de extremo a extremo que integra sistemas embebidos, comunicación IoT con MQTTs, integración con servicios serverless de AWS y sistema de visualización web reactivo de las diferentes variables del sistema.
+
+El sistema desarrollado en este trabajo se estructura alrededor de un generador eólico de eje vertical tipo Savonius instrumentado con tarjetas ESP32-C6. Debido a la capacidad de las tarjetas, naturaleza de los procesos y funciones implementadas, se segmentó en una arquitectura que distribuye sus funciones en 3 nodos o ESPs.  La ESP1 mide variables del generador como voltaje AC, RPM de la turbina, coordenadas y transmite a ESP2 a través de ESP-NOW; la ESP2 consolida variables de la ESP1 con variables ambientales (temperatura, presión atmosférica, humedad, altitud), velocidad del viento, almacenamiento local, timestamp, visualización local y transmite todo en paquete JSON a través de UART; y ESP3 actúa como gateway MQTT/TLS hacia AWS IoT Core. Esta separación facilita la depuración, reduce la complejidad por nodo, permite aislar fallas de sensórica, facilita la comunicación local con la conectividad cloud y trata de aprovechar al máximo las prestaciones de cada ESP32-C6 a través de la programación con ANSI/C en su entorno nativo esp-idf versión 5.4.1.
+
+Para el almacenamiento y la visualización, se propone una arquitectura soportada en servicios serverless administrados de AWS dado que previamente el autor presentó una arquitectura con almacenamiento y visualización local tradicional. Para usar el servicio que provee tópicos y otras funciones que facilitan la conexión con MQTT, Amazon exige soportar la comunicación con cifrado SSL/TLS (MQTTs). Soportado en esta implementación, se usa AWS IoT Core, el cual recibe la telemetría y a partir de políticas y gestión de eventos consume DynamoDB para conservar el último paquete de datos recibido y Amazon S3 para almacenar los datos históricos, los cuáles se estructuran en formato YYYY/MM/DD/HH/mm. A partir de AWS Glue y Amazon Athena se habilitan consultas temporales (ETL), AWS Lambda gestiona las funciones para la base de datos y expone servicios HTTP para el consumo de estos y un dashboard React/Vibe desplegado mediante S3 y CloudFront se encargan de visualizar los datos instantáneos y las series históricas de las variables disponibles bajo demanda. El resultado de esta arquitectura es una plataforma reproducible y escalable para validación experimental, monitoreo remoto y análisis de los datos que pueden influir en estos esquemas de generación en sistemas de pequeña escala. 
+
+
+## Planteamiento del problema
+Los sistemas eólicos de pequeña escala suelen enfrentar tres limitaciones técnicas relevantes. En primer lugar, la instrumentación puede depender de equipos de laboratorio o plataformas sobredimensionadas para los requerimientos reales del monitoreo. En segundo lugar, los datos recolectados pueden quedar aislados en archivos locales o bases de datos difíciles de escalar. En tercer lugar, la ausencia de una arquitectura cloud reproducible limita la consulta histórica, la visualización web y el aprovechamiento posterior de los datos mediante modelos analíticos.
+
+Desde la perspectiva de ingeniería, el problema no consiste únicamente en medir variables, sino en diseñar una cadena completa de adquisición, transmisión, almacenamiento y visualización que conserve integridad, trazabilidad, seguridad y escalabilidad. Por esta razón, el trabajo se formula alrededor de la siguiente pregunta:
+
+> ¿Cómo diseñar e implementar una arquitectura IoT y Big Data, soportada en ESP32-C6 y servicios serverless de AWS, que permita monitorear de forma segura, escalable y reproducible las variables operativas y ambientales de un generador eólico de pequeña escala?
+
+## Justificación
+
+La integración entre sistemas embebidos, protocolos IoT y servicios cloud permite construir plataformas de monitoreo de bajo costo con capacidades antes reservadas a infraestructuras más complejas. En este proyecto, el uso de ESP32-C6 reduce el costo del hardware, facilita la programación con ESP-IDF y permite el uso de Wi-Fi, ESP-NOW, UART, temporizadores, ADC e interfaces de comunicación con sensores.
+
+A nivel cloud, AWS permite separar responsabilidades: AWS IoT Core recibe telemetría por MQTT/TLS, DynamoDB atiende consultas de último dato, Amazon S3 conserva el histórico, Glue/Athena habilita análisis por consulta SQL y Lambda expone servicios HTTP consumidos por el dashboard. Esta separación por capas facilita la escalabilidad y permite ajustar costos a la frecuencia de muestreo, número de turbinas, volumen de almacenamiento y demanda de consultas.
+
+## Objetivos
+
+### Objetivo general
+
+Desarrollar una arquitectura escalable de Big Data en AWS alimentada mediante dispositivos IoT para el monitoreo de variables físicas de un generador eólico de pequeña escala.
+
+### Objetivos específicos
+
+1. Desarrollar un sistema de adquisición de datos para un pequeño generador eólico de eje vertical a partir del SoC ESP32-C6.
+2. Desarrollar una arquitectura para la recepción, almacenamiento y procesamiento de datos soportado en AWS IoT Core y otros servicios de AWS.
+3. Desarrollar una interfaz de visualización para los datos de interés almacenados en AWS.
+5. Validar el funcionamiento del prototipo, documentar los desafios y trabajos potenciales
+
+## Estructura del documento
+
+El documento se organiza en siete capítulos. El capítulo 1 presenta la introducción, el problema, la justificación y los objetivos. El capítulo 2 desarrolla el marco de referencia sobre IoT, modelos de comunicación, protocolos y cloud computing. El capítulo 3 describe la arquitectura de hardware IoT Edge basada en ESP32-C6. El capítulo 4 presenta la arquitectura de software en AWS. El capítulo 5 documenta las pruebas y validación del sistema. El capítulo 6 analiza resultados, costos y escalabilidad. Finalmente, el capítulo 7 presenta conclusiones y trabajos futuros.

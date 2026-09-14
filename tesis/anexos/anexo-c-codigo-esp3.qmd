@@ -1,0 +1,9 @@
+# Anexo C — Código ESP3
+
+La carpeta [ESP3 del repositorio de la tesis](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP3/Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core) contiene el proyecto denominado «Firmware nodo 3 e integración con AWS_IoT_Core». Su archivo principal es `main/main2.c`, ubicado dentro de esa carpeta descriptiva. También incluye los archivos CMake, la tabla de particiones, la configuración base de ESP-IDF, una plantilla de configuración local y las instrucciones para incorporar los certificados necesarios.
+
+El programa configura la conexión Wi-Fi, inicializa el cliente MQTT con TLS y recibe por UART los mensajes enviados por ESP2. Las funciones de recepción reconstruyen el contenido delimitado por llaves y comprueban su tamaño antes de publicarlo en el tópico configurado de AWS IoT Core. Los manejadores de eventos administran el estado de las conexiones y sus intentos de reconexión.
+
+El README explica cómo definir el nombre de la red, el endpoint de AWS, el tópico y el identificador del cliente. Las contraseñas, el certificado de dispositivo y la llave privada se incorporan únicamente en el entorno local de compilación; el repositorio proporciona las plantillas e instrucciones correspondientes. También se describen las conexiones UART y las condiciones de operación de la pasarela.
+
+La implementación y la documentación se consultan mediante el enlace de la carpeta. Para solicitar acceso al repositorio privado o información adicional, puede escribirse a [andres25@utp.edu.co](mailto:andres25@utp.edu.co).

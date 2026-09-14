@@ -1,0 +1,91 @@
+{
+  "paginas_pdf": 138,
+  "paginas_horizontales": [
+    28
+  ],
+  "pruebas": [
+    {
+      "prueba": "ESP1",
+      "figuras": [
+        1,
+        2,
+        3
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": false
+    },
+    {
+      "prueba": "ESP2",
+      "figuras": [
+        4,
+        5,
+        6
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": false
+    },
+    {
+      "prueba": "ESP3",
+      "figuras": [
+        7,
+        8,
+        9
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": true
+    },
+    {
+      "prueba": "AWS IoT Core",
+      "figuras": [
+        10,
+        11
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": true
+    },
+    {
+      "prueba": "DynamoDB",
+      "figuras": [
+        12
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": true
+    },
+    {
+      "prueba": "S3 + Glue + Athena",
+      "figuras": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": true
+    },
+    {
+      "prueba": "Lambda",
+      "figuras": [
+        17,
+        18
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": true
+    },
+    {
+      "prueba": "Dashboard",
+      "figuras": [
+        19,
+        20,
+        21
+      ],
+      "orden_verificado": true,
+      "sintesis_verificada": true
+    }
+  ],
+  "referencias_sin_resolver": [],
+  "comparacion_antes_de_seccion_2_5": true,
+  "cloudfront_figura": "5.20",
+  "dashboard_figura": "5.21",
+  "revision_visual": "Páginas de las cuatro figuras, transiciones de las secciones 2.3–2.5 y 4.1, y bloque de evidencias del capítulo 5. Sin recortes ni solapamientos en las correcciones.",
+  "motor": "Quarto 1.8.25; pdfLaTeX, TeX Live 2023; paquetes originales requeridos por el preámbulo disponibles, incluido español."
+}

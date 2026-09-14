@@ -1,0 +1,4 @@
+nodo,ruta,esp_idf
+ESP1,ESP1/Firmware nodo ESP1 - Variables Generador,5.4.1
+ESP2,ESP2/Firmware nodo 2 - Variables ambientables e integración con ESP1,5.4.1
+ESP3,ESP3/Firmware nodo 3 e integración con AWS_IoT_Core,5.4.3

@@ -1,0 +1,55 @@
+{
+  "chapters_and_appendices": {
+    "index.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 22
+    },
+    "02-marco-referencia.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 58
+    },
+    "03-arquitectura-hardware-iot-edge.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 144
+    },
+    "04-arquitectura-software-aws.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 59
+    },
+    "05-pruebas-validacion.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 72
+    },
+    "06-analisis-costos-resultados.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 57
+    },
+    "07-conclusiones-trabajos-futuros.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 10
+    },
+    "anexos/anexo-a-codigo-esp1.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 4
+    },
+    "anexos/anexo-b-codigo-esp2.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 4
+    },
+    "anexos/anexo-c-codigo-esp3.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 4
+    },
+    "anexos/anexo-d-lambdas-frontend.qmd": {
+      "pandoc_parse": "PASS",
+      "blocks": 3
+    }
+  },
+  "missing_images": [],
+  "duplicate_labels": [],
+  "missing_citations": [],
+  "missing_crossreferences": [],
+  "quarto_render": "NOT_RUN: Quarto no instalado",
+  "full_pdf_visual_review": "PENDIENTE",
+  "images": "Cuatro figuras inspeccionadas visualmente antes de insertar"
+}

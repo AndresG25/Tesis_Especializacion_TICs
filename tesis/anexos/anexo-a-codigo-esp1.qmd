@@ -1,0 +1,11 @@
+# Anexo A — Código ESP1
+
+Los códigos fuente, los elementos de configuración y documentación del sistema y el proyecto editable de la tesis se encuentran en el repositorio [Tesis_Especializacion_TICs de AndresG25](https://github.com/AndresG25/Tesis_Especializacion_TICs). Los anexos A, B y C orientan su consulta mediante una descripción de cada carpeta y de la función general de sus programas, sin reproducir los listados completos en el documento.
+
+El repositorio se mantiene privado durante la revisión académica. El director y los evaluadores pueden solicitar acceso al autor mediante [andres25@utp.edu.co](mailto:andres25@utp.edu.co), indicando su usuario de GitHub. La consulta del contenido requiere que el autor habilite ese acceso.
+
+La carpeta [ESP1](https://github.com/AndresG25/Tesis_Especializacion_TICs/tree/main/ESP1/Firmware%20nodo%20ESP1%20-%20Variables%20Generador) contiene el proyecto denominado «Firmware nodo ESP1 - Variables Generador». Su archivo principal es `main/main7.c`, ubicado dentro de esa carpeta descriptiva. También se incluyen el componente `minmea` para interpretar las sentencias del GPS, los archivos CMake de compilación, la configuración base de ESP-IDF y un README con las conexiones y las instrucciones de uso.
+
+El programa lee la posición y el estado de fijación del GPS, adquiere la señal de voltaje mediante el ADC y calcula las RPM a partir de los pulsos del sensor Hall. Estas tareas actualizan una estructura compartida que se transmite periódicamente mediante ESP-NOW al nodo ESP2. Las funciones de inicialización coordinan los periféricos y las tareas de adquisición y envío.
+
+La carpeta `tesis/` del mismo repositorio aloja los fuentes de este documento. El proyecto `Tesis_Especializacion_TICs.Rproj`, situado en la raíz, permite trabajar desde RStudio con la tesis y las carpetas ESP1, ESP2 y ESP3 bajo un único control de versiones Git. Los archivos README orientan la configuración, la compilación y la consulta de cada componente.

@@ -1,0 +1,182 @@
+[
+  {
+    "archivo": "02-marco-referencia.qmd",
+    "antes": "![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align=\"center\"}",
+    "despues": "![Organización funcional de la arquitectura propuesta en cuatro capas. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/01_capas_arquitectura.png){#fig-cap2-cuatro-capas width=100% fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "02-marco-referencia.qmd",
+    "antes": "![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de herramientas de IA, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align=\"center\"}",
+    "despues": "```{=latex}\r\n\\begin{landscape}\r\n```\r\n\r\n![Relación de los modelos OSI y TCP/IP con los tramos de la arquitectura desarrollada. Fuente: elaboración propia con apoyo de herramientas de IA, a partir de los modelos de referencia y la documentación de los protocolos.](fig/revision_director/02_osi_arquitectura_matriz.png){#fig-cap2-osi-tramos width=100% fig-align=\"center\" fig-pos=\"H\"}\r\n\r\n```{=latex}\r\n\\end{landscape}\r\n```"
+  },
+  {
+    "archivo": "02-marco-referencia.qmd",
+    "antes": "![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de herramientas de IA, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align=\"center\"}",
+    "despues": "![Comparación funcional entre la arquitectura precedente de Gómez Flórez (2024) y la arquitectura propuesta. Fuente: elaboración propia con apoyo de herramientas de IA, basada en el antecedente descrito en este trabajo.](fig/revision_director/03_comparacion_arquitecturas.png){#fig-cap2-comparacion-arquitecturas width=100% fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "02-marco-referencia.qmd",
+    "antes": "## **MQTT**, telemetría y contrato de datos",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n## **MQTT**, telemetría y contrato de datos"
+  },
+  {
+    "archivo": "04-arquitectura-software-aws.qmd",
+    "antes": "![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align=\"center\"}",
+    "despues": "![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![ESP1 desenergizada: validación de condición de pérdida de enlace y valores controlados para voltaje y RPM.](images/pruebas_validacion/p01_esp1_desenergizada.jpg){#fig-esp1-desenergizada width=\"90%\" fig-align=\"center\"}",
+    "despues": "![ESP1 desenergizada: validación de condición de pérdida de enlace y valores controlados para voltaje y RPM.](images/pruebas_validacion/p01_esp1_desenergizada.jpg){#fig-esp1-desenergizada width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Cliente MQTT - esp_now_connected false](images/pruebas_validacion/p02_iotcore_payload_espnow_false.png){#fig-iotcore-payload-esp1 fig-cap=\"Cliente de prueba MQTT (AWS IoT Core): verificación del paquete con `esp_now_connected=false` y valores controlados en variables remotas.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Cliente MQTT - esp_now_connected false](images/pruebas_validacion/p02_iotcore_payload_espnow_false.png){#fig-iotcore-payload-esp1 fig-cap=\"Cliente de prueba MQTT (AWS IoT Core): verificación del paquete con `esp_now_connected=false` y valores controlados en variables remotas.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Consola esp-idf - flujo ESP1 a ESP2](images/pruebas_validacion/p03_esp1_logs_vscode.png){#fig-esp1-vscode-log fig-cap=\"Consola esp-idf (VS Code): verificación del flujo ESP1 → ESP2 tras reconexión.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Consola esp-idf - flujo ESP1 a ESP2](images/pruebas_validacion/p03_esp1_logs_vscode.png){#fig-esp1-vscode-log fig-cap=\"Consola esp-idf (VS Code): verificación del flujo ESP1 → ESP2 tras reconexión.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp2-desenergizada fig-cap=\"ESP2 desenergizada: prueba de indisponibilidad en eslabón intermedio.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![ESP2 desenergizada](images/pruebas_validacion/p04_esp2_desenergizada.jpg){#fig-esp2-desenergizada fig-cap=\"ESP2 desenergizada: prueba de indisponibilidad en eslabón intermedio.\" width=\"65%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Cliente MQTT - sin mensajes ESP2](images/pruebas_validacion/p05_iotcore_sin_mensajes_esp2.png){#fig-iotcore-sin-msg-esp2 fig-cap=\"Cliente de prueba MQTT (AWS IoT Core): ausencia de mensajes durante la desenergización de ESP2.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Cliente MQTT - sin mensajes ESP2](images/pruebas_validacion/p05_iotcore_sin_mensajes_esp2.png){#fig-iotcore-sin-msg-esp2 fig-cap=\"Cliente de prueba MQTT (AWS IoT Core): ausencia de mensajes durante la desenergización de ESP2.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Consola esp-idf - UART ESP2](images/pruebas_validacion/p06_esp2_logs_vscode_uart.png){#fig-esp2-log-uart fig-cap=\"Consola esp-idf: re-energización de ESP2 y validación de transmisión por UART.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Consola esp-idf - UART ESP2](images/pruebas_validacion/p06_esp2_logs_vscode_uart.png){#fig-esp2-log-uart fig-cap=\"Consola esp-idf: re-energización de ESP2 y validación de transmisión por UART.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![ESP3 desenergizada](images/pruebas_validacion/p07_esp3_desenergizada.jpg){#fig-esp3-desenergizada fig-cap=\"ESP3 desenergizada: prueba en el gateway.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![ESP3 desenergizada](images/pruebas_validacion/p07_esp3_desenergizada.jpg){#fig-esp3-desenergizada fig-cap=\"ESP3 desenergizada: prueba en el gateway.\" width=\"49%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Cliente MQTT - sin mensajes ESP3](images/pruebas_validacion/p08_iotcore_sin_mensajes_esp3.png){#fig-iotcore-sin-msg-esp3 fig-cap=\"Cliente de prueba MQTT (AWS IoT Core): ausencia de datos durante la desenergización de ESP3.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Cliente MQTT - sin mensajes ESP3](images/pruebas_validacion/p08_iotcore_sin_mensajes_esp3.png){#fig-iotcore-sin-msg-esp3 fig-cap=\"Cliente de prueba MQTT (AWS IoT Core): ausencia de datos durante la desenergización de ESP3.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Consola esp-idf - MQTT ESP3](images/pruebas_validacion/p09_esp3_logs_vscode_mqtt.png){#fig-esp3-log-mqtt fig-cap=\"Consola esp-idf: verificación del funcionamiento de ESP3 al re-energizar.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Consola esp-idf - MQTT ESP3](images/pruebas_validacion/p09_esp3_logs_vscode_mqtt.png){#fig-esp3-log-mqtt fig-cap=\"Consola esp-idf: verificación del funcionamiento de ESP3 al re-energizar.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![IoT Core - recibiendo mensajes](images/pruebas_validacion/p10_iotcore_recibiendo_mensajes.png){#fig-iotcore-recibiendo fig-cap=\"Cliente de prueba MQTT: recepción de mensajes en el tópico de ingesta.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![IoT Core - recibiendo mensajes](images/pruebas_validacion/p10_iotcore_recibiendo_mensajes.png){#fig-iotcore-recibiendo fig-cap=\"Cliente de prueba MQTT: recepción de mensajes en el tópico de ingesta.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Política IoT](images/pruebas_validacion/p11_iotcore_politica.png){#fig-iot-policy fig-cap=\"Política IoT: validación de permisos asociados al dispositivo.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Política IoT](images/pruebas_validacion/p11_iotcore_politica.png){#fig-iot-policy fig-cap=\"Política IoT: validación de permisos asociados al dispositivo.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![DynamoDB turbina_latest](images/pruebas_validacion/p12_dynamodb_turbina_latest.png){#fig-dynamodb-turbina-latest fig-cap=\"DynamoDB (`turbina_latest`): verificación del último paquete por `clientId`.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![DynamoDB turbina_latest](images/pruebas_validacion/p12_dynamodb_turbina_latest.png){#fig-dynamodb-turbina-latest fig-cap=\"DynamoDB (`turbina_latest`): verificación del último paquete por `clientId`.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![S3 processed](images/pruebas_validacion/p13_s3_processed_prefix.png){#fig-s3-processed fig-cap=\"Amazon S3: validación del bucket y prefijos temporales en `processed/`.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![S3 processed](images/pruebas_validacion/p13_s3_processed_prefix.png){#fig-s3-processed fig-cap=\"Amazon S3: validación del bucket y prefijos temporales en `processed/`.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![S3 objeto json ](images/pruebas_validacion/p14_s3_json_objeto.png){#fig-s3-json-object fig-cap=\"Amazon S3: verificación de un objeto json  almacenado en el histórico.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![S3 objeto json ](images/pruebas_validacion/p14_s3_json_objeto.png){#fig-s3-json-object fig-cap=\"Amazon S3: verificación de un objeto json  almacenado en el histórico.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Glue table](images/pruebas_validacion/p15_glue_tabla_raw_processed.png){#fig-glue-table fig-cap=\"AWS Glue Data Catalog: verificación de la tabla y del esquema.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Glue table](images/pruebas_validacion/p15_glue_tabla_raw_processed.png){#fig-glue-table fig-cap=\"AWS Glue Data Catalog: verificación de la tabla y del esquema.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Athena consulta](images/pruebas_validacion/p16_athena_consulta_basica.png){#fig-athena-consulta fig-cap=\"Amazon Athena: ejecución de una consulta básica sobre el histórico.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Athena consulta](images/pruebas_validacion/p16_athena_consulta_basica.png){#fig-athena-consulta fig-cap=\"Amazon Athena: ejecución de una consulta básica sobre el histórico.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Lambda GetLatest](images/pruebas_validacion/p17_lambda_getlatest.png){#fig-lambda-getlatest fig-cap=\"AWS Lambda (GetLatest): verificación de la Function URL para consulta del último dato.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Lambda GetLatest](images/pruebas_validacion/p17_lambda_getlatest.png){#fig-lambda-getlatest fig-cap=\"AWS Lambda (GetLatest): verificación de la Function URL para consulta del último dato.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Lambda GetTimeseries](images/pruebas_validacion/p18_lambda_gettimeseries.png){#fig-lambda-gettimeseries fig-cap=\"AWS Lambda (GetTimeseries): verificación de la Function URL para consulta histórica.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Lambda GetTimeseries](images/pruebas_validacion/p18_lambda_gettimeseries.png){#fig-lambda-gettimeseries fig-cap=\"AWS Lambda (GetTimeseries): verificación de la Function URL para consulta histórica.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Dashboard en S3](images/pruebas_validacion/p19_s3_web_assets.png){#fig-s3-web fig-cap=\"Dashboard web: alojamiento del frontend en Amazon S3.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Dashboard en S3](images/pruebas_validacion/p19_s3_web_assets.png){#fig-s3-web fig-cap=\"Dashboard web: alojamiento del frontend en Amazon S3.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![CloudFront distribución](images/pruebas_validacion/p20_cloudfront_distribution.png){#fig-cloudfront-distribution fig-cap=\"CloudFront: distribución configurada para servir el dashboard con baja latencia.\" width=\"90%\" fig-align=\"center\"} [@ref21; @quincoces_mqtt_2019; @botta_cloud_iot_2016]",
+    "despues": "![CloudFront distribución](images/pruebas_validacion/p20_cloudfront_distribution.png){#fig-cloudfront-distribution fig-cap=\"CloudFront: distribución configurada para servir el dashboard con baja latencia.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}\r\n\r\n[@ref21; @quincoces_mqtt_2019; @botta_cloud_iot_2016]"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap=\"Dashboard: consulta de últimos 15 minutos para velocidad del viento.\" width=\"90%\" fig-align=\"center\"}",
+    "despues": "![Dashboard 15 min](images/pruebas_validacion/p21_dashboard_15min.png){#fig-dashboard-15min fig-cap=\"Dashboard: consulta de últimos 15 minutos para velocidad del viento.\" width=\"90%\" fig-align=\"center\" fig-pos=\"H\"}"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba ESP1)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba ESP1)"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba ESP2)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba ESP2)"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba ESP3)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba ESP3)"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba AWS IoT Core)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba AWS IoT Core)"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba DynamoDB)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba DynamoDB)"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba S3 + Glue + Athena)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba S3 + Glue + Athena)"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba Lambda)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba Lambda)"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "### Evidencias (Prueba Dashboard)",
+    "despues": "```{=latex}\r\n\\FloatBarrier\r\n```\r\n\r\n### Evidencias (Prueba Dashboard)"
+  },
+  {
+    "archivo": "04-arquitectura-software-aws.qmd",
+    "antes": "![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align=\"center\" fig-pos=\"H\"}",
+    "despues": "![Arquitectura de software en AWS para el sistema IoT de monitoreo eólico. Fuente: elaboración propia con apoyo de herramientas de IA.](fig/revision_director/04_arquitectura_aws.png){#fig-cap4-arquitectura-software-aws width=100% fig-align=\"center\" fig-pos=\"H\"}\r\n\r\n```{=latex}\r\n\\clearpage\r\n```"
+  },
+  {
+    "archivo": "05-pruebas-validacion.qmd",
+    "antes": "![CloudFront distribución]",
+    "despues": "![CloudFront: distribución configurada para servir el dashboard con baja latencia.]"
+  }
+]

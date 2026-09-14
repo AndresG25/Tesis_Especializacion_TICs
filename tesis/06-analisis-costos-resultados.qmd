@@ -1,0 +1,223 @@
+# Análisis de costos, resultados y escalabilidad
+En este capítulo se analiza la arquitectura desde los resultados técnicos esperados, modelo de costos y la escalabilidad futura. El propósito no es fijar unos costos definitivos, pues estos pueden variar por múltiples aspectos, pero si proponer una metodología que permita hacer estimaciones de acuerdo a los parámetros con los que se desee configurar la arquitectura, como cambios en la frecuencia de publicación, número de turbinas, tamaño de los mensajes, volumen histórico, cantidad de consultas y servicios activados. Esta aproximación es coherente con una arquitectura **serverless** y basada en servicios administrados, donde el costo depende principalmente del uso, de la separación entre rutas de consulta, del almacenamiento histórico y de la forma como crece la telemetría IoT en el tiempo [@aws_serverless_lens; @aws_well_architected_cost_optimization; @aws_pricing_calculator; @hashem_bigdata_cloud_2015; @marjani_big_iot_2017; @botta_cloud_iot_2016].
+
+
+## Resultados técnicos consolidados
+
+Como resultado principal de esta tesis se presenta una arquitectura IoT - Cloud funcional que conecta un sistema físico con una plataforma cloud consultable desde la web y escalable a las necesidades del usuario. La capa de Hardware tiene la capacidad de convertir señales del mundo físico en una estructura de datos de tipo json, coherente y entendible, publica esta telemetría mediante MQTTs en AWS IoT Core y la capa de software en la nube asegura la ingesta, almacenamiento en bases de datos, consulta, procesamiento y visualización mediante un dashboard. Se destaca que todos los componentes del hardware son software libre y open source, las funciones Lambda en AWS están programadas con Python y el dashboard se hizo con React/Vite. 
+
+| Resultado | Evidencia técnica esperada | Valor para la tesis |
+|---|---|---|
+| Adquisición distribuida | Tres ESP32-C6 con roles diferenciados | Modularidad y trazabilidad |
+| Comunicación local | ESP-NOW y UART | Separación entre borde y gateway |
+| Publicación segura | MQTT/TLS con certificados X.509 | Seguridad de transporte e identidad |
+| Último dato | Tabla `turbina_latest` | Visualización operativa de baja latencia |
+| Histórico | Bucket `datos-turbina` | Persistencia y análisis posterior |
+| Consulta temporal | Glue + Athena | SQL sobre datos particionados |
+| Dashboard | React/Vite + CloudFront | Exposición web al usuario |
+
+: Resultados técnicos consolidados de la arquitectura. {#tbl-resultados-tecnicos}
+
+El resultado quizá más importante es la integración completa entre capas. Esta arquitectura demuestra que el monitoreo de sistemas físicos, en este caso un generador eólico de eje vertical, puede ser factible con hardware de bajo costo y aplicando técnicas de arquitecturas Cloud que disminuyan los costos de esta y de acuerdo a las necesidades del usuario, planteen seriamente el debate entre si es mejor usar Cloud o computación tradicional.
+
+Esta forma de separar la arquitectura entre una capa física de sensado y una capa de software en la nube también ayuda a entender mejor los costos. Por un lado, están los elementos que se compran, instalan y prueban en campo, como sensores, tarjetas, periféricos, cableado y montaje. Por otro lado, están los costos que crecen con el uso de la plataforma, como los mensajes enviados, el almacenamiento, las consultas, la ejecución de funciones y la distribución del dashboard. De esta manera, si el sistema crece, el análisis puede hacerse con más claridad: no cuesta lo mismo agregar más turbinas, aumentar la frecuencia de publicación, guardar más histórico o tener más usuarios consultando la información [@aws_well_architected_cost_optimization; @aws_pricing_calculator; @aws_serverless_lens; @marjani_big_iot_2017].
+
+## Variables del modelo de costos
+
+El costo de la arquitectura depende de parámetros operativos, de una correcta lógica, uso y confiración de los servicios. Los datos más importantes son el número de turbinas o sistemas físicos, el periodo de publicación (en este caso un paquete cada 10 ~ 12 segundos), el tamaño del mensaje, el número de consultas del último paquete de datos (en este caso dos veces por minuto), el número de consultas históricas (las más costosas, deben limitarse), el tamaño de los datos almacenados (cada vez más)y la frecuencia de transformación hacia formatos optimizados (semanal, diaria, horaria). La @tbl-parametros-costos define las variables principales identificados.
+
+| Símbolo | Descripción | Unidad |
+|---|---|---|
+| $N$ | Número de turbinas o dispositivos | dispositivos |
+| $T_s$ | Periodo de publicación | segundos/mensaje |
+| $B_m$ | Tamaño promedio del mensaje json | bytes |
+| $D$ | Días de operación al mes | días |
+| $Q_L$ | Consultas mensuales de último dato | consultas/mes |
+| $Q_H$ | Consultas mensuales históricas | consultas/mes |
+| $S_H$ | Datos escaneados por consulta Athena | MB/consulta |
+| $R$ | Registros generados por mes | registros/mes |
+
+: Variables del modelo paramétrico de costos. {#tbl-parametros-costos}
+
+El número de registros mensuales se estima como:
+
+$$
+R = N \cdot D \cdot 24 \cdot 3600 \cdot \frac{1}{T_s}.
+$$
+
+El volumen mensual de datos crudos se aproxima como:
+
+$$
+V_{\mathrm{mes}} = R \cdot B_m.
+$$
+
+Estas expresiones permiten calcular el crecimiento aproximado de la base de datos del histórico y medir el impacto en el costo de la arquitectura de aumentar la frecuencia de publicación o el número de turbinas. Si la publicación desde la ESP3 hacia AWS pasa de ejecutarse cada 60 segundos a cada 10 segundos, la cantidad de datos se incrementa por seis. Además, si se aumenta el número de turbinas por 10, el volumen de datos se incrementa por 60, lo que convierte el muestreo y procesamiento Edge en el harware en un factor importante.  De acuerdo a lo anterior, se plantea un modelo básico que sirve para aproximarse al costo de la arquitectura bajo ciertos parámetros y para orientar de mejor manera la decisión sobre cuál tipo de arquitectura implementar.
+
+## Escenario base: una turbina
+
+Para el análisis del escenario base se considera el monitoreo de una única turbina, publicación de datos JSON en AWS cada 10~12 segundos y mensajes JSON pequeños, de aproximadamente 262 bytes por mensaje enviado. Este escenario representa el prototipo actual, por lo que solo se tiene un `clientId`, una ruta para el último paquete de datos y una ruta para el histórico. En este caso, los costos esperados son relativamente bajos porque el volumen de datos es pequeño, las consultas históricas se limitan a un ejercicio estricto de monitoreo y la infraestructura no requiere servidores permanentes. Sin embargo, la arquitectura es escalable, y así como se tiene una turbina de prueba, podría escalarse a un número $n$ de turbinas  [@aws_serverless_lens; @aws_dynamodb_core_components].
+
+| Componente | Comportamiento de costo | Observación |
+|---|---|---|
+| AWS IoT Core | Depende del número de mensajes | Crece con frecuencia de publicación |
+| Lambda | Depende de invocaciones y duración | Bajo si las funciones son simples |
+| DynamoDB | Depende de lecturas/escrituras y almacenamiento | Adecuado para último dato |
+| S3 | Depende de almacenamiento y solicitudes | Económico para histórico |
+| Glue | Depende de crawler/job y catálogo | Puede ejecutarse bajo demanda |
+| Athena | Depende de datos escaneados | Requiere particiones y filtros |
+| CloudFront/S3 web | Depende de tráfico web | Bajo para prototipo académico |
+
+: Comportamiento cualitativo de costos para una turbina. {#tbl-costos-base}
+
+La elección de DynamoDB para la ruta del último paquete y de S3+Glue+Athena para el manejo del histórico, se debe a los impactos que se identificaron mediante pruebas. DynamoDB mostró ser más rápido y más económico que Athena para el escaneo del último dato por variable dado que no se hace sobre la base histórica. Mientras que Athena se reserva para análisis por rangos en momentos específicos [@aws_athena_partitions; @aws_dynamodb_query].
+
+### Aplicación numérica del modelo para el escenario base
+
+Para la aplicación del modelo propuesto se parte del escenario base planteado, con una turbina que cuenta con un sistema que envía (ESP3) un json de 262 bytes cada 10~12 segundos, aproximadamente 5 paquetes por minuto, y con un dashboard operado bajo demanda. El sistema físico se supone bajo operación continua pero la visualización opera bajo dos modalidades diferentes: 1) las cards se actualizan cada 30 segundos, representando el valor más actualizado para cada variable medida del sistema, 2) el histórico se visualiza bajo demanda para rangos específicos definidos por el usuario.
+
+Las reglas de juego del ejemplo se presentan en la @tbl-reglas-escenario-base.
+
+| Parámetro | Valor usado en el ejemplo | Comentario |
+|---|---:|---|
+| Número de turbinas, $N$ | 1 | Prototipo actual |
+| Periodo de publicación, $T_s$ | 12 s | Frecuencia aproximada de envío |
+| Días de operación, $D$ | 30 | Mes de referencia |
+| Tamaño promedio del json, $B_m$ | 262 B (bytes) | Mensaje pequeño de telemetría |
+| Mensajes mensuales | 216.000 | Calculado a partir del periodo de publicación |
+| Consultas históricas | 12 por día | Uso manual y controlado |
+| Consultas históricas mensuales | 360 | Dashboard sin auto-refresh histórico |
+| Rango histórico típico | 15 min | Consulta corta para visualización |
+| Particiones por consulta histórica | 16 aprox. | Filtro por `year/month/day/hour/minute` |
+| Formato histórico | json | Estado actual del prototipo |
+| Capa optimizada | No incluida | Se deja como mejora futura |
+
+: Reglas de juego para el escenario base de costos. {#tbl-reglas-escenario-base}
+
+El número mensual de registros se calcula como:
+
+$$
+R = N \cdot D \cdot 24 \cdot 3600 \cdot \frac{1}{T_s}.
+$$
+
+Sustituyendo los valores del escenario base:
+
+$$
+R = 1 \cdot 30 \cdot 24 \cdot 3600 \cdot \frac{1}{12}.
+$$
+
+$$
+R = 216.000 \text{ registros/mes}.
+$$
+
+Si cada mensaje json tiene un tamaño promedio cercano a 1 KB, el volumen mensual de datos crudos es:
+
+$$
+V_{\mathrm{mes}} = R \cdot B_m.
+$$
+
+$$
+V_{\mathrm{mes}} = 216.000 \cdot 262\text{ B} \approx 56,6 \text{ MB/mes}.
+$$
+Este valor sugiere que el volumen de datos almacenados por turbina mensualmente es relativamente pequeño y no es un factor crítico. El costo de la arquitectura es más sensible al número de solicitudes generadas sobre el histórico. Las publicaciones MQTT, reglas ejecutadas, almacenamiento en S3, actualizaciones en DynamoDB, manejo de dashboard, suelen ser procesos más económicos.
+
+La @tbl-costos-estimados-base muestra una estimación aproximada de los costos del escenario base con los supuestos mencionados. Estos valores no son el costo total dado que este puede variar, por ejemplo, de acuerdo al número de consultas. Pero si es un valor aproximado de acuerdo a los supuestos y debe contrastarse contra AWS Cost Explorer.
+
+| Servicio | Driver de costo | Estimación mensual | Costo aproximado |
+|---|---|---:|---:|
+| AWS IoT Core - mensajes | Mensajes MQTT publicados | 216.000 mensajes | 0,22 USD |
+| AWS IoT Core - reglas y acciones | Regla de ingesta y acciones asociadas | 216.000 reglas y acciones asociadas | 0,10 USD |
+| S3 histórico | Escritura de objetos json | 216.000 `PutObject` | 1,08 USD |
+| S3 almacenamiento | Datos crudos almacenados | 56,6 MB/mes | < 0,01 USD |
+| DynamoDB | Actualización de último dato | 216.000 escrituras | 0,14 USD aprox. |
+| Lambda | Procesamiento serverless | Invocaciones de ingesta y consulta | 0,05 a 0,25 USD |
+| Athena | Consultas históricas bajo demanda | 360 consultas/mes | 0,02 USD aprox. |
+| S3 solicitudes históricas | Listado de particiones filtradas | 5.760 `LIST` aprox. | 0,03 USD aprox. |
+| CloudFront/S3 web | Entrega del dashboard | Uso académico bajo | Bajo |
+
+: Estimación mensual aproximada para una turbina con dashboard histórico bajo demanda. {#tbl-costos-estimados-base}
+
+Bajo los supuestos planteados, el costo mensual esperado de la arquitectura Cloud para una turbina estaría entre 1,6 a 3,0 USD, aunque quizá se cuente con algunos beneficios de capa gratuita como en CloudFront. Esto se presume como un costo ecónomico, sin embargo, debe tenerse en cuenta que al tratarse de una arquitectura escalable los costos y requerimientos tienden a aumentar por lo que se recomienda hacer un análisis para cada caso concreto.
+
+### Reglas operativas del dashboard para controlar costos
+
+A partir del planteamiento anterior, el dashboard actualiza automáticamente el último dato para todas las variables con mayor frecuencia desde DynamoDB, pero las consultas históricas deben ejecutarse bajo demanda. El histórico no debe quedar refrescándose automáticamente cada minuto durante operación normal porque eso genera nuevas consultas sobre Amazon S3 y es allí donde más se cobra, salvo que ese sea precisamente el escenario que se desea medir como prueba de carga o porque se quiere un dashboard reactivo 24/7.
+
+La regla operativa queda definida así:
+
+| Funcionalidad del dashboard | Servicio consultado | Frecuencia recomendada | Observación de costo |
+|---|---|---|---|
+| Último dato | DynamoDB mediante `GetLatest` | Frecuente | Bajo costo |
+| Histórico | Athena/S3 mediante `GetTimeseries` | Bajo demanda | Depende de rango y consultas |
+| Auto-refresh histórico | Athena/S3 mediante `GetTimeseries` | Evitar en operación normal | Puede acumular costos |
+| Consulta larga | Athena/S3 mediante `GetTimeseries` | Máximo controlado | Limitar por variable `MAX_QUERY_MINUTES` |
+
+: Reglas de operación del dashboard para el escenario base. {#tbl-reglas-dashboard-costos}
+
+En el escenario base de costos se asume que el dashboard no deja el histórico en auto-refresh permanente. El usuario ingresa al dashboard cuando requiere revisar una variable, selecciona un rango preestablecido, ejecuta la consulta y cierra el dashboard. Esta forma de operación es de bajo costo y permite separar el monitoreo continuo del último dato del análisis histórico bajo demanda del usuario.
+
+### Prueba prolongada de 24 horas para contraste con Cost Explorer
+
+Para comparar la estimación de costos presentada anteriormente se realizó una prueba de funcionamiento del prototipo prolongada por 24 horas, en la cual el sistema de hardware IoT se mantuvo enviando datos permanentemente y la arquitectura cloud cumpliendo con las tareas de almacenamiento, consulta y visualización. En esta prueba, el dashboard se mantiene cerrado la mayor parte del tiempo y se abre solo en momentos aleatorios para hacer consultas históricas puntuales. De esta forma se evita la medición de consultas automáticas permanentes del histórico.
+
+La @tbl-plan-prueba-24h presenta la bitácora propuesta.
+
+| Momento | Acción | Variable | Rango |
+|---|---|---|---:|
+| Inicio | Cerrar dashboard y dejar dispositivo enviando datos | No aplica | No aplica |
+| T + 1 h | Consulta puntual | Voltaje | 15 min |
+| T + 4 h | Consulta puntual | Temperatura | 15 min |
+| T + 4 h | Consulta puntual | Velocidad del viento | 60 min |
+| T + 8 h | Consulta puntual | RPM | 60 min |
+| T + 8 h | Consulta puntual | Humedad | 15 min |
+| T + 12 h | Consulta puntual | Presión | 60 min |
+| T + 12 h | Consulta puntual | Memoria | 15 min |
+| T + 18 h | Consulta puntual | Voltaje | 180 min |
+| T + 24 h | Consulta final | Voltaje | 15 min |
+| T + 24 h | Consulta final | Temperatura | 60 min |
+
+: Plan de consultas puntuales para la prueba controlada de 24 horas. {#tbl-plan-prueba-24h}
+
+Cada consulta histórica debe quedar documentada con hora, variable, rango solicitado, pantallazo del dashboard, `queryId` de Athena, número de particiones de minuto y datos analizados. Al finalizar la prueba se revisará Cost Explorer agrupando por servicio, tipo de uso y operación API. Los campos más importantes para validar la corrección son `ListBucket`, `PutObject`, `GetObject`, `USE2-Requests-Tier1`, `USE2-Requests-Tier2` y `PRESTO_QUERY`.
+
+Si el costo observado difiere de la estimación, el modelo no se descarta, se calibra. Esa es precisamente la utilidad del enfoque paramétrico: permite iniciar con una estimación razonable, medir el comportamiento real de la arquitectura y ajustar los supuestos operativos a partir de evidencia.
+
+## Escalamiento a $n$ turbinas
+
+Para escalar el sistema a más turbinas, por ejemplo diez, la arquitectura se puede estructurar bajo la misma lógica pero debe incorporar `clientId` como variable categórica central, donde cada ESP gateway es una categoría que contiene una data asociada. Cada nodo debe publicar con identidad única de manera que sea diferenciable, DynamoDB debe obtener un paquete por turbina, S3 debe organizar prefijos por tiempo y por dispositivo y Athena debe permitir filtros por `clientId` y rango temporal. La @tbl-escalamiento-diez resume los cambios requeridos.
+
+| Capa | Una turbina | Diez turbinas | Recomendación |
+|---|---|---|---|
+| MQTT | Un tópico general | Tópico por dispositivo o prefijo | Tópico por dispositivo |
+| IoT Policy | Política amplia de prueba | Política por clientId o grupo | Mínimo privilegio |
+| DynamoDB | Un ítem | Diez ítems actualizados | PK `clientId` |
+| S3 | Prefijo temporal | Prefijo temporal + dispositivo | Facilitar consultas |
+| Athena | Consulta por fecha | Consulta por fecha y dispositivo | Reducir escaneo |
+| Dashboard | Un panel | Selector de turbina | Consulta filtrada |
+
+: Ajustes de arquitectura para escalar a diez turbinas. {#tbl-escalamiento-diez tbl-colwidths="[16,24,32,28]"}
+
+Ejemplo de tópico por dispositivo: `sensor/{clientId}/data`.
+
+Además, escalar el sistema a múltiples turbinas también requiere planificar con detalle la estructura de la base de datos. Una estructura como processed/clientId=ESP32C6-AWS/year=2026/month=05/day=18/ está pensada para facilitar las consultas por dispositivo y fecha para una o pocas turbinas. Sin embargo, generar demasiadas particiones pequeñas para múltiples `clientId` puede aumentar la complejidad , dificultar la administración, el rendimiento y los costos. 
+
+Por último, el prototipo almacena mensajes en estructura json porque son fáciles de generar , depurar y está pensada para etapas tempranas de prototipado, pero no es óptima para análisis de gran volumen o manipulación de múltiples turbinas. Para consultas históricas frecuentes, se recomienda revisar otras estructuras y transformar los datos por ejemplo hacia Parquet, un formato columnar que reduce datos escaneados cuando Athena consulta solo algunas columnas (AWS 2026c, 2026f).
+
+| Criterio | json | Parquet |
+|---|---|---|
+| Facilidad de depuración | Alta | Media |
+| Escritura desde IoT Rule | Directa | Requiere transformación |
+| Eficiencia de consulta | Menor | Mayor |
+| Lectura por columnas | No optimizada | Optimizada |
+| Uso recomendado | Prototipo y datos crudos | Histórico analítico |
+
+: Comparación entre almacenamiento JSON y Parquet para histórico IoT. {#tbl-json-parquet}
+
+## Discusión de resultados
+
+Los resultados de este trabajo muestran que una arquitectura soportada en servicios Cloud de tipo serverless, puede ser adecuada para el monitoreo de pequeños sistemas energéticos porque garantiza seguridad, trazabilidad, escalabilidad y mayor independencia al no depender de servidores físicos que deben administrarse y mantenerse.
+
+Ahora bien, también se evidenciaron varios retos que de no abordarse de una manera sistémica pueden dificultar la administración de la arquitectura: 1) El manejo de muchos objetos pequeños en estructura json si se envían datos muy frecuentemente. 2) La latencia de Athena para consultas históricas muy amplias. 3) Programar bien las políticas IoT, permisos de IAM y funciones Lambda.
+
+## Síntesis del capítulo
+
+El modelo de costos planteado resulta oportuno para determinar la cantidad de datos a procesar y así tener criterios de decisión sobre la frecuencia de publicación, particionamiento, estructura para la BD histórica y otros aspectos importantes para la parametrización de la arquitectura. De esto dependen los costos y la experiencia de usuario. La decisión de separar la visualización histórica de la visualización del último fue una decisión acertada, pues se logró evidencias que el manejo de Athena + Glue + S3 para esta operación "simple" dificultaba la operación e incrementaba los costos.

@@ -1,0 +1,67 @@
+# Estado local de RStudio y R.
+**/.Rproj.user/
+**/.Rhistory
+**/.RData
+**/.Ruserdata
+**/.vscode/
+**/.idea/
+.DS_Store
+Thumbs.db
+
+# Salidas de Quarto/LaTeX. Los PDF de figuras y las referencias sí se versionan.
+/tesis/output/
+**/.quarto/
+**/_freeze/
+/tesis/*.tex
+*.aux
+*.log
+*.toc
+*.out
+*.bbl
+*.blg
+*.nlo
+*.nls
+*.ilg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+!/trazabilidad/entrega/*.log
+
+# Copias por ejecución: se conservan localmente, no se multiplican en Git.
+/trazabilidad/ejecuciones/
+/compilacion_local/
+
+# ESP-IDF.
+**/build/
+**/managed_components/
+**/sdkconfig
+**/sdkconfig.old
+**/CMakeFiles/
+**/CMakeCache.txt
+**/compile_commands.json
+*.bin
+*.elf
+*.map
+*.o
+*.a
+
+# Configuración y material privado.
+**/config_local.h
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+!ESP3/Firmware nodo 3 e integración con AWS_IoT_Core/main/certs/AmazonRootCA1.pem
+
+# No incorporar los ZIP originales del firmware.
+*.zip
+!/referencia_original/tesis_original_sin_modificar.zip
+__pycache__/
+*.pyc
+*~

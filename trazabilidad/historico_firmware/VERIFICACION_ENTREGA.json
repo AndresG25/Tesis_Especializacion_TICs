@@ -1,0 +1,68 @@
+{
+  "fecha": "2026-09-13",
+  "alcance": "Verificación de preparación del paquete; no compilación ESP-IDF ni pruebas en hardware/AWS.",
+  "archivos_originales_identicos": [
+    "ESP1/CMakeLists.txt",
+    "ESP1/components/minmea/CMakeLists.txt",
+    "ESP1/components/minmea/minmea.c",
+    "ESP1/components/minmea/minmea.h",
+    "ESP1/main/CMakeLists.txt",
+    "ESP1/main/main7.c",
+    "ESP1/sdkconfig.defaults",
+    "ESP2/CMakeLists.txt",
+    "ESP2/components/bme680/CMakeLists.txt",
+    "ESP2/components/bme680/bme680.c",
+    "ESP2/components/bme680/bme680_i2c.c",
+    "ESP2/components/bme680/include/bme680.h",
+    "ESP2/components/ssd1306/CMakeLists.txt",
+    "ESP2/components/ssd1306/include/ssd1306.h",
+    "ESP2/components/ssd1306/ssd1306.c",
+    "ESP2/components/ssd1306/ssd1306_i2c.c",
+    "ESP2/components/wifi_connect_lib/CMakeLists.txt",
+    "ESP2/components/wifi_connect_lib/wifi_connect_lib.c",
+    "ESP2/main/CMakeLists.txt",
+    "ESP2/main/main7.c",
+    "ESP2/partitions.csv",
+    "ESP2/sdkconfig.defaults",
+    "ESP3/CMakeLists.txt",
+    "ESP3/main/certs/AmazonRootCA1.pem",
+    "ESP3/partitions.csv",
+    "ESP3/sdkconfig.defaults"
+  ],
+  "archivos_originales_con_cambio_de_configuracion": [
+    "ESP2/components/wifi_connect_lib/include/wifi_connect_lib.h",
+    "ESP3/main/CMakeLists.txt",
+    "ESP3/main/main2.c"
+  ],
+  "readme_originales_de_ejemplo_sustituidos": [
+    "ESP1/README.md",
+    "ESP2/README.md",
+    "ESP3/README.md"
+  ],
+  "main_esp1_y_esp2_identicos": true,
+  "main_esp3_cambios_limitados_a_configuracion": true,
+  "biblioteca_wifi_esp2_cambios_limitados_a_configuracion": true,
+  "cmake_esp3_registro_original_conservado": true,
+  "enlaces_markdown_locales_validos": true,
+  "ejemplo_json_claves_coinciden_con_esp2": true,
+  "valores_originales_configuracion_en_paquete": 0,
+  "bloques_llave_privada_en_paquete": 0,
+  "exclusiones_git_comprobadas": [
+    "ESP1/build/app.bin",
+    "ESP3/main/config_local.h",
+    "ESP3/main/certs/device_cert.crt",
+    "ESP3/main/certs/private_key.key",
+    "ESP2/components/wifi_connect_lib/include/config_local.h",
+    "ESP1/sdkconfig",
+    "ESP1/sdkconfig.old"
+  ],
+  "archivos_versionables_comprobados": [
+    "ESP1/sdkconfig.defaults",
+    "ESP3/main/config_local.example.h",
+    "ESP3/main/certs/AmazonRootCA1.pem",
+    "ESP1/main/main7.c",
+    "ESP2/partitions.csv",
+    ".gitignore",
+    ".gitattributes"
+  ]
+}
