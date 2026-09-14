@@ -1,0 +1,11 @@
+{
+  "version": "final-20260914",
+  "fuente_relato": "Relato del autor en esta conversación y párrafos posteriormente aprobados.",
+  "duracion": "Aproximadamente tres meses; estimación aportada por el autor.",
+  "micropython": "Intentos sin conexión satisfactoria para las condiciones del proyecto; no constituye comparación experimental general de lenguajes.",
+  "asistencia_ia": "Se reconoce DeepSeek; no se atribuye el resultado a un conjunto de entrenamiento o a documentación china no verificados.",
+  "alcance_brecha": "Integración y documentación aplicadas al prototipo; no se afirma ausencia de soluciones en Colombia.",
+  "figuras": "Se mantienen los tres UML, sus párrafos y la numeración automática.",
+  "fuentes_activos": "index.qmd es el capítulo introductorio configurado. 01-introduccion.qmd es un archivo previo no incluido en el libro.",
+  "hardware_nube": "La guía se contrasta con el código y documentación oficial; esta edición no ejecuta una nueva prueba física ni accede a la cuenta AWS del autor."
+}

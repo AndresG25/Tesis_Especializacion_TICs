@@ -1,0 +1,15 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:REEMPLAZAR_REGION:REEMPLAZAR_CUENTA:client/REEMPLAZAR_CLIENT_ID"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Publish",
+      "Resource": "arn:aws:iot:REEMPLAZAR_REGION:REEMPLAZAR_CUENTA:topic/REEMPLAZAR_TOPICO"
+    }
+  ]
+}

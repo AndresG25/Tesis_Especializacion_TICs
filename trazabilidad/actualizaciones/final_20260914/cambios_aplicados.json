@@ -1,0 +1,56 @@
+[
+  {
+    "archivo": "tesis/tex/frontmatter.tex",
+    "cambio": "Inicio de Resumen centrado en el problema",
+    "antes": "En este trabajo se propone, desarrolla y valida una arquitectura para adquirir, transmitir, almacenar, procesar y visualizar datos de un generador eólico de pequeña escala. La solución integra un subsistema embebido distribuido basado en tarjetas ESP32-C6, comunicación local entre nodos, datos en formato json, publicación segura mediante MQTTs hacia AWS IoT Core y una capa de almacenamiento y consulta soportada en servicios serverless de AWS.",
+    "despues": "El monitoreo remoto de pequeños sistemas eólicos requiere integrar la adquisición de variables físicas con mecanismos de comunicación segura, almacenamiento y consulta de datos. La implementación de este recorrido exige articular la programación de los dispositivos embebidos con la configuración de los servicios en la nube. Este trabajo aborda dicha necesidad mediante el desarrollo y la validación de una arquitectura basada en ESP32-C6 y servicios de AWS, documentando la conexión entre sus componentes y las pruebas de funcionamiento."
+  },
+  {
+    "archivo": "tesis/tex/frontmatter.tex",
+    "cambio": "Inicio de Abstract centrado en el problema",
+    "antes": "This work proposes, develops and validates an architecture to acquire, transmit, store, process and visualize data from a small-scale wind generator. The solution integrates a distributed embedded subsystem based on ESP32-C6 boards, local communication between nodes, data in json format, secure MQTTs publication to AWS IoT Core, and a storage and query layer supported by AWS serverless services.",
+    "despues": "Remote monitoring of small-scale wind energy systems requires integrating physical variable acquisition with secure communication, data storage and querying. Implementing this data path requires coordinating embedded device programming with cloud service configuration. This work addresses that need by developing and validating an architecture based on ESP32-C6 devices and AWS services, documenting the connections between its components and the tests used to verify their operation."
+  },
+  {
+    "archivo": "tesis/index.qmd",
+    "cambio": "Antecedente y párrafo aprobado sobre la brecha antes del detalle de nodos",
+    "antes": "El sistema desarrollado en este trabajo se estructura alrededor de un generador eólico de eje vertical tipo Savonius instrumentado con tarjetas ESP32-C6.",
+    "despues": "El antecedente desarrollado en la Universidad Tecnológica de Pereira por Gómez Flórez (2024) constituye la base experimental de este trabajo y empleaba BeagleBone Black, almacenamiento en MySQL, procesamiento en R y visualización con Shiny. La presente tesis aborda la evolución de ese sistema hacia nodos especializados y servicios de AWS, con énfasis en documentar la integración entre la adquisición local, la publicación segura y la consulta de datos [@gomez_prototipado_2024].\n\nUna dificultad relevante durante el desarrollo fue establecer la comunicación segura entre el dispositivo ESP32-C6 y AWS IoT Core. Entre los recursos consultados durante esta etapa no se identificó un ejemplo completo que pudiera aplicarse directamente a la configuración del proyecto, lo que hizo necesario realizar sucesivas pruebas y ajustes hasta obtener una conexión funcional. Esta experiencia permitió delimitar una necesidad de integración y documentación para el sistema estudiado. En respuesta, el trabajo presenta la implementación del enlace entre el firmware y los servicios de AWS, su incorporación al recorrido completo de la telemetría y las evidencias empleadas para verificar su funcionamiento.\n\nEl sistema desarrollado en este trabajo se estructura alrededor de un generador eólico de eje vertical tipo Savonius instrumentado con tarjetas ESP32-C6."
+  },
+  {
+    "archivo": "tesis/index.qmd",
+    "cambio": "Delimitación del aporte en el planteamiento del problema",
+    "antes": "Con base en el planteamiento anterior, se plantea como pregunta orientadora del trabajo:",
+    "despues": "Para el sistema estudiado, la brecha abordada consiste en articular y documentar una implementación que conecte el firmware de adquisición con la autenticación y publicación en AWS IoT Core, y continúe hasta el almacenamiento y la consulta de la telemetría. El aporte se concreta en la configuración de los componentes, el código y las evidencias que permiten seguir ese recorrido y orientar su reproducción en una instalación equivalente.\n\nCon base en el planteamiento anterior, se plantea como pregunta orientadora del trabajo:"
+  },
+  {
+    "archivo": "tesis/index.qmd",
+    "cambio": "Delimitación de la justificación al caso documentado",
+    "antes": "Tercero, permite documentar buenas prácticas de seguridad en transmisión y almacenamiento de sistemas de datos con IoT, la cual no es un área que se haya desarrollado mucho en nuestra región, en el país y le aporta a la generación de conocimiento local y propio",
+    "despues": "Tercero, permite documentar las decisiones y configuraciones de seguridad en la transmisión y el almacenamiento de datos IoT aplicadas al prototipo, aportando una experiencia de implementación y material de referencia para desarrollos posteriores en el contexto académico local"
+  },
+  {
+    "archivo": "tesis/02-marco-referencia.qmd",
+    "cambio": "Comillas en el término señalado por el codirector",
+    "antes": "las redes de cosas integran",
+    "despues": "las «redes de cosas» integran"
+  },
+  {
+    "archivo": "tesis/03-arquitectura-hardware-iot-edge.qmd",
+    "cambio": "Relato aprobado y enlace al procedimiento, dentro de 3.8.2",
+    "antes": "### Recepción y validación **json** en ESP3",
+    "despues": "**Experiencia de implementación y decisión de entorno.**\n\nLa implementación del enlace con AWS IoT Core demandó aproximadamente tres meses de trabajo. Los intentos iniciales se realizaron con MicroPython, sin lograr la conexión requerida en las condiciones del proyecto. Posteriormente, el desarrollo continuó en lenguaje C mediante el entorno ESP-IDF de Espressif, hasta conseguir la publicación de telemetría desde el dispositivo hacia AWS IoT Core. Durante este proceso se contó con el apoyo de DeepSeek para avanzar en la solución de los problemas de integración. La implementación obtenida se incorporó al sistema y su funcionamiento se comprobó mediante las pruebas descritas en este documento.\n\nLa elección de C y ESP-IDF se documenta como una decisión de implementación para este prototipo. El Anexo C enlaza la guía de reproducción del enlace ESP3--AWS IoT Core, que reúne la preparación del entorno, la configuración local, los certificados, la autorización de publicación y las comprobaciones del mensaje recibido.\n\n### Recepción y validación **json** en ESP3"
+  },
+  {
+    "archivo": "tesis/anexos/anexo-c-codigo-esp3.qmd",
+    "cambio": "Referencia incrustada a la guía de reproducción",
+    "antes": "La implementación y la documentación se consultan mediante el enlace de la carpeta.",
+    "despues": "Como complemento, la [guía de conexión ESP3--AWS IoT Core](https://github.com/AndresG25/Tesis_Especializacion_TICs/blob/main/docs/GUIA_CONEXION_ESP3_AWS.md) detalla el entorno, la configuración local, los certificados, la política de publicación y las comprobaciones de recepción, con las condiciones y limitaciones del firmware entregado.\n\nLa implementación y la documentación se consultan mediante el enlace de la carpeta."
+  },
+  {
+    "archivo": "ESP3/README.md",
+    "cambio": "Acceso a la guía desde la carpeta ESP3",
+    "antes": "# ESP3\n\nEl proyecto está en la carpeta **Firmware nodo 3 e integración con AWS_IoT_Core**, con el nombre suministrado por el autor.\n\n- [Abrir el proyecto](Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core/).\n- [Leer las instrucciones del nodo](Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core/README.md).\n- [Abrir el fuente principal](Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core/main/main2.c).\n\nPara compilar una copia local con ruta compatible con ESP-IDF, abra `Tesis_Especializacion_TICs.Rproj` en la raíz y ejecute:\n\n```r\nsource(\"preparar_firmware.R\", encoding = \"UTF-8\")\npreparar_firmware(\"ESP3\")\n```\n\nLa copia de compilación se genera en `compilacion_local/`, que queda fuera de Git. Edite siempre el fuente de la carpeta descriptiva y prepare otra copia cuando cambie el código.\n",
+    "despues": "# ESP3\n\nEl proyecto está en la carpeta **Firmware nodo 3 e integración con AWS_IoT_Core**, con el nombre suministrado por el autor.\n\n- [Abrir el proyecto](Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core/).\n- [Leer las instrucciones del nodo](Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core/README.md).\n- [Abrir el fuente principal](Firmware%20nodo%203%20e%20integraci%C3%B3n%20con%20AWS_IoT_Core/main/main2.c).\n\nPara compilar una copia local con ruta compatible con ESP-IDF, abra `Tesis_Especializacion_TICs.Rproj` en la raíz y ejecute:\n\n```r\nsource(\"preparar_firmware.R\", encoding = \"UTF-8\")\npreparar_firmware(\"ESP3\")\n```\n\nLa copia de compilación se genera en `compilacion_local/`, que queda fuera de Git. Edite siempre el fuente de la carpeta descriptiva y prepare otra copia cuando cambie el código.\n\n## Guía de conexión con AWS IoT Core\n\nConsulte la [guía de reproducción ESP3--AWS IoT Core](../docs/GUIA_CONEXION_ESP3_AWS.md), vinculada con el Anexo C. Reúne la configuración del entorno, los recursos de AWS, la compilación, las comprobaciones y los límites identificados en la lectura del código.\n"
+  }
+]

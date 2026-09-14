@@ -1,0 +1,55 @@
+{
+  "entorno": "Copia local aislada, R 4.2.2; sin conexión remota Git ni acceso AWS.",
+  "verificador": {
+    "codigo": 0,
+    "salida": "\nIDENTICO \n      22 \nVersión final verificada: los archivos coinciden con la entrega.\nAhora ejecute source('renderizar_tesis.R', encoding = 'UTF-8').\nLa verificación confirma la copia; revise después el PDF y haga Commit y Push.\n",
+    "stderr": ""
+  },
+  "tolerancia_crlf_bom": {
+    "codigo": 0,
+    "salida": "\nIDENTICO \n      22 \nVersión final verificada: los archivos coinciden con la entrega.\nAhora ejecute source('renderizar_tesis.R', encoding = 'UTF-8').\nLa verificación confirma la copia; revise después el PDF y haga Commit y Push.\n"
+  },
+  "deteccion_archivo_alterado": {
+    "codigo": 1,
+    "salida": "\n  IDENTICO MODIFICADO \n        21          1 \n                        archivo     estado\n docs/GUIA_CONEXION_ESP3_AWS.md MODIFICADO\n",
+    "stderr": "Error: Hay archivos faltantes o distintos de la entrega final. Revise los indicados.\nExecution halted\n"
+  },
+  "git_archivos_preparados": [
+    "M\tESP3/README.md",
+    "A\tLEEME_VERSION_FINAL_20260914.md",
+    "A\tdocs/GUIA_CONEXION_ESP3_AWS.md",
+    "A\tdocs/plantillas/politica_esp3_publicacion.json",
+    "A\tdocs/plantillas/registro_prueba_esp3.md",
+    "M\ttesis/02-marco-referencia.qmd",
+    "M\ttesis/03-arquitectura-hardware-iot-edge.qmd",
+    "M\ttesis/anexos/anexo-c-codigo-esp3.qmd",
+    "M\ttesis/index.qmd",
+    "M\ttesis/tex/frontmatter.tex",
+    "A\ttrazabilidad/actualizaciones/final_20260914/archivos_modificados.csv",
+    "A\ttrazabilidad/actualizaciones/final_20260914/archivos_preservados.json",
+    "A\ttrazabilidad/actualizaciones/final_20260914/cambios.diff",
+    "A\ttrazabilidad/actualizaciones/final_20260914/cambios_aplicados.json",
+    "A\ttrazabilidad/actualizaciones/final_20260914/inventario_final.csv",
+    "A\ttrazabilidad/actualizaciones/final_20260914/registro_render.txt",
+    "A\ttrazabilidad/actualizaciones/final_20260914/relato_y_alcance.json",
+    "A\ttrazabilidad/actualizaciones/final_20260914/revision_final.json",
+    "A\ttrazabilidad/actualizaciones/final_20260914/ruta_revision.csv",
+    "A\tverificar_version_final.R"
+  ],
+  "seis_archivos_modificados_esperados": [
+    "ESP3/README.md",
+    "tesis/02-marco-referencia.qmd",
+    "tesis/03-arquitectura-hardware-iot-edge.qmd",
+    "tesis/anexos/anexo-c-codigo-esp3.qmd",
+    "tesis/index.qmd",
+    "tesis/tex/frontmatter.tex"
+  ],
+  "pdf_completo_ignorado": "tesis/output/prueba.pdf",
+  "figuras_uml_versionadas": [
+    "tesis/fig/uml/01_despliegue.pdf",
+    "tesis/fig/uml/02_secuencia_telemetria.pdf",
+    "tesis/fig/uml/03_secuencia_consultas.pdf"
+  ],
+  "contenido_archivos_fuente_resultantes": "Coincidente con el proyecto usado para generar el PDF de referencia; comprobado mediante inventario.",
+  "push_realizado": false
+}

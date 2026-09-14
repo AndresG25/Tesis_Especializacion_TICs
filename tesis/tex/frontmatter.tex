@@ -189,7 +189,7 @@ www.utp.edu.co
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
 
-En este trabajo se propone, desarrolla y valida una arquitectura para adquirir, transmitir, almacenar, procesar y visualizar datos de un generador eólico de pequeña escala. La solución integra un subsistema embebido distribuido basado en tarjetas ESP32-C6, comunicación local entre nodos, datos en formato json, publicación segura mediante MQTTs hacia AWS IoT Core y una capa de almacenamiento y consulta soportada en servicios serverless de AWS.
+El monitoreo remoto de pequeños sistemas eólicos requiere integrar la adquisición de variables físicas con mecanismos de comunicación segura, almacenamiento y consulta de datos. La implementación de este recorrido exige articular la programación de los dispositivos embebidos con la configuración de los servicios en la nube. Este trabajo aborda dicha necesidad mediante el desarrollo y la validación de una arquitectura basada en ESP32-C6 y servicios de AWS, documentando la conexión entre sus componentes y las pruebas de funcionamiento.
 
 El sistema de adquisición se organiza en tres etapas: un nodo de campo que mide variables del generador, un nodo integrador local que consolida variables ambientales y operativas y estructura el mensaje de telemetría, y un gateway IoT encargado de la conectividad Wi-Fi, la sesión MQTT segura y la publicación de datos hacia la nube.
 
@@ -210,7 +210,7 @@ La contribución principal es una metodología reproducible para instrumentar, t
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-This work proposes, develops and validates an architecture to acquire, transmit, store, process and visualize data from a small-scale wind generator. The solution integrates a distributed embedded subsystem based on ESP32-C6 boards, local communication between nodes, data in json format, secure MQTTs publication to AWS IoT Core, and a storage and query layer supported by AWS serverless services.
+Remote monitoring of small-scale wind energy systems requires integrating physical variable acquisition with secure communication, data storage and querying. Implementing this data path requires coordinating embedded device programming with cloud service configuration. This work addresses that need by developing and validating an architecture based on ESP32-C6 devices and AWS services, documenting the connections between its components and the tests used to verify their operation.
 
 The acquisition system is organized into three stages: a field node that measures generator variables, a local integration node that consolidates environmental and operational variables and structures the telemetry message, and an IoT gateway responsible for Wi-Fi connectivity, the secure MQTT session and data publication to the cloud.
 

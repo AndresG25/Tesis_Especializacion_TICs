@@ -1,0 +1,95 @@
+--- a/ESP3/README.md
++++ b/ESP3/README.md
+@@ -14,3 +14,7 @@
+ ```
+ 
+ La copia de compilación se genera en `compilacion_local/`, que queda fuera de Git. Edite siempre el fuente de la carpeta descriptiva y prepare otra copia cuando cambie el código.
++
++## Guía de conexión con AWS IoT Core
++
++Consulte la [guía de reproducción ESP3--AWS IoT Core](../docs/GUIA_CONEXION_ESP3_AWS.md), vinculada con el Anexo C. Reúne la configuración del entorno, los recursos de AWS, la compilación, las comprobaciones y los límites identificados en la lectura del código.
+--- a/tesis/02-marco-referencia.qmd
++++ b/tesis/02-marco-referencia.qmd
+@@ -1,6 +1,6 @@
+ # Marco de referencia
+ 
+-En este capítulo se desarrolla el marco de referencia que soporta la arquitectura propuesta para el monitoreo de un generador eólico de pequeña escala soportado en IoT y procesamiento en la nube de AWS. Para este análisis, el foco se centra en el desarrollo de la arquitectura desde la capa física hasta la capa de visualización, examinando los diferentes protocolos requeridos para la implementación en cada etapa desde la perspectiva de los modelos OSI y TCP/IP. El National Institute of Standards and Technology (NIST, 2016) plantea que las redes de cosas integran sensores, agregadores, canales de comunicación, servicios externos y procesos de decisión, por lo cual esta perspectiva permite analizar la arquitectura por capas funcionales. De forma complementaria, AWS (2026g) presenta el enfoque **serverless** como una manera de diseñar y operar aplicaciones en la nube delegando la administración de infraestructura al proveedor, lo que resulta pertinente para el pipeline de adquisición, almacenamiento, procesamiento y visualización que se plantea en este trabajo [@nist_sp800_183; @aws_serverless_lens].
++En este capítulo se desarrolla el marco de referencia que soporta la arquitectura propuesta para el monitoreo de un generador eólico de pequeña escala soportado en IoT y procesamiento en la nube de AWS. Para este análisis, el foco se centra en el desarrollo de la arquitectura desde la capa física hasta la capa de visualización, examinando los diferentes protocolos requeridos para la implementación en cada etapa desde la perspectiva de los modelos OSI y TCP/IP. El National Institute of Standards and Technology (NIST, 2016) plantea que las «redes de cosas» integran sensores, agregadores, canales de comunicación, servicios externos y procesos de decisión, por lo cual esta perspectiva permite analizar la arquitectura por capas funcionales. De forma complementaria, AWS (2026g) presenta el enfoque **serverless** como una manera de diseñar y operar aplicaciones en la nube delegando la administración de infraestructura al proveedor, lo que resulta pertinente para el pipeline de adquisición, almacenamiento, procesamiento y visualización que se plantea en este trabajo [@nist_sp800_183; @aws_serverless_lens].
+ 
+ ![Arquitectura de referencia rediseñada del sistema IoT para monitoreo de un generador eólico axial en AWS. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-5.5 Thinking de OpenAI, 2026.](fig/arquitectura_referencia_redisenada.png){#fig-arquitectura-referencia width=100% fig-align="center"}
+ 
+--- a/tesis/03-arquitectura-hardware-iot-edge.qmd
++++ b/tesis/03-arquitectura-hardware-iot-edge.qmd
+@@ -341,6 +341,12 @@
+ 
+ El evento MQTT_EVENT_CONNECTED indica la conexión marcando la bandera mqtt_connected = true y registra el endpoint otorgado por AWS, client ID y el tópico. El evento MQTT_EVENT_PUBLISHED confirma la publicación de la telemetría en el tópico y MQTT_EVENT_ERROR permite diagnosticar fallas de transporte o handshake **TLS**. Esta estructuración por eventos es bastante importante porque en sistemas IoT no solo se trata de llamar una función de publicación; se debe confirmar el estado real del cliente, registrar causas de error y garantizar la trazabilidad completa ya que se trata de sistemas que tienen una alta interacción con la red de Internet [@espressif_mqtt_client_esp32c6; @oasis_mqtt5; @aws_iot_protocols; @nist_ir_8228].
+ 
++**Experiencia de implementación y decisión de entorno.**
++
++La implementación del enlace con AWS IoT Core demandó aproximadamente tres meses de trabajo. Los intentos iniciales se realizaron con MicroPython, sin lograr la conexión requerida en las condiciones del proyecto. Posteriormente, el desarrollo continuó en lenguaje C mediante el entorno ESP-IDF de Espressif, hasta conseguir la publicación de telemetría desde el dispositivo hacia AWS IoT Core. Durante este proceso se contó con el apoyo de DeepSeek para avanzar en la solución de los problemas de integración. La implementación obtenida se incorporó al sistema y su funcionamiento se comprobó mediante las pruebas descritas en este documento.
++
++La elección de C y ESP-IDF se documenta como una decisión de implementación para este prototipo. El Anexo C enlaza la guía de reproducción del enlace ESP3--AWS IoT Core, que reúne la preparación del entorno, la configuración local, los certificados, la autorización de publicación y las comprobaciones del mensaje recibido.
++
+ ### Recepción y validación **json** en ESP3
+ 
+ La función verify_and_format_json revisa que el mensaje recibido mediante **UART** contenga llaves de apertura y cierre, extrae el contenido entre la primera { y la última }, verifica que el tamaño no exceda el tamaño del buffer definido y produce una cadena lista para publicar a partir de la estructura preestablecida. Esta validación es mínima, pero evita enviar al broker fragmentos **UART** sin estructura y conservar la homogeneidad e integridad en la base de datos [@espressif_uart_driver; @rfc8259_json; @oasis_mqtt5; @aws_iot_protocols; @nist_ir_8228].
+--- a/tesis/anexos/anexo-c-codigo-esp3.qmd
++++ b/tesis/anexos/anexo-c-codigo-esp3.qmd
+@@ -6,4 +6,6 @@
+ 
+ El README explica cómo definir el nombre de la red, el endpoint de AWS, el tópico y el identificador del cliente. Las contraseñas, el certificado de dispositivo y la llave privada se incorporan únicamente en el entorno local de compilación; el repositorio proporciona las plantillas e instrucciones correspondientes. También se describen las conexiones UART y las condiciones de operación de la pasarela.
+ 
++Como complemento, la [guía de conexión ESP3--AWS IoT Core](https://github.com/AndresG25/Tesis_Especializacion_TICs/blob/main/docs/GUIA_CONEXION_ESP3_AWS.md) detalla el entorno, la configuración local, los certificados, la política de publicación y las comprobaciones de recepción, con las condiciones y limitaciones del firmware entregado.
++
+ La implementación y la documentación se consultan mediante el enlace de la carpeta. Para solicitar acceso al repositorio privado o información adicional, puede escribirse a [andres25@utp.edu.co](mailto:andres25@utp.edu.co).
+--- a/tesis/index.qmd
++++ b/tesis/index.qmd
+@@ -1,6 +1,10 @@
+ # Introducción
+ 
+ La transición energética requiere de grandes esfuerzos para suplir la demanda energética, esto, implica avanzar hacia el aprovechamiento energético en todas las escalas. Lo anterior, ha generado que la energía eólica a pequeña escala gane interés en diferentes áreas de la investigación, la formación académica y en la implementación de soluciones energéticas distribuidas. Para conocer el estado de la operación constantemente, se requiere implementar sistemas con la capacidad de medir de manera continua las diferentes variables operativas y ambientales que influyen en la generación eólica. En este trabajo, se propone una arquitectura de datos de extremo a extremo que integra sistemas embebidos, comunicación IoT con MQTTs, integración con servicios serverless de AWS y sistema de visualización web reactivo de las diferentes variables del sistema [@ref1; @ref4; @ref30; @calautit_micro_wind_2023; @foley_wind_forecasting_2012].
++
++El antecedente desarrollado en la Universidad Tecnológica de Pereira por Gómez Flórez (2024) constituye la base experimental de este trabajo y empleaba BeagleBone Black, almacenamiento en MySQL, procesamiento en R y visualización con Shiny. La presente tesis aborda la evolución de ese sistema hacia nodos especializados y servicios de AWS, con énfasis en documentar la integración entre la adquisición local, la publicación segura y la consulta de datos [@gomez_prototipado_2024].
++
++Una dificultad relevante durante el desarrollo fue establecer la comunicación segura entre el dispositivo ESP32-C6 y AWS IoT Core. Entre los recursos consultados durante esta etapa no se identificó un ejemplo completo que pudiera aplicarse directamente a la configuración del proyecto, lo que hizo necesario realizar sucesivas pruebas y ajustes hasta obtener una conexión funcional. Esta experiencia permitió delimitar una necesidad de integración y documentación para el sistema estudiado. En respuesta, el trabajo presenta la implementación del enlace entre el firmware y los servicios de AWS, su incorporación al recorrido completo de la telemetría y las evidencias empleadas para verificar su funcionamiento.
+ 
+ El sistema desarrollado en este trabajo se estructura alrededor de un generador eólico de eje vertical tipo Savonius instrumentado con tarjetas ESP32-C6. Debido a la capacidad de las tarjetas, naturaleza de los procesos y funciones implementadas, se segmentó en una arquitectura que distribuye sus funciones en 3 nodos o ESPs.  La ESP1 mide variables del generador como voltaje AC, RPM de la turbina, coordenadas y transmite a ESP2 a través de ESP-NOW; la ESP2 consolida variables de la ESP1 con variables ambientales (temperatura, presión atmosférica, humedad, altitud), velocidad del viento, almacenamiento local, timestamp, visualización local y transmite todo en paquete json a través de UART; y ESP3 actúa como gateway MQTT/TLS hacia AWS IoT Core. Esta separación facilita la depuración, reduce la complejidad por nodo, permite aislar fallas de sensórica, facilita la comunicación local con la conectividad cloud y trata de aprovechar al máximo las prestaciones de cada ESP32-C6 a través de la programación con ANSI/C en su entorno nativo esp-idf versión 5.4.1 [@gomez_prototipado_2024; @bhutta_vawt_review_2012; @eriksson_turbine_concepts_2008; @tjiu_darrieus_2015; @wekesa_vawt_experimental_2020]. 
+ 
+@@ -11,6 +15,8 @@
+ Los sistemas energéticos de pequeña escala o para implementación en lugares off-grid suelen enfrentar múltiples desafíos relacionados con el monitoreo y analítica de los datos relacionados con el proceso debido principalmente a limitaciones en infraestructura. Entender cómo se comporta la radiación solar o la velocidad del viento puede ser determinante para la viabilidad y el sostenimiento de un proyecto, por esta razón, es indispensable pensar en implementar sistemas para la medición de datos que permitan consulta histórica, trazabilidad y escalamiento a múltiples dispositivos. Entender la relación entre las variables atmosféricas, la respuesta mecánica y la generación eléctrica es importante por viabilidad e implementación de modelos de desempeño, mantenimiento o pronostico del recurso [@ref22; @ref35; @ref23; @ref24; @jung_wind_forecasting_2014]. 
+ 
+ El problema en este tipo de sistemas no consiste únicamente en medir variables, sino en diseñar una topología completa que permita la interconexión entre los diferentes sistemas, asegurando la adquisición, preprocesamiento, transmisión, almacenamiento, procesamiento, visualización de datos y los procesos adicionales que se implementen para el aprovechamiento de los datos obtenidos. Lo anteior, debe garantizar la integridad, trazabilidad, seguridad y escalabilidad del proceso, permitiendo avanzar en la resolución de preguntas como: qué se mide, cómo se transmite, dónde se almacena y cómo se consulta [@ref21; @atzori_iot_survey_2010; @sisinni_industrial_iot_2018; @ref37].
++
++Para el sistema estudiado, la brecha abordada consiste en articular y documentar una implementación que conecte el firmware de adquisición con la autenticación y publicación en AWS IoT Core, y continúe hasta el almacenamiento y la consulta de la telemetría. El aporte se concreta en la configuración de los componentes, el código y las evidencias que permiten seguir ese recorrido y orientar su reproducción en una instalación equivalente.
+ 
+ Con base en el planteamiento anterior, se plantea como pregunta orientadora del trabajo: 
+ 
+@@ -23,7 +29,7 @@
+ 
+ El enfoque propuesto en este trabajo es importante por tres razones fundamentales:
+ 
+-Primero, se busca el fortalecimiento de la instrumentación y monitoreo de un sistema eólico previamente construido, mediante arquitecturas de hardware y software económicas, accesibles, escalables y seguras que permiten el almacenamiento masivo de datos. Segundo, el sistema permite analizar los datos a nivel histórico e instántaneo para buscar patrones de interés con base en las variables que se relacionan con la potencia eólica y la generación eléctrica, sentando bases importantes para escalar el nivel de analítica del sistema mediante la implementación de algoritmos más complejos basados en análisis de series temporales, machine learning, deep learning u otras herramientas. Tercero, permite documentar buenas prácticas de seguridad en transmisión y almacenamiento de sistemas de datos con IoT, la cual no es un área que se haya desarrollado mucho en nuestra región, en el país y le aporta a la generación de conocimiento local y propio [@gomez_prototipado_2024; @ref8; @ref23; @ref24; @marjani_big_iot_2017; @ref41].  
++Primero, se busca el fortalecimiento de la instrumentación y monitoreo de un sistema eólico previamente construido, mediante arquitecturas de hardware y software económicas, accesibles, escalables y seguras que permiten el almacenamiento masivo de datos. Segundo, el sistema permite analizar los datos a nivel histórico e instántaneo para buscar patrones de interés con base en las variables que se relacionan con la potencia eólica y la generación eléctrica, sentando bases importantes para escalar el nivel de analítica del sistema mediante la implementación de algoritmos más complejos basados en análisis de series temporales, machine learning, deep learning u otras herramientas. Tercero, permite documentar las decisiones y configuraciones de seguridad en la transmisión y el almacenamiento de datos IoT aplicadas al prototipo, aportando una experiencia de implementación y material de referencia para desarrollos posteriores en el contexto académico local [@gomez_prototipado_2024; @ref8; @ref23; @ref24; @marjani_big_iot_2017; @ref41].  
+ 
+ ## Objetivos
+ 
+--- a/tesis/tex/frontmatter.tex
++++ b/tesis/tex/frontmatter.tex
+@@ -189,7 +189,7 @@
+ \chapter*{Resumen}
+ \addcontentsline{toc}{chapter}{Resumen}
+ 
+-En este trabajo se propone, desarrolla y valida una arquitectura para adquirir, transmitir, almacenar, procesar y visualizar datos de un generador eólico de pequeña escala. La solución integra un subsistema embebido distribuido basado en tarjetas ESP32-C6, comunicación local entre nodos, datos en formato json, publicación segura mediante MQTTs hacia AWS IoT Core y una capa de almacenamiento y consulta soportada en servicios serverless de AWS.
++El monitoreo remoto de pequeños sistemas eólicos requiere integrar la adquisición de variables físicas con mecanismos de comunicación segura, almacenamiento y consulta de datos. La implementación de este recorrido exige articular la programación de los dispositivos embebidos con la configuración de los servicios en la nube. Este trabajo aborda dicha necesidad mediante el desarrollo y la validación de una arquitectura basada en ESP32-C6 y servicios de AWS, documentando la conexión entre sus componentes y las pruebas de funcionamiento.
+ 
+ El sistema de adquisición se organiza en tres etapas: un nodo de campo que mide variables del generador, un nodo integrador local que consolida variables ambientales y operativas y estructura el mensaje de telemetría, y un gateway IoT encargado de la conectividad Wi-Fi, la sesión MQTT segura y la publicación de datos hacia la nube.
+ 
+@@ -210,7 +210,7 @@
+ \chapter*{Abstract}
+ \addcontentsline{toc}{chapter}{Abstract}
+ 
+-This work proposes, develops and validates an architecture to acquire, transmit, store, process and visualize data from a small-scale wind generator. The solution integrates a distributed embedded subsystem based on ESP32-C6 boards, local communication between nodes, data in json format, secure MQTTs publication to AWS IoT Core, and a storage and query layer supported by AWS serverless services.
++Remote monitoring of small-scale wind energy systems requires integrating physical variable acquisition with secure communication, data storage and querying. Implementing this data path requires coordinating embedded device programming with cloud service configuration. This work addresses that need by developing and validating an architecture based on ESP32-C6 devices and AWS services, documenting the connections between its components and the tests used to verify their operation.
+ 
+ The acquisition system is organized into three stages: a field node that measures generator variables, a local integration node that consolidates environmental and operational variables and structures the telemetry message, and an IoT gateway responsible for Wi-Fi connectivity, the secure MQTT session and data publication to the cloud.
+ 

@@ -341,6 +341,12 @@ La conexión **MQTT** (Message Queuing Telemetry Transport) se configura con la 
 
 El evento MQTT_EVENT_CONNECTED indica la conexión marcando la bandera mqtt_connected = true y registra el endpoint otorgado por AWS, client ID y el tópico. El evento MQTT_EVENT_PUBLISHED confirma la publicación de la telemetría en el tópico y MQTT_EVENT_ERROR permite diagnosticar fallas de transporte o handshake **TLS**. Esta estructuración por eventos es bastante importante porque en sistemas IoT no solo se trata de llamar una función de publicación; se debe confirmar el estado real del cliente, registrar causas de error y garantizar la trazabilidad completa ya que se trata de sistemas que tienen una alta interacción con la red de Internet [@espressif_mqtt_client_esp32c6; @oasis_mqtt5; @aws_iot_protocols; @nist_ir_8228].
 
+**Experiencia de implementación y decisión de entorno.**
+
+La implementación del enlace con AWS IoT Core demandó aproximadamente tres meses de trabajo. Los intentos iniciales se realizaron con MicroPython, sin lograr la conexión requerida en las condiciones del proyecto. Posteriormente, el desarrollo continuó en lenguaje C mediante el entorno ESP-IDF de Espressif, hasta conseguir la publicación de telemetría desde el dispositivo hacia AWS IoT Core. Durante este proceso se contó con el apoyo de DeepSeek para avanzar en la solución de los problemas de integración. La implementación obtenida se incorporó al sistema y su funcionamiento se comprobó mediante las pruebas descritas en este documento.
+
+La elección de C y ESP-IDF se documenta como una decisión de implementación para este prototipo. El Anexo C enlaza la guía de reproducción del enlace ESP3--AWS IoT Core, que reúne la preparación del entorno, la configuración local, los certificados, la autorización de publicación y las comprobaciones del mensaje recibido.
+
 ### Recepción y validación **json** en ESP3
 
 La función verify_and_format_json revisa que el mensaje recibido mediante **UART** contenga llaves de apertura y cierre, extrae el contenido entre la primera { y la última }, verifica que el tamaño no exceda el tamaño del buffer definido y produce una cadena lista para publicar a partir de la estructura preestablecida. Esta validación es mínima, pero evita enviar al broker fragmentos **UART** sin estructura y conservar la homogeneidad e integridad en la base de datos [@espressif_uart_driver; @rfc8259_json; @oasis_mqtt5; @aws_iot_protocols; @nist_ir_8228].

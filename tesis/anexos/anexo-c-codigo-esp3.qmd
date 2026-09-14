@@ -6,4 +6,6 @@ El programa configura la conexión Wi-Fi, inicializa el cliente MQTT con TLS y r
 
 El README explica cómo definir el nombre de la red, el endpoint de AWS, el tópico y el identificador del cliente. Las contraseñas, el certificado de dispositivo y la llave privada se incorporan únicamente en el entorno local de compilación; el repositorio proporciona las plantillas e instrucciones correspondientes. También se describen las conexiones UART y las condiciones de operación de la pasarela.
 
+Como complemento, la [guía de conexión ESP3--AWS IoT Core](https://github.com/AndresG25/Tesis_Especializacion_TICs/blob/main/docs/GUIA_CONEXION_ESP3_AWS.md) detalla el entorno, la configuración local, los certificados, la política de publicación y las comprobaciones de recepción, con las condiciones y limitaciones del firmware entregado.
+
 La implementación y la documentación se consultan mediante el enlace de la carpeta. Para solicitar acceso al repositorio privado o información adicional, puede escribirse a [andres25@utp.edu.co](mailto:andres25@utp.edu.co).

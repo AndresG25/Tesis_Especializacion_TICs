@@ -14,3 +14,7 @@ preparar_firmware("ESP3")
 ```
 
 La copia de compilación se genera en `compilacion_local/`, que queda fuera de Git. Edite siempre el fuente de la carpeta descriptiva y prepare otra copia cuando cambie el código.
+
+## Guía de conexión con AWS IoT Core
+
+Consulte la [guía de reproducción ESP3--AWS IoT Core](../docs/GUIA_CONEXION_ESP3_AWS.md), vinculada con el Anexo C. Reúne la configuración del entorno, los recursos de AWS, la compilación, las comprobaciones y los límites identificados en la lectura del código.
