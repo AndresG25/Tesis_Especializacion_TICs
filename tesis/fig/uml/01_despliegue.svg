@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="606" viewBox="0 0 860 606">
+<defs><marker id="open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9" fill="none" stroke="#355E71" stroke-width="1.5"/></marker></defs>
+<rect width="100%" height="100%" fill="white"/><g font-family="DejaVu Sans, sans-serif">
+<rect x="12" y="8" width="612" height="172" rx="5" fill="#F0F8F3" stroke="#8CA7B2" stroke-width="1.2"/>
+<text x="28" y="33" font-size="18" font-weight="bold" text-anchor="start" fill="#183D4C">Sistema local · IoT Edge</text>
+<path d="M24,46 l8,-8 h180 v96 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M204,46 l8,-8 M204,46 v96" fill="none" stroke="#5A7D8E"/>
+<rect x="24" y="46" width="180" height="96" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="114.0" y="67" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«device»</text>
+<text x="114.0" y="90" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">ESP1 : ESP32-C6</text>
+<path d="M30,98 H189 L198,107 V138 H30 Z" fill="white" stroke="#789AA8"/>
+<path d="M189,98 V107 H198" fill="none" stroke="#789AA8"/>
+<text x="114" y="113" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Adquisición</text>
+<text x="114" y="132" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Voltaje · RPM · GPS</text>
+<path d="M228,46 l8,-8 h180 v96 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M408,46 l8,-8 M408,46 v96" fill="none" stroke="#5A7D8E"/>
+<rect x="228" y="46" width="180" height="96" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="318.0" y="67" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«device»</text>
+<text x="318.0" y="90" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">ESP2 : ESP32-C6</text>
+<path d="M234,98 H393 L402,107 V138 H234 Z" fill="white" stroke="#789AA8"/>
+<path d="M393,98 V107 H402" fill="none" stroke="#789AA8"/>
+<text x="318" y="113" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Integración</text>
+<text x="318" y="132" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Ambiente · RTC · SD</text>
+<path d="M432,46 l8,-8 h180 v96 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M612,46 l8,-8 M612,46 v96" fill="none" stroke="#5A7D8E"/>
+<rect x="432" y="46" width="180" height="96" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="522.0" y="67" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«device»</text>
+<text x="522.0" y="90" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">ESP3 : ESP32-C6</text>
+<path d="M438,98 H597 L606,107 V138 H438 Z" fill="white" stroke="#789AA8"/>
+<path d="M597,98 V107 H606" fill="none" stroke="#789AA8"/>
+<text x="522" y="113" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Enlace cloud</text>
+<text x="522" y="132" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">UART · Wi-Fi · MQTT</text>
+<path d="M100,142 V158 H310 V142" fill="none" stroke="white" stroke-width="5"/>
+<path d="M100,142 V158 H310 V142" fill="none" stroke="#355E71" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="206" y="154" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">ESP-NOW</text>
+<path d="M356,142 V175 H520 V142" fill="none" stroke="white" stroke-width="5"/>
+<path d="M356,142 V175 H520 V142" fill="none" stroke="#355E71" stroke-width="1.5" marker-end="url(#open)"/>
+<text x="440" y="170" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">UART · 9600 bit/s</text>
+<path d="M660,46 l8,-8 h184 v97 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M844,46 l8,-8 M844,46 v97" fill="none" stroke="#5A7D8E"/>
+<rect x="660" y="46" width="184" height="97" rx="0" fill="#F0F8F3" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="752.0" y="67" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«executionEnvironment»</text>
+<text x="752.0" y="90" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C"></text>
+<text x="752" y="90" font-size="14" font-weight="bold" text-anchor="middle" fill="#183D4C">Navegador del usuario</text>
+<path d="M666,99 H829 L838,108 V137 H666 Z" fill="white" stroke="#789AA8"/>
+<path d="M829,99 V108 H838" fill="none" stroke="#789AA8"/>
+<text x="752" y="124" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Dashboard React / Vite</text>
+<rect x="12" y="221" width="832" height="335" rx="5" fill="#F3F6FC" stroke="#8CA7B2" stroke-width="1.2"/>
+<text x="28" y="246" font-size="18" font-weight="bold" text-anchor="start" fill="#183D4C">AWS · Servicios administrados</text>
+<path d="M24,266 l8,-8 h186 v89 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M210,266 l8,-8 M210,266 v89" fill="none" stroke="#5A7D8E"/>
+<rect x="24" y="266" width="186" height="89" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="117.0" y="287" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«executionEnvironment»</text>
+<text x="117.0" y="310" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">AWS IoT Core</text>
+<path d="M30,317 H195 L204,326 V350 H30 Z" fill="white" stroke="#789AA8"/>
+<path d="M195,317 V326 H204" fill="none" stroke="#789AA8"/>
+<text x="117" y="339" font-size="15" font-weight="normal" text-anchor="middle" fill="#183D4C">Regla IoT</text>
+<path d="M318,266 l8,-8 h244 v160 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M562,266 l8,-8 M562,266 v160" fill="none" stroke="#5A7D8E"/>
+<rect x="318" y="266" width="244" height="160" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="440.0" y="287" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«executionEnvironment»</text>
+<text x="440.0" y="310" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">AWS Lambda</text>
+<path d="M324,315 H547 L556,324 V346 H324 Z" fill="white" stroke="#789AA8"/>
+<path d="M547,315 V324 H556" fill="none" stroke="#789AA8"/>
+<text x="440" y="336" font-size="15" font-weight="normal" text-anchor="middle" fill="#183D4C">ActualizarUltimoDatoDynamo</text>
+<path d="M324,351 H547 L556,360 V382 H324 Z" fill="white" stroke="#789AA8"/>
+<path d="M547,351 V360 H556" fill="none" stroke="#789AA8"/>
+<text x="440" y="372" font-size="15" font-weight="normal" text-anchor="middle" fill="#183D4C">GetLatest</text>
+<path d="M324,387 H547 L556,396 V418 H324 Z" fill="white" stroke="#789AA8"/>
+<path d="M547,387 V396 H556" fill="none" stroke="#789AA8"/>
+<text x="440" y="408" font-size="15" font-weight="normal" text-anchor="middle" fill="#183D4C">GetTimeseries</text>
+<path d="M634,266 l8,-8 h198 v78 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M832,266 l8,-8 M832,266 v78" fill="none" stroke="#5A7D8E"/>
+<rect x="634" y="266" width="198" height="78" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="733.0" y="287" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«servicioAdministrado»</text>
+<text x="733.0" y="310" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">DynamoDB</text>
+<text x="733.0" y="332" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">turbina_latest</text>
+<path d="M634,370 l8,-8 h198 v78 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M832,370 l8,-8 M832,370 v78" fill="none" stroke="#5A7D8E"/>
+<rect x="634" y="370" width="198" height="78" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="733.0" y="391" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«servicioAdministrado»</text>
+<text x="733.0" y="414" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">Amazon Athena</text>
+<text x="733.0" y="436" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">Consulta SQL</text>
+<path d="M634,477 l8,-8 h198 v74 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M832,477 l8,-8 M832,477 v74" fill="none" stroke="#5A7D8E"/>
+<rect x="634" y="477" width="198" height="74" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="733.0" y="498" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«servicioAdministrado»</text>
+<text x="733.0" y="521" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">Glue Data Catalog</text>
+<text x="733.0" y="543" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">Metadatos</text>
+<path d="M322,477 l8,-8 h220 v74 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M542,477 l8,-8 M542,477 v74" fill="none" stroke="#5A7D8E"/>
+<rect x="322" y="477" width="220" height="74" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="432.0" y="498" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«servicioAdministrado»</text>
+<text x="432.0" y="521" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">Amazon S3</text>
+<text x="432.0" y="543" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">Histórico JSON</text>
+<path d="M24,386 l8,-8 h186 v54 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M210,386 l8,-8 M210,386 v54" fill="none" stroke="#5A7D8E"/>
+<rect x="24" y="386" width="186" height="54" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="117.0" y="407" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«servicioAdministrado»</text>
+<text x="117.0" y="430" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">CloudFront</text>
+<path d="M24,489 l8,-8 h186 v54 l-8,8 Z" fill="#EDF4F7" stroke="#5A7D8E"/>
+<path d="M210,489 l8,-8 M210,489 v54" fill="none" stroke="#5A7D8E"/>
+<rect x="24" y="489" width="186" height="54" rx="0" fill="#F4F8FA" stroke="#5A7D8E" stroke-width="1.2"/>
+<text x="117.0" y="510" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">«servicioAdministrado»</text>
+<text x="117.0" y="533" font-size="17" font-weight="bold" text-anchor="middle" fill="#183D4C">S3 · Sitio web</text>
+<path d="M596,142 V208 H16 V302 H24" fill="none" stroke="white" stroke-width="5"/>
+<path d="M596,142 V208 H16 V302 H24" fill="none" stroke="#355E71" stroke-width="1.5"/>
+<text x="203" y="202" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Wi-Fi + Internet · MQTT/TLS · 8883</text>
+<path d="M660,79 H638 V190 H582 V385 H562" fill="none" stroke="white" stroke-width="5"/>
+<path d="M660,79 H638 V190 H582 V385 H562" fill="none" stroke="#355E71" stroke-width="1.5"/>
+<text x="590" y="241" font-size="14" font-weight="normal" text-anchor="start" fill="#183D4C">HTTPS · Function URLs</text>
+<path d="M808,143 V202 H852 V442 H236 V414 H210" fill="none" stroke="white" stroke-width="5"/>
+<path d="M808,143 V202 H852 V442 H236 V414 H210" fill="none" stroke="#355E71" stroke-width="1.5"/>
+<text x="790" y="196" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">HTTPS · Sitio</text>
+<path d="M210,303 H318" fill="none" stroke="white" stroke-width="5"/>
+<path d="M210,303 H318" fill="none" stroke="#355E71" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#open)"/>
+<text x="264" y="297" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">Invoca</text>
+<path d="M562,350 H732 V344" fill="none" stroke="white" stroke-width="5"/>
+<path d="M562,350 H732 V344" fill="none" stroke="#355E71" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#open)"/>
+<text x="730" y="359" font-size="12" font-weight="normal" text-anchor="middle" fill="#183D4C">Actualiza / consulta</text>
+<path d="M562,399 H634" fill="none" stroke="white" stroke-width="5"/>
+<path d="M562,399 H634" fill="none" stroke="#355E71" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#open)"/>
+<text x="598" y="391" font-size="14" font-weight="normal" text-anchor="middle" fill="#183D4C">SQL</text>
+<path d="M732,448 V477" fill="none" stroke="white" stroke-width="5"/>
+<path d="M732,448 V477" fill="none" stroke="#355E71" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#open)"/>
+<text x="795" y="466" font-size="12" font-weight="normal" text-anchor="middle" fill="#183D4C">Catálogo</text>
+<path d="M634,421 H606 V514 H542" fill="none" stroke="white" stroke-width="5"/>
+<path d="M634,421 H606 V514 H542" fill="none" stroke="#355E71" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#open)"/>
+<text x="574" y="506" font-size="12" font-weight="normal" text-anchor="middle" fill="#183D4C">Lee datos</text>
+<path d="M117,355 V365 H260 V514 H322" fill="none" stroke="white" stroke-width="5"/>
+<path d="M117,355 V365 H260 V514 H322" fill="none" stroke="#355E71" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#open)"/>
+<text x="284" y="506" font-size="13" font-weight="normal" text-anchor="middle" fill="#183D4C">JSON</text>
+<path d="M117,440 V489" fill="none" stroke="white" stroke-width="5"/>
+<path d="M117,440 V489" fill="none" stroke="#355E71" stroke-width="1.5" stroke-dasharray="6 5" marker-end="url(#open)"/>
+<text x="167" y="471" font-size="12" font-weight="normal" text-anchor="middle" fill="#183D4C">Origen</text>
+<text x="20" y="580" font-size="14" font-weight="normal" text-anchor="start" fill="#183D4C">Nodo 3D: dispositivo o entorno. Pliegue: artefacto de software o configuración.</text>
+<text x="20" y="601" font-size="14" font-weight="normal" text-anchor="start" fill="#183D4C">Línea continua: comunicación. Flecha discontinua: dependencia o uso.</text>
+</g></svg>

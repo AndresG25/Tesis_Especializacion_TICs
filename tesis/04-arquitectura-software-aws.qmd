@@ -58,6 +58,28 @@ ESP3 Gateway
 
 La separación entre ruta *Latest* e histórica es una decisión central. El último dato se consulta de forma frecuente, por ejemplo, cada cierto número de segundos desde el dashboard, 30 segundos en este caso; por eso se almacena en **DynamoDB**, que permite lectura directa por clave. En cambio, el histórico se consulta por rangos de tiempo, variables y periodos específicos; por eso se almacena en **S3**, se cataloga con Glue y se consulta con **Athena**. Esta separación evita usar **Athena** como base operativa de baja latencia y evita usar **DynamoDB** como repositorio histórico de análisis pesado [@aws_dynamodb_core_components; @aws_s3_prefixes; @aws_athena_glue_catalog; @aws_athena_partitions; @aws_serverless_lens].
 
+<!-- INICIO UML: fig-uml-despliegue -->
+
+La @fig-uml-despliegue muestra la distribución del software entre los dispositivos locales, los servicios administrados de AWS y el navegador del usuario. Los tres nodos ESP32-C6 ejecutan funciones diferenciadas de adquisición, integración y comunicación con la nube, conectadas mediante ESP-NOW, UART y MQTT sobre TLS. En AWS, IoT Core recibe la telemetría y las funciones Lambda realizan operaciones de actualización y consulta. DynamoDB conserva el último registro disponible, mientras que S3 almacena el histórico que consulta Athena con apoyo de los metadatos de Glue. El dashboard se ejecuta en el navegador y utiliza conexiones HTTPS para consultar las funciones Lambda; sus archivos se alojan en S3 y se distribuyen mediante CloudFront. Esta representación permite identificar dónde se ejecuta cada programa, qué servicios utiliza y cuáles son sus conexiones con el resto del sistema.
+
+```{=latex}
+\FloatBarrier
+\begin{landscape}
+\begingroup
+\singlespacing
+\captionsetup{font=small}
+```
+
+![Diagrama UML de despliegue de la arquitectura IoT Edge–AWS y su interfaz web. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026.](fig/uml/01_despliegue.pdf){#fig-uml-despliegue width=100% fig-align="center" fig-pos="H"}
+
+```{=latex}
+\endgroup
+\end{landscape}
+\FloatBarrier
+```
+
+<!-- FIN UML: fig-uml-despliegue -->
+
 ## Ingesta segura con **AWS IoT Core**
 
 **AWS IoT Core** funciona como punto de entrada de la arquitectura cloud planteada. La ESP3 se conecta como cliente a **AWS IoT Core** mediante **MQTT** usando **TLS** y certificados **X.509** para asegurar la transmisión de los datos. Esta estructura busca que no se expongan las credenciales de usuario de AWS directamente en el firmware de la ESP3. Desde la visión de la seguridad, el certificado **X.509** se usa para autenticar el dispositivo ante AWS, la política IoT autoriza o deniega las acciones que puede ejecutar y el tópico **MQTT** define el canal lógico de publicación de los datos [@aws_iot_protocols; @oasis_mqtt5; @rfc8446; @aws_iot_x509; @aws_iot_policies; @aws_iot_security_best_practices].
@@ -261,6 +283,28 @@ En este proyecto la visualización se implementa como una aplicación **React/Vi
 El despliegue del dashboard se realiza como sitio estático en **S3** y distribución mediante **CloudFront**. En este patrón, **S3** funciona como origen del contenido y **CloudFront** como capa de distribución global y control de acceso. Para una Single Page Application, el objeto raíz debe ser index.html, y en una configuración completa se deben mapear errores 403/404 hacia index.html para soportar rutas del lado del cliente [@aws_s3_static_website; @aws_cloudfront_developer_guide; @aws_cloudfront_custom_error_pages; @vite_docs].
 
 Por otra parte, desde la visión de la seguridad, el bucket donde se aloja el dashboard no debería exponerse públicamente si el servicio de AWS **CloudFront** es la puerta de entrada. La práctica recomendada es usar Origin Access Control u otro mecanismo equivalente para que los usuarios accedan al frontend mediante **CloudFront** y no directamente al bucket. También se recomienda restringir **CORS** en las Function URLs al dominio final del dashboard [@aws_cloudfront_oac; @aws_s3_bucket_policies; @aws_lambda_url_cors; @aws_iam_least_privilege].
+
+<!-- INICIO UML: fig-uml-secuencia-consultas -->
+
+La @fig-uml-secuencia-consultas modela las dos interacciones principales mediante las cuales el dashboard obtiene información del sistema. La consulta de último dato utiliza la función GetLatest para recuperar de DynamoDB el registro asociado al identificador del dispositivo y actualizar las tarjetas de las variables. La consulta histórica se inicia cuando el usuario selecciona una variable y un intervalo de tiempo; GetTimeseries solicita a Athena los datos correspondientes, almacenados en S3 y descritos por el catálogo de Glue. Para esta segunda interacción, el modelo representa el inicio de la consulta, el seguimiento de su estado y la recuperación de los resultados que permiten construir el gráfico histórico. La separación de ambas rutas permite actualizar frecuentemente el estado del sistema y reservar las consultas históricas para las solicitudes de análisis del usuario.
+
+```{=latex}
+\FloatBarrier
+\begin{landscape}
+\begingroup
+\singlespacing
+\captionsetup{font=small}
+```
+
+![Diagrama UML de secuencia de las consultas de último dato y de series históricas desde el dashboard. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026.](fig/uml/03_secuencia_consultas.pdf){#fig-uml-secuencia-consultas width=100% fig-align="center" fig-pos="H"}
+
+```{=latex}
+\endgroup
+\end{landscape}
+\FloatBarrier
+```
+
+<!-- FIN UML: fig-uml-secuencia-consultas -->
 
 ## Evidencias de implementación
 

@@ -1,0 +1,32 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 17
+skinparam shadowing false
+skinparam ArrowColor #315D70
+skinparam sequenceParticipantBackgroundColor #EAF5F5
+skinparam sequenceParticipantBorderColor #3B6879
+skinparam sequenceLifeLineBorderColor #9CB1BA
+skinparam sequenceGroupBackgroundColor #F7FAFB
+skinparam sequenceGroupBorderColor #9CB1BA
+skinparam maxMessageSize 180
+hide footbox
+participant "ESP3" as E3
+participant "AWS IoT Core" as IOT
+[-> E3 : JSON por UART desde ESP2
+E3 -> E3 : Reconstruir trama; comprobar llaves y tamaño
+alt Trama admitida
+  alt MQTT conectado
+    E3 ->> IOT : Publicar JSON (MQTT/TLS, QoS 1)
+    IOT -->> E3 : PUBACK
+  else MQTT desconectado
+    E3 -> E3 : Descartar mensaje y registrar aviso
+  end
+else Trama rechazada
+  E3 -> E3 : Descartar trama y registrar error
+end
+note over E3,IOT
+PUBACK confirma recepción en el broker.
+El almacenamiento en AWS es posterior.
+end note
+@enduml

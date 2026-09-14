@@ -1,0 +1,234 @@
+[ 1/11] index.qmd
+[ 2/11] 02-marco-referencia.qmd
+[ 3/11] 03-arquitectura-hardware-iot-edge.qmd
+[ 4/11] 04-arquitectura-software-aws.qmd
+[ 5/11] 05-pruebas-validacion.qmd
+[ 6/11] 06-analisis-costos-resultados.qmd
+[ 7/11] 07-conclusiones-trabajos-futuros.qmd
+[ 8/11] anexos/anexo-a-codigo-esp1.qmd
+[ 9/11] anexos/anexo-b-codigo-esp2.qmd
+[10/11] anexos/anexo-c-codigo-esp3.qmd
+[11/11] anexos/anexo-d-lambdas-frontend.qmd
+
+pandoc 
+  to: latex
+  output-file: index.tex
+  standalone: true
+  toc: false
+  number-sections: true
+  top-level-division: chapter
+  pdf-engine: pdflatex
+  variables:
+    graphics: true
+    tables: true
+  default-image-extension: pdf
+  cite-method: natbib
+  
+metadata
+  crossref:
+    chapters: true
+    fig-title: Figura
+    tbl-title: Tabla nro.
+    fig-prefix: Figura
+    tbl-prefix: Tabla nro.
+    sec-prefix: Sección
+    eq-prefix: Ecuación
+  documentclass: book
+  papersize: letter
+  block-headings: true
+  bibliography:
+    - bibliografia.bib
+  lang: es
+  classoption:
+    - 12pt
+    - oneside
+  title-block-style: none
+  lof: false
+  lot: false
+  colorlinks: true
+  linkcolor: black
+  citecolor: black
+  urlcolor: blue
+  fig-cap-location: bottom
+  tbl-cap-location: top
+  geometry:
+    - includeheadfoot
+    - inner=3cm
+    - outer=2.5cm
+    - top=2.5cm
+    - bottom=2.5cm
+    - bindingoffset=0cm
+  biblio-style: plainnat
+  title: Desarrollo de una arquitectura escalable de Big Data en AWS alimentada mediante un sistema de IoT
+  subtitle: Aplicación en monitoreo de generación eólica de pequeña escala
+  author: Carlos Andrés Gómez Flórez
+  
+
+Rendering PDF
+running pdflatex - 1
+  This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+generating bibliography
+  This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+  The top-level auxiliary file: index.aux
+  The style file: plainnat.bst
+  Database file #1: bibliografia.bib
+  Repeated entry---line 825 of file bibliografia.bib
+   : @misc{espressif_sdspi_host_esp32c6
+   :                                   ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 833 of file bibliografia.bib
+   : @techreport{rfc8446
+   :                    ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 843 of file bibliografia.bib
+   : @techreport{rfc8259_json
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 853 of file bibliografia.bib
+   : @techreport{rfc8446
+   :                    ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 863 of file bibliografia.bib
+   : @techreport{rfc8259_json
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 873 of file bibliografia.bib
+   : @techreport{rfc8446
+   :                    ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 899 of file bibliografia.bib
+   : @misc{aws_dynamodb_query
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 907 of file bibliografia.bib
+   : @misc{aws_dynamodb_core_components
+   :                                   ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 915 of file bibliografia.bib
+   : @misc{aws_dynamodb_query
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 923 of file bibliografia.bib
+   : @misc{aws_athena_partitions
+   :                            ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 931 of file bibliografia.bib
+   : @techreport{rfc8259_json
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 941 of file bibliografia.bib
+   : @misc{apache_parquet_format
+   :                            ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 949 of file bibliografia.bib
+   : @techreport{rfc8259_json
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 959 of file bibliografia.bib
+   : @misc{aws_glue_crawlers
+   :                        ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 975 of file bibliografia.bib
+   : @misc{apache_parquet_format
+   :                            ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 983 of file bibliografia.bib
+   : @techreport{rfc8259_json
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1016 of file bibliografia.bib
+   : @misc{aws_athena_partitions
+   :                            ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1024 of file bibliografia.bib
+   : @misc{aws_lambda_function_urls
+   :                               ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1032 of file bibliografia.bib
+   : @misc{aws_lambda_url_cors
+   :                          ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1048 of file bibliografia.bib
+   : @misc{aws_lambda_function_urls
+   :                               ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1056 of file bibliografia.bib
+   : @misc{aws_dynamodb_query
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1064 of file bibliografia.bib
+   : @misc{aws_athena_what_is
+   :                         ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1072 of file bibliografia.bib
+   : @misc{aws_athena_partitions
+   :                            ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1088 of file bibliografia.bib
+   : @misc{aws_lambda_url_cors
+   :                          ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1096 of file bibliografia.bib
+   : @misc{aws_cloudfront_developer_guide
+   :                                     ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1104 of file bibliografia.bib
+   : @misc{aws_iam_least_privilege
+   :                              ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1112 of file bibliografia.bib
+   : @misc{aws_iam_least_privilege
+   :                              ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1128 of file bibliografia.bib
+   : @misc{aws_iot_rules
+   :                    ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1160 of file bibliografia.bib
+   : @misc{aws_iam_least_privilege
+   :                              ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1216 of file bibliografia.bib
+   : @misc{aws_lambda_function_urls
+   :                               ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1224 of file bibliografia.bib
+   : @misc{aws_lambda_url_cors
+   :                          ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1232 of file bibliografia.bib
+   : @misc{aws_cloudfront_developer_guide
+   :                                     ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1240 of file bibliografia.bib
+   : @misc{aws_s3_bucket_policies
+   :                             ,
+  I'm skipping whatever remains of this entry
+  Repeated entry---line 1248 of file bibliografia.bib
+   : @misc{aws_iam_least_privilege
+   :                              ,
+  I'm skipping whatever remains of this entry
+  Warning--can't use both volume and number fields in perera_sensing_service_2013
+  (There were 34 error messages)
+  
+running pdflatex - 2
+  This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+running pdflatex - 3
+  This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+running pdflatex - 4
+  This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+
+Output created: output/Desarrollo-de-una-arquitectura-escalable-de-Big-Data-en-AWS-alimentada-mediante-un-sistema-de-IoT.pdf
+

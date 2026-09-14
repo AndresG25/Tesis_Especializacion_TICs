@@ -1,0 +1,38 @@
+{
+  "version": "propuesta-uml-1",
+  "fecha": "2026-09-14",
+  "documento_base": {
+    "archivo": "Desarrollo-de-una-arquitectura-escalable-de-Big-Data-en-AWS-alimentada-mediante-un-sistema-de-IoT(2).pdf",
+    "paginas": 141,
+    "sha256": "90ea15ac23d53565b1661710cd70ad7f8f151690ec51bab6055a13a4f7584ee7"
+  },
+  "firmware": [
+    {
+      "archivo": "ESP1/Firmware nodo ESP1 - Variables Generador/main/main7.c",
+      "sha256": "f2eb154fc9632114de535e71643d6b21be80e816e02c2797e4251b3f174654e3"
+    },
+    {
+      "archivo": "ESP2/Firmware nodo 2 - Variables ambientables e integración con ESP1/main/main7.c",
+      "sha256": "ef4034330c13f487a6ff1e6be57d0b0c983defee6f81a6af554f3f5635620519"
+    },
+    {
+      "archivo": "ESP3/Firmware nodo 3 e integración con AWS_IoT_Core/main/main2.c",
+      "sha256": "07bba9dc860f77e13d9198d462f2f6e186c87136c9a7aa4c1bfdde15c189de72"
+    }
+  ],
+  "alcance": {
+    "figura_1": "Modelo lógico de despliegue basado en la tesis; diseño vectorial mediante generar_despliegue.py; alternativa PlantUML incluida.",
+    "figura_2": "Flujo contrastado con firmware ESP1, ESP2 y ESP3. Inicialización y concurrencia resumidas.",
+    "figura_3": "Diseño descrito en la tesis más detalle propuesto de invocación de Athena; no se suministraron Lambda ni frontend. Caso exitoso."
+  },
+  "generacion": {
+    "plantuml": "1.2026.8",
+    "graphviz_modelo_alternativo": "2.43.0",
+    "motor_figura_1": "SVG con coordenadas estables",
+    "motor_figuras_2_3": "PlantUML"
+  },
+  "repositorio_modificado": false,
+  "tesis_modificada": false,
+  "pdf_revision_paginas": 5,
+  "salidas_vectoriales": true
+}

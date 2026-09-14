@@ -1,0 +1,77 @@
+@startuml
+top to bottom direction
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 16
+skinparam shadowing false
+skinparam roundcorner 4
+skinparam nodesep 20
+skinparam ranksep 12
+skinparam ArrowColor #425A68
+skinparam ArrowFontSize 15
+skinparam packageStyle rectangle
+skinparam nodeBackgroundColor #F3F8FA
+skinparam nodeBorderColor #3B6879
+skinparam artifactBackgroundColor #FFFFFF
+skinparam artifactBorderColor #7093A1
+skinparam packageBorderColor #8BA6B1
+
+package "Sistema local · IoT Edge" as EDGE #F1F9F5 {
+  node "ESP1 : ESP32-C6" as E1 <<device>> {
+    artifact "Firmware de adquisición\nVoltaje · RPM · GPS" as F1
+  }
+  node "ESP2 : ESP32-C6" as E2 <<device>> {
+    artifact "Firmware de integración\nAmbiente · RTC · OLED\nMicroSD · JSON" as F2
+  }
+  node "ESP3 : ESP32-C6" as E3 <<device>> {
+    artifact "Firmware de enlace cloud\nUART · Wi-Fi · MQTT/TLS" as F3
+  }
+  E1 -right-> E2 : ESP-NOW
+  E2 -right-> E3 : UART\n9600 bit/s
+}
+
+package "AWS · Servicios administrados" as AWS #F5F8FD {
+  node "AWS IoT Core" as IOT <<executionEnvironment>> {
+    artifact "Regla de enrutamiento IoT" as RULE
+  }
+  node "AWS Lambda" as LAM <<executionEnvironment>> {
+    artifact "ActualizarUltimoDatoDynamo" as UPDATE
+    artifact "GetLatest" as LATEST
+    artifact "GetTimeseries" as SERIES
+    UPDATE -[hidden]down- LATEST
+    LATEST -[hidden]down- SERIES
+  }
+  node "Amazon DynamoDB\nturbina_latest" as DDB <<servicioAdministrado>>
+  node "Amazon S3\nHistórico JSON" as DATA <<servicioAdministrado>>
+  node "Amazon Athena\nConsulta SQL" as ATH <<servicioAdministrado>>
+  node "AWS Glue Data Catalog\nEsquema y particiones" as GLUE <<servicioAdministrado>>
+  node "Amazon S3\nSitio web estático" as WEB <<servicioAdministrado>> {
+    artifact "Distribución compilada\nReact / Vite" as DIST
+  }
+  node "Amazon CloudFront\nDistribución del sitio" as CDN <<servicioAdministrado>>
+}
+
+node "Equipo del usuario" as USER <<device>> {
+  node "Navegador web" as BROWSER <<executionEnvironment>> {
+    artifact "Dashboard React\nen ejecución" as APP
+  }
+}
+
+E3 -- IOT : Wi-Fi + Internet\nMQTT/TLS · 8883
+IOT .right.> LAM : invoca actualización
+IOT ..> DATA : guarda JSON
+LAM ..> DDB : actualiza / consulta\npor clientId
+LAM ..> ATH : consulta histórica
+ATH ..> DATA : lee datos
+ATH ..> GLUE : consulta metadatos
+BROWSER -- LAM : HTTPS\nFunction URLs de consulta
+BROWSER -- CDN : HTTPS\ncarga del sitio
+CDN ..> WEB : recupera archivos del sitio
+
+legend bottom left
+  Nodo 3D: dispositivo o entorno que aloja recursos.
+  Rectángulo con pliegue: artefacto de software o configuración.
+  Línea continua: camino de comunicación. Flecha discontinua: dependencia o uso.
+  Los servicios AWS se modelan como entornos administrados; se omite su infraestructura interna.
+endlegend
+@enduml

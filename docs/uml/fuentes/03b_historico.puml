@@ -1,0 +1,32 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 17
+skinparam shadowing false
+skinparam ArrowColor #315D70
+skinparam sequenceParticipantBackgroundColor #EAF5F5
+skinparam sequenceParticipantBorderColor #3B6879
+skinparam sequenceLifeLineBorderColor #9CB1BA
+skinparam sequenceGroupBackgroundColor #F7FAFB
+skinparam sequenceGroupBorderColor #9CB1BA
+skinparam maxMessageSize 135
+hide footbox
+participant "Dashboard" as WEB
+participant "Lambda\nGetTimeseries" as L
+participant "Athena" as A
+WEB -> L : HTTPS: variable e intervalo
+L -> A : StartQueryExecution (SQL)
+A --> L : ID de consulta
+note over A
+Datos: S3.
+Metadatos: Glue.
+end note
+loop Consulta en curso
+L -> A : GetQueryExecution
+A --> L : Estado
+end
+L -> A : GetQueryResults
+A --> L : Filas del resultado
+L --> WEB : Puntos de la serie
+WEB -> WEB : Dibujar gráfico
+@enduml

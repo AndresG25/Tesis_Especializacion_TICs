@@ -1,0 +1,52 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 4
+skinparam ArrowColor #315D70
+skinparam sequenceParticipantBackgroundColor #EAF5F5
+skinparam sequenceParticipantBorderColor #3B6879
+skinparam sequenceLifeLineBorderColor #9CB1BA
+skinparam sequenceGroupBackgroundColor #F7FAFB
+skinparam sequenceGroupBorderColor #9CB1BA
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 210
+hide footbox
+
+participant "ESP1\nAdquisición" as E1
+participant "ESP2\nIntegración" as E2
+participant "ESP3\nGateway" as E3
+participant "AWS\nIoT Core" as IOT
+
+note over E1,E2 #F1F8F4
+  Sensores y microSD disponibles.
+  Recepción ESP-NOW y muestreo local
+  independientes y periódicos.
+end note
+E1 -> E1 : Medir voltaje, RPM y GPS
+E1 ->> E2 : Transmitir estructura por ESP-NOW
+E2 -> E2 : Actualizar las últimas medidas remotas
+loop 10 muestras válidas
+  E2 -> E2 : Leer sensores y RTC; integrar datos
+  E2 -> E2 : Registrar muestra en microSD
+end
+E2 -> E2 : Calcular promedios y construir JSON
+E2 ->> E3 : Transmitir JSON por UART
+E2 -> E2 : Reiniciar acumuladores y archivo del lote
+E3 -> E3 : Reconstruir trama; comprobar llaves y tamaño
+alt Trama admitida
+  alt MQTT conectado
+    E3 ->> IOT : Publicar JSON por MQTT/TLS, QoS 1
+    IOT -->> E3 : PUBACK: recepción por el broker
+  else MQTT desconectado
+    E3 -> E3 : Descartar mensaje y registrar aviso
+  end
+else Trama rechazada
+  E3 -> E3 : Descartar trama y registrar error
+end
+note over E3,IOT #F5F7FA
+  PUBACK confirma recepción en el broker.
+  El almacenamiento en AWS es posterior.
+end note
+@enduml

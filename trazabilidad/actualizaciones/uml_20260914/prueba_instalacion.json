@@ -1,0 +1,24 @@
+{
+  "entorno": "R 4.2.2, Linux. Instalacion Windows no ejecutada en este entorno.",
+  "instalacion_sobre_copia_base": {
+    "codigo": 0,
+    "salida": "Actualizacion UML instalada: 36 archivos.\nRespaldo local: /workspace/scratch/0919afba4fe7/tmp/prueba_uml/instalacion/trazabilidad/ejecuciones/actualizacion_uml_20260914_022815_6 \nSiguiente paso en la consola de R:\nsource(\"verificar_uml.R\", encoding = \"UTF-8\")\nsource(\"renderizar_tesis.R\", encoding = \"UTF-8\")\nDespues revise los cambios y haga Commit y Push desde la pestana Git.\n"
+  },
+  "verificacion_de_huellas": {
+    "codigo": 0,
+    "salida": "\nIDENTICO \n      35 \nActualización UML verificada. Los archivos coinciden con la entrega.\nEl PDF y las ejecuciones locales se revisan con renderizar_tesis.R.\n"
+  },
+  "segunda_aplicacion_sin_modificaciones": {
+    "codigo": 0,
+    "salida": "La actualizacion UML ya esta instalada. No se modifico ningun archivo.\nSiguiente paso en la consola de R:\nsource(\"verificar_uml.R\", encoding = \"UTF-8\")\nsource(\"renderizar_tesis.R\", encoding = \"UTF-8\")\nDespues revise los cambios y haga Commit y Push desde la pestana Git.\n"
+  },
+  "historial_git_preservado_en_prueba": true,
+  "rechazo_de_edicion_local_sin_cambios": {
+    "codigo": 1,
+    "salida": "Error: No se modifico ningun archivo.\nCambios locales que requieren revision: tesis/03-arquitectura-hardware-iot-edge.qmd\nConserve sus cambios y revise las diferencias antes de integrar esta version.\nExecution halted\n"
+  },
+  "compatibilidad_finales_de_linea": {
+    "codigo": 0,
+    "salida": "Actualizacion UML instalada: 36 archivos.\nRespaldo local: /workspace/scratch/0919afba4fe7/tmp/prueba_uml/cambios_locales/trazabilidad/ejecuciones/actualizacion_uml_20260914_022816_34 \nSiguiente paso en la consola de R:\nsource(\"verificar_uml.R\", encoding = \"UTF-8\")\nsource(\"renderizar_tesis.R\", encoding = \"UTF-8\")\nDespues revise los cambios y haga Commit y Push desde la pestana Git.\n"
+  }
+}

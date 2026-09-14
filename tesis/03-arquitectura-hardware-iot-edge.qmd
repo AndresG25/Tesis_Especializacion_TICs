@@ -347,6 +347,28 @@ La función verify_and_format_json revisa que el mensaje recibido mediante **UAR
 
 El uso de QoS 1 (Quality of Service nivel 1) en esp_mqtt_client_publish indica que desde el cliente se solicita confirmación de entrega al broker al menos una vez. Esto mejora confiabilidad frente a QoS 0, aunque puede permitir duplicados si ocurre retransmisión, situación que debe contemplarse en el procesamiento. En una arquitectura de datos histórica, los duplicados deben manejarse con timestamp, clientId e identificadores de mensaje para evitar registros repetidos o inconsistencias en series temporales [@espressif_mqtt_client_esp32c6; @oasis_mqtt5; @aws_iot_protocols; @marjani_big_iot_2017; @nist_ir_8228].
 
+<!-- INICIO UML: fig-uml-secuencia-telemetria -->
+
+La @fig-uml-secuencia-telemetria representa las interacciones entre los tres nodos durante la adquisición y publicación de telemetría. ESP1 transmite las mediciones del generador mediante ESP-NOW, mientras que ESP2 las integra con las variables locales y registra las muestras en la microSD. Al completar diez muestras válidas, ESP2 calcula los promedios, construye el mensaje JSON y lo envía por UART a ESP3. Este último nodo reconstruye la trama, comprueba sus delimitadores y tamaño, y publica el mensaje cuando existe conexión MQTT. El diagrama también identifica las decisiones que conducen al descarte de una trama rechazada o de un mensaje recibido durante una desconexión. La confirmación de AWS IoT Core corresponde a la recepción en el broker; las operaciones de almacenamiento en la nube se realizan posteriormente.
+
+```{=latex}
+\FloatBarrier
+\begin{landscape}
+\begingroup
+\singlespacing
+\captionsetup{font=small}
+```
+
+![Diagrama UML de secuencia de adquisición, integración y publicación de telemetría hacia AWS IoT Core. Fuente: elaboración propia con apoyo de ChatGPT, modelo GPT-6 Astra Media de OpenAI, 2026.](fig/uml/02_secuencia_telemetria.pdf){#fig-uml-secuencia-telemetria width=100% fig-align="center" fig-pos="H"}
+
+```{=latex}
+\endgroup
+\end{landscape}
+\FloatBarrier
+```
+
+<!-- FIN UML: fig-uml-secuencia-telemetria -->
+
 ## Contrato de datos Edge--Cloud
 
 El contrato de datos es el elemento que une el hardware, firmware y la nube. Si los nombres de campos cambian entre ESP2, AWS IoT Rule, **DynamoDB**, **Athena** y frontend, la arquitectura completa se rompe aunque la comunicación **MQTT** funcione bien. Por esta razón, el contrato debe definirse como una especificación estándar del sistema y no como una salida cualquiera del snprintf usado en el firmware, todo está interconectado en este caso [@iso_ieee_29148_2018; @rfc8259_json; @aws_iot_rules; @aws_dynamodb_core_components; @aws_athena_glue_catalog; @nist_ir_8228].

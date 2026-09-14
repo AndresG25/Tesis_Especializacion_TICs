@@ -1,0 +1,31 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 17
+skinparam shadowing false
+skinparam ArrowColor #315D70
+skinparam sequenceParticipantBackgroundColor #EAF5F5
+skinparam sequenceParticipantBorderColor #3B6879
+skinparam sequenceLifeLineBorderColor #9CB1BA
+skinparam sequenceGroupBackgroundColor #F7FAFB
+skinparam sequenceGroupBorderColor #9CB1BA
+skinparam maxMessageSize 180
+hide footbox
+participant "ESP1" as E1
+participant "ESP2" as E2
+note over E1,E2
+Sensores y microSD disponibles.
+Recepción ESP-NOW y muestreo
+local independientes y periódicos.
+end note
+E1 -> E1 : Medir voltaje, RPM y GPS
+E1 ->> E2 : Datos por ESP-NOW
+E2 -> E2 : Actualizar medidas remotas
+loop 10 muestras válidas
+E2 -> E2 : Leer sensores y RTC; integrar datos
+E2 -> E2 : Registrar muestra en microSD
+end
+E2 -> E2 : Promediar y construir JSON
+E2 ->] : JSON por UART a ESP3 (panel B)
+E2 -> E2 : Reiniciar acumuladores y archivo del lote
+@enduml

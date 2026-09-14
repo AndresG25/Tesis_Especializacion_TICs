@@ -1,0 +1,32 @@
+{
+  "version": "uml-20260914",
+  "base": "Tesis_GitHub_RStudio_Integrado.zip",
+  "archivos_previos_modificados": [
+    "tesis/03-arquitectura-hardware-iot-edge.qmd",
+    "tesis/04-arquitectura-software-aws.qmd"
+  ],
+  "archivos_previos_identicos": 191,
+  "bloques_agregados": 3,
+  "parrafos_aprobados_conservados": true,
+  "al_retirar_bloques_bytes_originales_restaurados": true,
+  "pdf_paginas": 144,
+  "pdf_md5": "3a63bc550340fa601ca991a9a7686860",
+  "figuras_totales": 30,
+  "figuras_nuevas": {
+    "3.2": 66,
+    "4.2": 79,
+    "4.3": 88
+  },
+  "numeros_figuras_previas_conservados": true,
+  "referencias_sin_resolver": 0,
+  "revision_visual": "Tres diagramas, sus pies, parrafos, transiciones y listado. Paginas horizontales; sin recortes ni solapamientos visibles en las figuras nuevas.",
+  "alcance_tecnico": "Telemetria contrastada con firmware. Consultas: modelo descrito en la tesis, pendiente de cotejo con codigo Lambda/frontend no suministrado.",
+  "entorno": {
+    "Quarto": "1.8.25",
+    "pdfLaTeX": "TeX Live 2023/Debian",
+    "PlantUML": "1.2026.8",
+    "CairoSVG": "2.9.1"
+  },
+  "advertencias_preexistentes": "BibTeX informa 34 mensajes de entradas repetidas y una advertencia volume/number. La bibliografia no fue modificada; Quarto completo el render con codigo 0.",
+  "paginacion": "Puede variar en el entorno local; usar identificadores de figuras."
+}

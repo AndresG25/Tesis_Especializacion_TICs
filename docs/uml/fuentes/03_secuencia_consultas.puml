@@ -1,0 +1,52 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 15
+skinparam shadowing false
+skinparam roundcorner 4
+skinparam ArrowColor #315D70
+skinparam sequenceParticipantBackgroundColor #EAF5F5
+skinparam sequenceParticipantBorderColor #3B6879
+skinparam sequenceLifeLineBorderColor #9CB1BA
+skinparam sequenceGroupBackgroundColor #F7FAFB
+skinparam sequenceGroupBorderColor #9CB1BA
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 150
+hide footbox
+
+participant "Dashboard\nNavegador" as WEB
+participant "Lambda\nGetLatest" as LATEST
+database "DynamoDB\nturbina_latest" as DDB
+participant "Lambda\nGetTimeseries" as SERIES
+participant "Amazon\nAthena" as ATH
+
+note over WEB,ATH #F1F8F4
+  Dashboard cargado y datos ya almacenados.
+  A y B son consultas independientes.
+end note
+group A · Último dato (actualización periódica)
+  WEB -> LATEST : HTTPS: consultar clientId
+  LATEST -> DDB : GetItem por clientId
+  DDB --> LATEST : Último registro
+  LATEST --> WEB : Respuesta JSON
+  WEB -> WEB : Actualizar tarjetas de variables
+end
+group B · Serie histórica (bajo demanda; caso exitoso)
+  WEB -> SERIES : HTTPS: variable e intervalo
+  SERIES -> ATH : StartQueryExecution (SQL)
+  ATH --> SERIES : Identificador de consulta
+  note over ATH #F3F6FC
+    Datos: S3.
+    Metadatos: Glue.
+    Participantes omitidos.
+  end note
+  loop Consulta en curso
+    SERIES -> ATH : GetQueryExecution
+    ATH --> SERIES : Estado de ejecución
+  end
+  SERIES -> ATH : GetQueryResults
+  ATH --> SERIES : Filas del resultado
+  SERIES --> WEB : Puntos de la serie
+  WEB -> WEB : Dibujar gráfico histórico
+end
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName DejaVu Sans
+skinparam defaultFontSize 17
+skinparam shadowing false
+skinparam ArrowColor #315D70
+skinparam sequenceParticipantBackgroundColor #EAF5F5
+skinparam sequenceParticipantBorderColor #3B6879
+skinparam sequenceLifeLineBorderColor #9CB1BA
+skinparam maxMessageSize 135
+hide footbox
+participant "Dashboard" as WEB
+participant "Lambda\nGetLatest" as L
+database "DynamoDB" as DB
+WEB -> L : HTTPS: consultar clientId
+L -> DB : GetItem (clientId)
+DB --> L : Último registro
+L --> WEB : Respuesta JSON
+WEB -> WEB : Actualizar tarjetas
+note over WEB,DB
+Dashboard cargado y datos almacenados.
+Actualización periódica del último dato.
+end note
+@enduml
