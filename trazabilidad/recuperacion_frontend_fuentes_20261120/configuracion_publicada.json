@@ -1,0 +1,8 @@
+{
+  "variables": {
+    "VITE_LATEST_URL": "https://2sj26mmaf3d3wr3e6e2dijbt7q0dboyg.lambda-url.us-east-2.on.aws/?clientId=ESP32C6-AWS",
+    "VITE_TIMESERIES_URL": "https://krsnuofvttymdbljbdyiqd3fdi0fwlhk.lambda-url.us-east-2.on.aws/",
+    "VITE_CLIENT_ID": "ESP32C6-AWS"
+  },
+  "observacion": "Los tres valores son direcciones de las Function URLs y el clientId ya presentes en el sitio publicado. No hay credenciales en estos archivos de entorno."
+}

@@ -1,0 +1,32 @@
+{
+  "bucket": "turbina-dashboard-web-andresito25",
+  "recuperacion_utc": "2026-11-20T05:20:38.046026+00:00",
+  "tipo": "Respaldo del sitio publicado",
+  "archivos": [
+    {
+      "archivo": "web/assets/index-BGNGohYv.js",
+      "bytes": 542719,
+      "sha256": "43c3695a8e28da2933800b2bafb2fbb4556a74948df6b1ec65c7c7ede3c5b6a3"
+    },
+    {
+      "archivo": "web/assets/index-nqMpL4T3.css",
+      "bytes": 1788,
+      "sha256": "323284445ffd48974464868a74c7e0e0f6499230439103be30df4661453a1a67"
+    },
+    {
+      "archivo": "web/favicon.svg",
+      "bytes": 9522,
+      "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+    },
+    {
+      "archivo": "web/icons.svg",
+      "bytes": 5031,
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+    },
+    {
+      "archivo": "web/index.html",
+      "bytes": 467,
+      "sha256": "4823a19617d6864f353d5cdbaaadb868eaaa81551fb423c30f98e65b094ddf14"
+    }
+  ]
+}

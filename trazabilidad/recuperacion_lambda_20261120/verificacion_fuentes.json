@@ -1,0 +1,36 @@
+{
+  "fecha_revision": "2026-11-20",
+  "metodo": "Comparacion SHA-256 y analisis estatico; sin invocaciones AWS.",
+  "fuentes": [
+    {
+      "funcion": "ActualizarUltimoDatoDynamo",
+      "archivo": "cloud/lambda/ActualizarUltimoDatoDynamo/lambda_function.py",
+      "sha256_fuente": "1561377d9fe601af7812fec0a907ce788e737af68458854a2a2521b536adae06",
+      "bytes": 3247,
+      "runtime": "python3.12",
+      "version": "$LATEST",
+      "ultima_modificacion_aws": "2026-05-15T20:11:28.000+0000",
+      "fuente_sin_modificaciones": true
+    },
+    {
+      "funcion": "GetLatest",
+      "archivo": "cloud/lambda/GetLatest/lambda_function.py",
+      "sha256_fuente": "a46b72fe19ba380617e755a02b411748e9892d461bf9e1d3301f129b93ab03ca",
+      "bytes": 3560,
+      "runtime": "python3.12",
+      "version": "$LATEST",
+      "ultima_modificacion_aws": "2026-05-16T05:25:53.000+0000",
+      "fuente_sin_modificaciones": true
+    },
+    {
+      "funcion": "GetTimeseries",
+      "archivo": "cloud/lambda/GetTimeseries/lambda_function.py",
+      "sha256_fuente": "8fc669e46c122b5dde93e423c1586905030dbcb2eb3816fc354836dac97cb5da",
+      "bytes": 18062,
+      "runtime": "python3.12",
+      "version": "$LATEST",
+      "ultima_modificacion_aws": "2026-05-28T20:19:24.000+0000",
+      "fuente_sin_modificaciones": true
+    }
+  ]
+}

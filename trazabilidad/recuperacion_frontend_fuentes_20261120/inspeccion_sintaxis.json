@@ -1,0 +1,842 @@
+{
+  "fecha_utc": "2026-11-20T11:14:44.459Z",
+  "parser": "espree 11.2.0",
+  "node_revision": "v24.22.3",
+  "archivos": [
+    {
+      "archivo": "src/App.jsx",
+      "sintaxis": "OK",
+      "imports": [
+        "react",
+        "./Historico"
+      ]
+    },
+    {
+      "archivo": "src/Historico.jsx",
+      "sintaxis": "OK",
+      "imports": [
+        "react",
+        "recharts"
+      ]
+    },
+    {
+      "archivo": "src/main.jsx",
+      "sintaxis": "OK",
+      "imports": [
+        "react",
+        "react-dom/client",
+        "./index.css",
+        "./App.jsx"
+      ]
+    },
+    {
+      "archivo": "vite.config.js",
+      "sintaxis": "OK",
+      "imports": [
+        "vite",
+        "@vitejs/plugin-react"
+      ]
+    },
+    {
+      "archivo": "eslint.config.js",
+      "sintaxis": "OK",
+      "imports": [
+        "@eslint/js",
+        "globals",
+        "eslint-plugin-react-hooks",
+        "eslint-plugin-react-refresh",
+        "eslint/config"
+      ]
+    }
+  ],
+  "node_24_0_0_cumple_engines_del_lock": true,
+  "diferencias_version_instalada_vs_lock": [],
+  "engines": [
+    {
+      "paquete": "node_modules/@babel/code-frame",
+      "version": "7.29.0",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/compat-data",
+      "version": "7.29.3",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/core",
+      "version": "7.29.0",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/generator",
+      "version": "7.29.1",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helper-compilation-targets",
+      "version": "7.28.6",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helper-globals",
+      "version": "7.28.0",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helper-module-imports",
+      "version": "7.28.6",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helper-module-transforms",
+      "version": "7.28.6",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helper-string-parser",
+      "version": "7.27.1",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helper-validator-identifier",
+      "version": "7.28.5",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helper-validator-option",
+      "version": "7.27.1",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/helpers",
+      "version": "7.29.2",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/parser",
+      "version": "7.29.3",
+      "node": ">=6.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/template",
+      "version": "7.28.6",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/traverse",
+      "version": "7.29.0",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@babel/types",
+      "version": "7.29.0",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint-community/eslint-utils",
+      "version": "4.9.1",
+      "node": "^12.22.0 || ^14.17.0 || >=16.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint-community/eslint-utils/node_modules/eslint-visitor-keys",
+      "version": "3.4.3",
+      "node": "^12.22.0 || ^14.17.0 || >=16.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint-community/regexpp",
+      "version": "4.12.2",
+      "node": "^12.0.0 || ^14.0.0 || >=16.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint/config-array",
+      "version": "0.23.5",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint/config-helpers",
+      "version": "0.6.0",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint/core",
+      "version": "1.2.1",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint/js",
+      "version": "10.0.1",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint/object-schema",
+      "version": "3.0.5",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@eslint/plugin-kit",
+      "version": "0.7.1",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@humanfs/core",
+      "version": "0.19.2",
+      "node": ">=18.18.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@humanfs/node",
+      "version": "0.16.8",
+      "node": ">=18.18.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@humanfs/types",
+      "version": "0.15.0",
+      "node": ">=18.18.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@humanwhocodes/module-importer",
+      "version": "1.0.1",
+      "node": ">=12.22",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@humanwhocodes/retry",
+      "version": "0.4.3",
+      "node": ">=18.18",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@jridgewell/resolve-uri",
+      "version": "3.1.2",
+      "node": ">=6.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-android-arm64",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-darwin-arm64",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-darwin-x64",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-freebsd-x64",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-linux-arm-gnueabihf",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-linux-arm64-gnu",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-linux-arm64-musl",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-linux-ppc64-gnu",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-linux-s390x-gnu",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-linux-x64-gnu",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-linux-x64-musl",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-openharmony-arm64",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-wasm32-wasi",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-win32-arm64-msvc",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@rolldown/binding-win32-x64-msvc",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/@vitejs/plugin-react",
+      "version": "6.0.2",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/acorn",
+      "version": "8.16.0",
+      "node": ">=0.4.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/balanced-match",
+      "version": "4.0.4",
+      "node": "18 || 20 || >=22",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/baseline-browser-mapping",
+      "version": "2.10.29",
+      "node": ">=6.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/brace-expansion",
+      "version": "5.0.6",
+      "node": "18 || 20 || >=22",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/browserslist",
+      "version": "4.28.2",
+      "node": "^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/clsx",
+      "version": "2.1.1",
+      "node": ">=6",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/cross-spawn",
+      "version": "7.0.6",
+      "node": ">= 8",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-array",
+      "version": "3.2.4",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-color",
+      "version": "3.1.0",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-ease",
+      "version": "3.0.1",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-format",
+      "version": "3.1.2",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-interpolate",
+      "version": "3.0.1",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-path",
+      "version": "3.1.0",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-scale",
+      "version": "4.0.2",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-shape",
+      "version": "3.2.0",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-time",
+      "version": "3.1.0",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-time-format",
+      "version": "4.1.0",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/d3-timer",
+      "version": "3.0.1",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/debug",
+      "version": "4.4.3",
+      "node": ">=6.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/detect-libc",
+      "version": "2.1.2",
+      "node": ">=8",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/escalade",
+      "version": "3.2.0",
+      "node": ">=6",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/escape-string-regexp",
+      "version": "4.0.0",
+      "node": ">=10",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/eslint",
+      "version": "10.4.0",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/eslint-plugin-react-hooks",
+      "version": "7.1.1",
+      "node": ">=18",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/eslint-scope",
+      "version": "9.1.2",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/eslint-visitor-keys",
+      "version": "5.0.1",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/espree",
+      "version": "11.2.0",
+      "node": "^20.19.0 || ^22.13.0 || >=24",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/esquery",
+      "version": "1.7.0",
+      "node": ">=0.10",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/esrecurse",
+      "version": "4.3.0",
+      "node": ">=4.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/estraverse",
+      "version": "5.3.0",
+      "node": ">=4.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/esutils",
+      "version": "2.0.3",
+      "node": ">=0.10.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/fdir",
+      "version": "6.5.0",
+      "node": ">=12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/file-entry-cache",
+      "version": "8.0.0",
+      "node": ">=16.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/find-up",
+      "version": "5.0.0",
+      "node": ">=10",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/flat-cache",
+      "version": "4.0.1",
+      "node": ">=16",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/fsevents",
+      "version": "2.3.3",
+      "node": "^8.16.0 || ^10.6.0 || >=11.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/gensync",
+      "version": "1.0.0-beta.2",
+      "node": ">=6.9.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/glob-parent",
+      "version": "6.0.2",
+      "node": ">=10.13.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/globals",
+      "version": "17.6.0",
+      "node": ">=18",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/ignore",
+      "version": "5.3.2",
+      "node": ">= 4",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/imurmurhash",
+      "version": "0.1.4",
+      "node": ">=0.8.19",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/internmap",
+      "version": "2.0.3",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/is-extglob",
+      "version": "2.1.1",
+      "node": ">=0.10.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/is-glob",
+      "version": "4.0.3",
+      "node": ">=0.10.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/jsesc",
+      "version": "3.1.0",
+      "node": ">=6",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/json5",
+      "version": "2.2.3",
+      "node": ">=6",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/levn",
+      "version": "0.4.1",
+      "node": ">= 0.8.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-android-arm64",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-darwin-arm64",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-darwin-x64",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-freebsd-x64",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-linux-arm-gnueabihf",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-linux-arm64-gnu",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-linux-arm64-musl",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-linux-x64-gnu",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-linux-x64-musl",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-win32-arm64-msvc",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/lightningcss-win32-x64-msvc",
+      "version": "1.32.0",
+      "node": ">= 12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/locate-path",
+      "version": "6.0.0",
+      "node": ">=10",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/minimatch",
+      "version": "10.2.5",
+      "node": "18 || 20 || >=22",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/nanoid",
+      "version": "3.3.12",
+      "node": "^10 || ^12 || ^13.7 || ^14 || >=15.0.1",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/optionator",
+      "version": "0.9.4",
+      "node": ">= 0.8.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/p-limit",
+      "version": "3.1.0",
+      "node": ">=10",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/p-locate",
+      "version": "5.0.0",
+      "node": ">=10",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/path-exists",
+      "version": "4.0.0",
+      "node": ">=8",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/path-key",
+      "version": "3.1.1",
+      "node": ">=8",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/picomatch",
+      "version": "4.0.4",
+      "node": ">=12",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/postcss",
+      "version": "8.5.14",
+      "node": "^10 || ^12 || >=14",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/prelude-ls",
+      "version": "1.2.1",
+      "node": ">= 0.8.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/punycode",
+      "version": "2.3.1",
+      "node": ">=6",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/react",
+      "version": "19.2.6",
+      "node": ">=0.10.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/recharts",
+      "version": "3.8.1",
+      "node": ">=18",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/rolldown",
+      "version": "1.0.1",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/shebang-command",
+      "version": "2.0.0",
+      "node": ">=8",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/shebang-regex",
+      "version": "3.0.0",
+      "node": ">=8",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/source-map-js",
+      "version": "1.2.1",
+      "node": ">=0.10.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/tinyglobby",
+      "version": "0.2.16",
+      "node": ">=12.0.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/type-check",
+      "version": "0.4.0",
+      "node": ">= 0.8.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/vite",
+      "version": "8.0.13",
+      "node": "^20.19.0 || >=22.12.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/which",
+      "version": "2.0.2",
+      "node": ">= 8",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/word-wrap",
+      "version": "1.2.5",
+      "node": ">=0.10.0",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/yocto-queue",
+      "version": "0.1.0",
+      "node": ">=10",
+      "node_24_0_0_compatible": true
+    },
+    {
+      "paquete": "node_modules/zod-validation-error",
+      "version": "4.0.2",
+      "node": ">=18.0.0",
+      "node_24_0_0_compatible": true
+    }
+  ]
+}

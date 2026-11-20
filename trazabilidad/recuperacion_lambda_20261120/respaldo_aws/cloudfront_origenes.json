@@ -1,0 +1,14 @@
+[
+  {
+    "distribucion": "ERCJGWTWZGBQS",
+    "dominio": "d26s2ift3srciv.cloudfront.net",
+    "habilitada": true,
+    "origenes": [
+      {
+        "id": "turbina-dashboard-web-andresito25.s3.us-east-2.amazonaws.com-mp7n9yfx9f6",
+        "dominio": "turbina-dashboard-web-andresito25.s3.us-east-2.amazonaws.com",
+        "ruta": ""
+      }
+    ]
+  }
+]

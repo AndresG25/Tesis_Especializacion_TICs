@@ -1,0 +1,10 @@
+# Conservar los finales de linea LF observados en los fuentes originales.
+*.js text eol=lf
+*.jsx text eol=lf
+*.mjs text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.svg text eol=lf
+*.md text eol=lf
+*.png binary

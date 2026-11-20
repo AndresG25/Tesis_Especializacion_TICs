@@ -1,0 +1,50 @@
+
+IDENTICO 
+     133 
+Revisión documental del 18 de noviembre verificada: los archivos coinciden con la entrega.
+Ahora ejecute source('renderizar_tesis.R', encoding = 'UTF-8').
+La verificación confirma la copia; revise después el PDF y haga Commit y Push.
+Filas leídas: 9860; claves del dispositivo y período: 9860
+Fin de la ventana de 24 h (excluido): 2026-05-29 15:32:06 
+Duración entre las marcas extremas de la captura (s): 112891 
+                            primeras_24h        captura_completa   
+primero                     2026-05-28 15:32:06 2026-05-28 15:32:06
+ultimo                      2026-05-29 15:32:00 2026-05-29 22:53:37
+objetos                     7546                9860               
+bloques_de_minuto_con_datos 1440                1882               
+total_bytes                 1973858             2579963            
+media_bytes                 261.58              261.66             
+mediana_bytes               262                 262                
+min_bytes                   252                 252                
+max_bytes                   263                 263                
+intervalo_medio_s           11.45               11.45              
+intervalo_min_s             11                  11                 
+intervalo_max_s             12                  12                 
+intervalos_11_s             4146                5417               
+intervalos_12_s             3399                4442               
+intervalos_mayores_12_s     0                   0                  
+
+Costos por servicio (USD), sin imputar los campos vacíos:
+               servicio   dia_28_usd   dia_29_usd    total_usd
+                     S3 0.0367484152 0.0461050667 0.0828534819
+                    IoT 0.0020850600 0.0142909100 0.0163759700
+               DynamoDB 0.0006851250 0.0047257500 0.0054108750
+                 Athena 0.0009000000 0.0011000000 0.0020000000
+                   Glue 0.0000000000 0.0000000000 0.0000000000
+ Key Management Service 0.0000000000           NA 0.0000000000
+                 Lambda 0.0000000000 0.0000000000 0.0000000000
+                  X-Ray 0.0000000000           NA 0.0000000000
+             CloudWatch 0.0000000000 0.0000000000 0.0000000000
+ participacion_pct
+     77.6943247536
+     15.3562638788
+      5.0739482495
+      1.8754631181
+      0.0000000000
+      0.0000000000
+      0.0000000000
+      0.0000000000
+      0.0000000000
+Total de la cuenta en dos días: 0.1066403269 USD
+Resultados en trazabilidad/ejecuciones/recalculo_evidencia_20261118 
+No equivalen al costo exclusivo de la turbina ni a una medición de latencia o pérdida.

@@ -1,0 +1,6 @@
+
+IDENTICO 
+     133 
+Revisión documental del 18 de noviembre verificada: los archivos coinciden con la entrega.
+Ahora ejecute source('renderizar_tesis.R', encoding = 'UTF-8').
+La verificación confirma la copia; revise después el PDF y haga Commit y Push.

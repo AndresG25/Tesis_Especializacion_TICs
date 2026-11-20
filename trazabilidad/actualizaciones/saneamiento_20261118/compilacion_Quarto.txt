@@ -1,0 +1,97 @@
+[ 1/11] index.qmd
+[ 2/11] 02-marco-referencia.qmd
+[ 3/11] 03-arquitectura-hardware-iot-edge.qmd
+[ 4/11] 04-arquitectura-software-aws.qmd
+[ 5/11] 05-pruebas-validacion.qmd
+[ 6/11] 06-analisis-costos-resultados.qmd
+[ 7/11] 07-conclusiones-trabajos-futuros.qmd
+[ 8/11] anexos/anexo-a-codigo-esp1.qmd
+[ 9/11] anexos/anexo-b-codigo-esp2.qmd
+[10/11] anexos/anexo-c-codigo-esp3.qmd
+[11/11] anexos/anexo-d-lambdas-frontend.qmd
+
+pandoc 
+  to: latex
+  output-file: index.tex
+  standalone: true
+  toc: false
+  number-sections: true
+  top-level-division: chapter
+  pdf-engine: pdflatex
+  variables:
+    graphics: true
+    tables: true
+  default-image-extension: pdf
+  cite-method: natbib
+  
+metadata
+  crossref:
+    chapters: true
+    fig-title: Figura
+    tbl-title: Tabla nro.
+    fig-prefix: Figura
+    tbl-prefix: Tabla nro.
+    sec-prefix: Sección
+    eq-prefix: Ecuación
+  documentclass: book
+  papersize: letter
+  block-headings: true
+  bibliography:
+    - bibliografia.bib
+  lang: es
+  classoption:
+    - 12pt
+    - oneside
+  title-block-style: none
+  lof: false
+  lot: false
+  colorlinks: true
+  linkcolor: black
+  citecolor: black
+  urlcolor: blue
+  fig-cap-location: bottom
+  tbl-cap-location: top
+  geometry:
+    - includeheadfoot
+    - inner=3cm
+    - outer=2.5cm
+    - top=2.5cm
+    - bottom=2.5cm
+    - bindingoffset=0cm
+  biblio-style: tex/plainnat-extendido
+  title: Desarrollo de una arquitectura escalable de Big Data en AWS alimentada mediante un sistema de IoT
+  subtitle: Aplicación en monitoreo de generación eólica de pequeña escala
+  author: Carlos Andrés Gómez Flórez
+  latex-auto-install: false
+  
+
+Rendering PDF
+running pdflatex - 1
+  This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+generating bibliography
+  This is BibTeX, Version 0.99e (TeX Live 2026)
+  The top-level auxiliary file: index.aux
+  The style file: tex/plainnat-extendido.bst
+  Database file #1: bibliografia.bib
+  
+running pdflatex - 2
+  This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+running pdflatex - 3
+  This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+running pdflatex - 4
+  This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex)
+   restricted \write18 enabled.
+  entering extended mode
+  
+
+Output created: output/Desarrollo-de-una-arquitectura-escalable-de-Big-Data-en-AWS-alimentada-mediante-un-sistema-de-IoT.pdf
+

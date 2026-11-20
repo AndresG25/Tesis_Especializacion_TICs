@@ -1,0 +1,13 @@
+{
+  "archivo": "codigo_original.zip",
+  "bytes": 4969,
+  "sha256_hex": "0767745c43524972c57aedc485673f7aeb5ec544892954f861c8171c138757fb",
+  "sha256_aws_base64": "B2d0XENSSXLFeu3EhWc/eutexUSJKVT4YcgXHBOHV/s=",
+  "hash_aws_verificado": true,
+  "contenido": [
+    {
+      "archivo": "lambda_function.py",
+      "bytes": 18062
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "revision_utc": "2026-11-20T05:26:43.437821+00:00",
+  "archivo_recibido": "dashboard_publicado_7jb5gwt2.zip",
+  "sha256_zip_recibido": "3312f5e2e8de1ccadda3178d64dd5649dd6f26c12b1e713b3dfceedd9f991d37",
+  "manifest": {
+    "bucket": "turbina-dashboard-web-andresito25",
+    "recuperacion_utc": "2026-11-20T05:20:38.046026+00:00",
+    "tipo": "Respaldo del sitio publicado",
+    "archivos": [
+      {
+        "archivo": "web/assets/index-BGNGohYv.js",
+        "bytes": 542719,
+        "sha256": "43c3695a8e28da2933800b2bafb2fbb4556a74948df6b1ec65c7c7ede3c5b6a3"
+      },
+      {
+        "archivo": "web/assets/index-nqMpL4T3.css",
+        "bytes": 1788,
+        "sha256": "323284445ffd48974464868a74c7e0e0f6499230439103be30df4661453a1a67"
+      },
+      {
+        "archivo": "web/favicon.svg",
+        "bytes": 9522,
+        "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+      },
+      {
+        "archivo": "web/icons.svg",
+        "bytes": 5031,
+        "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+      },
+      {
+        "archivo": "web/index.html",
+        "bytes": 467,
+        "sha256": "4823a19617d6864f353d5cdbaaadb868eaaa81551fb423c30f98e65b094ddf14"
+      }
+    ]
+  },
+  "archivos_verificados": [
+    {
+      "archivo": "web/assets/index-BGNGohYv.js",
+      "bytes": 542719,
+      "sha256": "43c3695a8e28da2933800b2bafb2fbb4556a74948df6b1ec65c7c7ede3c5b6a3",
+      "destino": "cloud/frontend/publicado/assets/index-BGNGohYv.js",
+      "verificado": true
+    },
+    {
+      "archivo": "web/assets/index-nqMpL4T3.css",
+      "bytes": 1788,
+      "sha256": "323284445ffd48974464868a74c7e0e0f6499230439103be30df4661453a1a67",
+      "destino": "cloud/frontend/publicado/assets/index-nqMpL4T3.css",
+      "verificado": true
+    },
+    {
+      "archivo": "web/favicon.svg",
+      "bytes": 9522,
+      "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66",
+      "destino": "cloud/frontend/publicado/favicon.svg",
+      "verificado": true
+    },
+    {
+      "archivo": "web/icons.svg",
+      "bytes": 5031,
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
+      "destino": "cloud/frontend/publicado/icons.svg",
+      "verificado": true
+    },
+    {
+      "archivo": "web/index.html",
+      "bytes": 467,
+      "sha256": "4823a19617d6864f353d5cdbaaadb868eaaa81551fb423c30f98e65b094ddf14",
+      "destino": "cloud/frontend/publicado/index.html",
+      "verificado": true
+    }
+  ],
+  "total_bytes_web": 559527,
+  "referencias_html_presentes": [
+    "/favicon.svg",
+    "/assets/index-BGNGohYv.js",
+    "/assets/index-nqMpL4T3.css"
+  ],
+  "mapas_de_fuentes": {
+    "archivos_map": [],
+    "directivas_sourceMappingURL": 0,
+    "campos_sourcesContent": 0
+  },
+  "correspondencias_lambda": [
+    {
+      "funcion": "GetLatest",
+      "url_exportada": "https://2sj26mmaf3d3wr3e6e2dijbt7q0dboyg.lambda-url.us-east-2.on.aws/",
+      "url_en_dashboard": "https://2sj26mmaf3d3wr3e6e2dijbt7q0dboyg.lambda-url.us-east-2.on.aws/?clientId=ESP32C6-AWS",
+      "coincide": true
+    },
+    {
+      "funcion": "GetTimeseries",
+      "url_exportada": "https://krsnuofvttymdbljbdyiqd3fdi0fwlhk.lambda-url.us-east-2.on.aws/",
+      "url_en_dashboard": "https://krsnuofvttymdbljbdyiqd3fdi0fwlhk.lambda-url.us-east-2.on.aws/",
+      "coincide": true
+    }
+  ],
+  "client_id_en_bundle": "ESP32C6-AWS",
+  "solicitudes_a_aws_realizadas_en_revision": 0,
+  "fuentes_originales_react_vite_recuperados": false
+}

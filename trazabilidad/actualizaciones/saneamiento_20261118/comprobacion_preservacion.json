@@ -1,0 +1,91 @@
+{
+  "base_git": "64c0305",
+  "archivos_originales": 1124,
+  "archivos_originales_faltantes": [],
+  "firmware_archivos_identicos": 41,
+  "estructura_capitulos": [
+    {
+      "archivo": "tesis/index.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/02-marco-referencia.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/03-arquitectura-hardware-iot-edge.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/04-arquitectura-software-aws.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/05-pruebas-validacion.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/06-analisis-costos-resultados.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/07-conclusiones-trabajos-futuros.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/anexos/anexo-a-codigo-esp1.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/anexos/anexo-b-codigo-esp2.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/anexos/anexo-c-codigo-esp3.qmd",
+      "encabezados_identicos": true
+    },
+    {
+      "archivo": "tesis/anexos/anexo-d-lambdas-frontend.qmd",
+      "encabezados_identicos": true
+    }
+  ],
+  "rotulos": [
+    {
+      "archivo": "tesis/fig/arquitectura_referencia_redisenada.png",
+      "fuera_del_rotulo_identico": true
+    },
+    {
+      "archivo": "tesis/images/pruebas_validacion/p21_dashboard_15min.png",
+      "fuera_del_rotulo_identico": true
+    }
+  ],
+  "archivos_originales_modificados": [
+    "README.md",
+    "tesis/.quarto/cites/index.json",
+    "tesis/.quarto/idx/02-marco-referencia.qmd.json",
+    "tesis/.quarto/idx/03-arquitectura-hardware-iot-edge.qmd.json",
+    "tesis/.quarto/idx/04-arquitectura-software-aws.qmd.json",
+    "tesis/.quarto/idx/05-pruebas-validacion.qmd.json",
+    "tesis/.quarto/idx/06-analisis-costos-resultados.qmd.json",
+    "tesis/.quarto/idx/07-conclusiones-trabajos-futuros.qmd.json",
+    "tesis/.quarto/idx/anexos/anexo-a-codigo-esp1.qmd.json",
+    "tesis/.quarto/idx/anexos/anexo-b-codigo-esp2.qmd.json",
+    "tesis/.quarto/idx/anexos/anexo-c-codigo-esp3.qmd.json",
+    "tesis/.quarto/idx/anexos/anexo-d-lambdas-frontend.qmd.json",
+    "tesis/.quarto/idx/index.qmd.json",
+    "tesis/02-marco-referencia.qmd",
+    "tesis/03-arquitectura-hardware-iot-edge.qmd",
+    "tesis/05-pruebas-validacion.qmd",
+    "tesis/06-analisis-costos-resultados.qmd",
+    "tesis/07-conclusiones-trabajos-futuros.qmd",
+    "tesis/anexos/anexo-d-lambdas-frontend.qmd",
+    "tesis/bibliografia.bib",
+    "tesis/Desarrollo-de-una-arquitectura-escalable-de-Big-Data-en-AWS-alimentada-mediante-un-sistema-de-IoT.tex",
+    "tesis/fig/arquitectura_referencia_redisenada.png",
+    "tesis/images/pruebas_validacion/p21_dashboard_15min.png",
+    "tesis/index.qmd",
+    "tesis/output/Desarrollo-de-una-arquitectura-escalable-de-Big-Data-en-AWS-alimentada-mediante-un-sistema-de-IoT.pdf",
+    "tesis/tex/frontmatter.tex",
+    "tesis/_quarto.yml"
+  ]
+}

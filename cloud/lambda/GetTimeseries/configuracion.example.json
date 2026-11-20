@@ -1,0 +1,25 @@
+{
+  "Runtime": "python3.12",
+  "Handler": "lambda_function.lambda_handler",
+  "Timeout": 60,
+  "MemorySize": 256,
+  "Architectures": [
+    "x86_64"
+  ],
+  "Role": "<ARN_DEL_ROL_DE_EJECUCION>",
+  "Environment": {
+    "Variables": {
+      "ALLOWED_ORIGIN": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_DATABASE": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_MAX_WAIT_SECONDS": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_OUTPUT": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_TABLE": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_WORKGROUP": "<COMPLETAR_LOCALMENTE>",
+      "ENABLE_DIAGNOSTIC_LOGS": "<COMPLETAR_LOCALMENTE>",
+      "MAX_QUERY_MINUTES": "<COMPLETAR_LOCALMENTE>",
+      "PARTITION_TZ_OFFSET_HOURS": "<COMPLETAR_LOCALMENTE>",
+      "POINTS_PER_MINUTE": "<COMPLETAR_LOCALMENTE>"
+    }
+  },
+  "_nota": "Claves observadas en AWS; valores omitidos por el exportador. Completar antes de utilizar. No es una plantilla de despliegue automática."
+}

@@ -1,0 +1,16 @@
+{
+  "Runtime": "python3.12",
+  "Handler": "lambda_function.lambda_handler",
+  "Timeout": 3,
+  "MemorySize": 128,
+  "Architectures": [
+    "x86_64"
+  ],
+  "Role": "<ARN_DEL_ROL_DE_EJECUCION>",
+  "Environment": {
+    "Variables": {
+      "TABLE_NAME": "<COMPLETAR_LOCALMENTE>"
+    }
+  },
+  "_nota": "Claves observadas en AWS; valores omitidos por el exportador. Completar antes de utilizar. No es una plantilla de despliegue automática."
+}

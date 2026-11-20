@@ -1,0 +1,25 @@
+{
+  "commits": [
+    {
+      "commit": "7a3c2020f49fe2c9ebf218faec7b890af6b7aa5a",
+      "fecha_autor": "2026-05-15T19:35:46-05:00",
+      "mensaje": "fix: historico estable (evita abort por cleanup) + timeout adaptativo"
+    },
+    {
+      "commit": "3a9ca1ac56b3b61f1f42ad099a306577340fe1c4",
+      "fecha_autor": "2026-05-15T18:43:35-05:00",
+      "mensaje": "feat: historico con auto-refresh (rangos cortos) y boton actualizar"
+    },
+    {
+      "commit": "2d45543a0c26f4db8680c345cf9d8b46a9f87bcf",
+      "fecha_autor": "2026-05-15T16:51:01-05:00",
+      "mensaje": "Init dashboard live: React+Vite con refresh 30s (AWS Lambda URL + DynamoDB)"
+    }
+  ],
+  "head": "7a3c2020f49fe2c9ebf218faec7b890af6b7aa5a",
+  "estado_archivos_seguidos": "",
+  "fuentes_cotejados_con_head": 15,
+  "bundle_sha256": "fce508b37914425c14de6e42eba9c6a75b1a94dc3dcfb90031a807cf67b3127f",
+  "bundle_verificado": true,
+  "nota": "Historial original conservado como archivo bundle. No se incluyo un repositorio Git anidado dentro del frontend."
+}

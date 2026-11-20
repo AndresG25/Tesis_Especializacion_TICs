@@ -1,0 +1,43 @@
+{
+  "FunctionName": "GetTimeseries",
+  "FunctionArn": "arn:aws:lambda:us-east-2:116981768971:function:GetTimeseries",
+  "Runtime": "python3.12",
+  "Role": "arn:aws:iam::116981768971:role/service-role/GetTimeseries-role-4kzghzlh",
+  "Handler": "lambda_function.lambda_handler",
+  "CodeSize": 4969,
+  "Timeout": 60,
+  "MemorySize": 256,
+  "LastModified": "2026-05-28T20:19:24.000+0000",
+  "CodeSha256": "B2d0XENSSXLFeu3EhWc/eutexUSJKVT4YcgXHBOHV/s=",
+  "Version": "$LATEST",
+  "RevisionId": "aa65ae69-915d-449c-bcb3-6ef9970093b2",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/GetTimeseries"
+  },
+  "Environment": {
+    "Variables": {
+      "ALLOWED_ORIGIN": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_DATABASE": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_MAX_WAIT_SECONDS": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_OUTPUT": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_TABLE": "<COMPLETAR_LOCALMENTE>",
+      "ATHENA_WORKGROUP": "<COMPLETAR_LOCALMENTE>",
+      "ENABLE_DIAGNOSTIC_LOGS": "<COMPLETAR_LOCALMENTE>",
+      "MAX_QUERY_MINUTES": "<COMPLETAR_LOCALMENTE>",
+      "PARTITION_TZ_OFFSET_HOURS": "<COMPLETAR_LOCALMENTE>",
+      "POINTS_PER_MINUTE": "<COMPLETAR_LOCALMENTE>"
+    }
+  },
+  "_nota": "Valores de variables de entorno omitidos; los ARN y nombres identifican los recursos originales."
+}

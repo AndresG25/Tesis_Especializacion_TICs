@@ -1,0 +1,34 @@
+{
+  "FunctionName": "ActualizarUltimoDatoDynamo",
+  "FunctionArn": "arn:aws:lambda:us-east-2:116981768971:function:ActualizarUltimoDatoDynamo",
+  "Runtime": "python3.12",
+  "Role": "arn:aws:iam::116981768971:role/service-role/ActualizarUltimoDatoDynamo-role-l1izjax4",
+  "Handler": "lambda_function.lambda_handler",
+  "CodeSize": 1400,
+  "Timeout": 3,
+  "MemorySize": 128,
+  "LastModified": "2026-05-15T20:11:28.000+0000",
+  "CodeSha256": "WBT20ISdsFhRIiJRDs2p+xHdJUpzhCOLt/yIILhyeeU=",
+  "Version": "$LATEST",
+  "RevisionId": "92174e40-61dd-4bae-92c3-68522d20db53",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/ActualizarUltimoDatoDynamo"
+  },
+  "Environment": {
+    "Variables": {
+      "TABLE_NAME": "<COMPLETAR_LOCALMENTE>"
+    }
+  },
+  "_nota": "Valores de variables de entorno omitidos; los ARN y nombres identifican los recursos originales."
+}

@@ -1,0 +1,12 @@
+{
+  "FunctionUrlConfigs": [
+    {
+      "FunctionUrl": "https://krsnuofvttymdbljbdyiqd3fdi0fwlhk.lambda-url.us-east-2.on.aws/",
+      "FunctionArn": "arn:aws:lambda:us-east-2:116981768971:function:GetTimeseries",
+      "CreationTime": "2026-05-15T22:36:41.801937848Z",
+      "LastModifiedTime": "2026-05-16T02:03:08.713193702Z",
+      "AuthType": "NONE",
+      "InvokeMode": "BUFFERED"
+    }
+  ]
+}

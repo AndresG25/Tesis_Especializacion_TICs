@@ -1,0 +1,23 @@
+RESPALDO DE RECUPERACIÓN — TESIS
+
+La carpeta lambda conserva los ZIP originales descargados de AWS.
+Las capas Lambda se guardan por separado cuando existen y el acceso lo permite.
+Los SHA-256 se contrastan con los reportados por AWS.
+La configuración conserva runtime, handler, memoria, timeout y referencias a recursos.
+Los valores de variables de entorno y las URLs firmadas de descarga NO se guardan.
+El código original NO se modifica ni se declara libre de credenciales: requiere revisión antes de Git.
+
+Se descarga $LATEST. Las listas de versiones y alias, si están accesibles, permiten identificar
+si el servicio invoca una versión publicada diferente; su código deberá recuperarse adicionalmente.
+La fecha de recuperación y LastModified no prueban que sea el mismo código de las pruebas de mayo.
+
+cloudfront_origenes.json identifica posibles orígenes del dashboard. Este respaldo no descarga
+objetos S3 ni da por recuperado el proyecto React/Vite. Un dist compilado no sustituye src/,
+package.json, archivo de bloqueo y configuración de Vite del proyecto original.
+
+manifest.json distingue código recuperado, faltantes y operaciones sin permiso.
+Esta exportación no incluye por sí sola todas las reglas IoT, permisos IAM, tablas Glue/Athena,
+ni una plantilla completa de despliegue. Es la primera recuperación para completar el Anexo D.
+
+Uso: devolver este ZIP para revisar archivos, dependencias y configuración, preparar copias
+para el repositorio y actualizar después el Anexo D con lo efectivamente incorporado.

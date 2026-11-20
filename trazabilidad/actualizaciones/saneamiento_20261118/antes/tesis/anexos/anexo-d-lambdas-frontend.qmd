@@ -1,0 +1,7 @@
+# Anexo D — Lambdas y frontend
+
+Las funciones Lambda y el frontend React/Vite se describen en los capítulos correspondientes de esta tesis. Entre estos componentes se encuentran `GetLatest`, `GetTimeseries`, `ActualizarUltimoDatoDynamo` y los elementos del dashboard que permiten consultar y visualizar los datos del sistema.
+
+La entrega de código asociada a esta versión incluye los tres proyectos ESP descritos en los anexos A, B y C. Los fuentes de las funciones Lambda y del frontend no forman parte de los archivos incorporados en esta entrega. Su estado de disponibilidad se indica en la [documentación de alcance del repositorio](https://github.com/AndresG25/Tesis_Especializacion_TICs/blob/main/docs/ALCANCE_Y_TRAZABILIDAD.md), para distinguir el material consultable de los componentes pendientes de incorporación.
+
+Para solicitar estos elementos o información sobre su disponibilidad, el contacto del autor es [andres25@utp.edu.co](mailto:andres25@utp.edu.co). Las credenciales y los archivos privados de acceso al sistema se gestionan fuera del repositorio.

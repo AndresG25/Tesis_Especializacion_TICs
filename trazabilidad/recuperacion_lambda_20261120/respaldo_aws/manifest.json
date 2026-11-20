@@ -1,0 +1,51 @@
+{
+  "recuperacion_utc": "2026-11-20T05:03:01.904999+00:00",
+  "region": "us-east-2",
+  "funciones_solicitadas": [
+    "GetLatest",
+    "GetTimeseries",
+    "ActualizarUltimoDatoDynamo"
+  ],
+  "funciones": [
+    {
+      "solicitada": "GetLatest",
+      "nombre": "GetLatest",
+      "estado": "codigo_recuperado",
+      "version": "$LATEST",
+      "ultima_modificacion": "2026-05-16T05:25:53.000+0000",
+      "runtime": "python3.12",
+      "tipo_paquete": "Zip",
+      "sha256_hex": "213b591d35d39ffa37153b307f52fd90d099a63dd1b37254392a27949da336ab",
+      "archivo": "lambda/GetLatest/codigo_original.zip"
+    },
+    {
+      "solicitada": "GetTimeseries",
+      "nombre": "GetTimeseries",
+      "estado": "codigo_recuperado",
+      "version": "$LATEST",
+      "ultima_modificacion": "2026-05-28T20:19:24.000+0000",
+      "runtime": "python3.12",
+      "tipo_paquete": "Zip",
+      "sha256_hex": "0767745c43524972c57aedc485673f7aeb5ec544892954f861c8171c138757fb",
+      "archivo": "lambda/GetTimeseries/codigo_original.zip"
+    },
+    {
+      "solicitada": "ActualizarUltimoDatoDynamo",
+      "nombre": "ActualizarUltimoDatoDynamo",
+      "estado": "codigo_recuperado",
+      "version": "$LATEST",
+      "ultima_modificacion": "2026-05-15T20:11:28.000+0000",
+      "runtime": "python3.12",
+      "tipo_paquete": "Zip",
+      "sha256_hex": "5814f6d0849db058512222510ecda9fb11dd254a7384238bb7fc8820b87279e5",
+      "archivo": "lambda/ActualizarUltimoDatoDynamo/codigo_original.zip"
+    }
+  ],
+  "capas": [],
+  "advertencias": [],
+  "alcance": "Version actual $LATEST y metadatos de versiones/alias. No acredita la version usada en mayo.",
+  "frontend": "Solo se identifican origenes CloudFront; fuentes React/Vite pendientes de localizar.",
+  "configuracion": "Se omiten valores de variables de entorno. No es una plantilla de despliegue completa.",
+  "codigos_recuperados": 3,
+  "total_solicitado": 3
+}

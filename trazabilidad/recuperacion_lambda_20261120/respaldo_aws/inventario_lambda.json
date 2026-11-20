@@ -1,0 +1,27 @@
+[
+  {
+    "nombre": "GetLatest",
+    "runtime": "python3.12",
+    "tipo_paquete": "Zip"
+  },
+  {
+    "nombre": "GetTimeseries",
+    "runtime": "python3.12",
+    "tipo_paquete": "Zip"
+  },
+  {
+    "nombre": "ActualizarUltimoDatoDynamo",
+    "runtime": "python3.12",
+    "tipo_paquete": "Zip"
+  },
+  {
+    "nombre": "athena-to-api",
+    "runtime": "nodejs22.x",
+    "tipo_paquete": "Zip"
+  },
+  {
+    "nombre": "ProcesadorDatosTurbinas",
+    "runtime": "python3.9",
+    "tipo_paquete": "Zip"
+  }
+]

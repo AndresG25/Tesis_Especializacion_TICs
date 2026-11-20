@@ -1,0 +1,26 @@
+{
+  "comparador": [
+    {
+      "caso": "sin_dist",
+      "salida": 1,
+      "estado": "DIST_NO_EXISTE"
+    },
+    {
+      "caso": "copia_de_referencia",
+      "salida": 0,
+      "estado": "ARCHIVOS_IDENTICOS_AL_RESPALDO_S3"
+    },
+    {
+      "caso": "archivo_modificado",
+      "salida": 1,
+      "estado": "ARCHIVOS_DIFERENTES_AL_RESPALDO_S3"
+    }
+  ],
+  "gitignore": {
+    ".env.example": false,
+    ".env.local": true,
+    "dist/index.html": true,
+    "node_modules/ejemplo/index.js": true
+  },
+  "alcance": "Pruebas del comparador con copias controladas; no se ejecuto Vite ni se accedio a AWS."
+}

@@ -1,0 +1,102 @@
+{
+  "origen": "Dist de turbina-dashboard.zip comparado con el respaldo de S3 recibido.",
+  "archivos_publicados": [
+    {
+      "archivo": "assets/index-BGNGohYv.js",
+      "sha256": "43c3695a8e28da2933800b2bafb2fbb4556a74948df6b1ec65c7c7ede3c5b6a3"
+    },
+    {
+      "archivo": "assets/index-nqMpL4T3.css",
+      "sha256": "323284445ffd48974464868a74c7e0e0f6499230439103be30df4661453a1a67"
+    },
+    {
+      "archivo": "favicon.svg",
+      "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+    },
+    {
+      "archivo": "icons.svg",
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+    },
+    {
+      "archivo": "index.html",
+      "sha256": "4823a19617d6864f353d5cdbaaadb868eaaa81551fb423c30f98e65b094ddf14"
+    }
+  ],
+  "fuentes_originales": [
+    {
+      "archivo": "eslint.config.js",
+      "bytes": 568,
+      "sha256": "0197d9a843aaae267303c4d1ab1a43afad1afacc7646cdf6cf94a5af6b815fb8"
+    },
+    {
+      "archivo": "index.html",
+      "bytes": 369,
+      "sha256": "127f05929168784504577ce462f4ff6ae8243d7fa0950f51e109518226c2c5a9"
+    },
+    {
+      "archivo": "package-lock.json",
+      "bytes": 98642,
+      "sha256": "b0451813dce8b4a75f96c79b1c9d0032696036d3d465493315b4c3a5ae8afaae"
+    },
+    {
+      "archivo": "package.json",
+      "bytes": 640,
+      "sha256": "a20c755273dce2bb574f36c1937bcc70cf7193c4c99c1e8753983255ed275e69"
+    },
+    {
+      "archivo": "public/favicon.svg",
+      "bytes": 9522,
+      "sha256": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66"
+    },
+    {
+      "archivo": "public/icons.svg",
+      "bytes": 5031,
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+    },
+    {
+      "archivo": "src/App.css",
+      "bytes": 2891,
+      "sha256": "6e25a776d3e8102da5bacb3cb99f4a5fc662a2e01e6143140671a556d28c3d5c"
+    },
+    {
+      "archivo": "src/App.jsx",
+      "bytes": 3138,
+      "sha256": "f45ec4dbc099cdb30c8f8f9cf2b508591beb7ad385ba6990b56a019551817349"
+    },
+    {
+      "archivo": "src/Historico.jsx",
+      "bytes": 13604,
+      "sha256": "0fb8b4ef7aaba09fb40e2ff57cee35253ac7f83f1cc3e368405ad31998ec5c92"
+    },
+    {
+      "archivo": "src/assets/hero.png",
+      "bytes": 13057,
+      "sha256": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c"
+    },
+    {
+      "archivo": "src/assets/react.svg",
+      "bytes": 4126,
+      "sha256": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5"
+    },
+    {
+      "archivo": "src/assets/vite.svg",
+      "bytes": 8709,
+      "sha256": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f"
+    },
+    {
+      "archivo": "src/index.css",
+      "bytes": 2169,
+      "sha256": "fda85fffe7f006d822fb9ab4e774b9e2b8fadffa73a3806b038dc0b8456cbbeb"
+    },
+    {
+      "archivo": "src/main.jsx",
+      "bytes": 229,
+      "sha256": "4b4b864dbe45253425d0c925337180ec07e204295179f80f59551216f466f618"
+    },
+    {
+      "archivo": "vite.config.js",
+      "bytes": 161,
+      "sha256": "4d36db3522a7b2dd10e0936e1004373c7ee65f10f7cd7920cd76410459c15a45"
+    }
+  ]
+}

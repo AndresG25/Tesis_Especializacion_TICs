@@ -1,0 +1,40 @@
+[
+  {
+    "archivo": "src/App.jsx",
+    "errores": 1,
+    "avisos": 0,
+    "mensajes": [
+      {
+        "regla": "no-unused-vars",
+        "linea": 1,
+        "severidad": 2,
+        "mensaje": "'React' is defined but never used."
+      }
+    ]
+  },
+  {
+    "archivo": "src/Historico.jsx",
+    "errores": 2,
+    "avisos": 0,
+    "mensajes": [
+      {
+        "regla": "react-hooks/set-state-in-effect",
+        "linea": 121,
+        "severidad": 2,
+        "mensaje": "Error: Calling setState synchronously within an effect can trigger cascading renders"
+      },
+      {
+        "regla": "react-hooks/set-state-in-effect",
+        "linea": 160,
+        "severidad": 2,
+        "mensaje": "Error: Calling setState synchronously within an effect can trigger cascading renders"
+      }
+    ]
+  },
+  {
+    "archivo": "src/main.jsx",
+    "errores": 0,
+    "avisos": 0,
+    "mensajes": []
+  }
+]
